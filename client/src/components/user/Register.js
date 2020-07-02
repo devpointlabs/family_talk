@@ -1,5 +1,5 @@
 import React from 'react';
-import { AuthConsumer, } from "../providers/AuthProvider";
+import { AuthConsumer, } from "../../providers/AuthProvider";
 import { Button, Form, Segment, Header, } from 'semantic-ui-react';
 
 class Register extends React.Component {

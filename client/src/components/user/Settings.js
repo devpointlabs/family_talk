@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { AuthConsumer, } from "../providers/AuthProvider";
+import { AuthConsumer, } from "../../providers/AuthProvider";
 import { Button, Form, Segment, Header, Grid, Divider, Container, Image } from "semantic-ui-react";
 import Dropzone from 'react-dropzone';
 
