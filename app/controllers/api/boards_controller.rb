@@ -22,8 +22,13 @@ class Api::BoardsController < ApplicationController
     end
   end
 
+  
   def update
     
+  end
+  
+  def destroy
+   render json: Board.find(params[:id]).destroy
   end
 
   private

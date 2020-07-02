@@ -19,11 +19,19 @@ export default function Board() {
     setBoards([board, ...boards])
   }
 
+  function removeBoard(id) {
+    axios.delete(`/api/boards/${id}`)
+      .then((res) => {
+      setBoards(boards.filter(board => board.id !== id))
+    })
+  }
+
   function renderBoards() {
     return boards.map(b => (
       <div>
         <h1>{b.name}</h1>
         <p>{b.description}</p>
+        <button onClick={() => removeBoard(b.id)}>Delete</button>
       </div>
     ))
   }
