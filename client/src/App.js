@@ -9,7 +9,7 @@ import { Container, } from "semantic-ui-react";
 import FetchUser from './components/user/FetchUser';
 import ProtectedRoute from './components/routes/ProtectedRoute';
 import Settings from './components/user/Settings';
-
+import LandingPage from './components/LandingPage'
 
 const App = () => (
   <Fragment>
@@ -21,6 +21,7 @@ const App = () => (
         <ProtectedRoute exact path="/settings" component={Settings} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
+        <Route exact path='/landingPage' component={LandingPage} />
         <Route component={NoMatch} />
       </Switch>
     </Container>

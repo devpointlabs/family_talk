@@ -6,12 +6,15 @@ import Dropzone from 'react-dropzone';
 const defaultImage = 'https://d30y9cdsu7xlg0.cloudfront.net/png/15724-200.png';
 
 class Settings extends React.Component {
-  state = { editing: false, formValues: { name: '', email: '', file: '', }, };
+  state = { editing: false, formValues: { name: '', email: '', file: '', first_name: '', last_name: '' }, 
+  
+};
 
   componentDidMount() {
-    const { auth: { user: { email, name, }, }, } = this.props;
-    this.setState({ formValues: { email, name, }, });
+    const { auth: { user: { email, name, first_name, last_name}, }, } = this.props;
+    this.setState({ formValues: { email, name, first_name, last_name}, });
   }
+
 
   toggleEdit = () => {
     this.setState( state => {
@@ -35,10 +38,10 @@ class Settings extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { formValues: { email, name, file, }, } = this.state;
+    const { formValues: { email, name, file, first_name, last_name }, } = this.state;
     const { auth: { user, updateUser, }, } = this.props;
 
-    updateUser(user.id, {email, name, file, });
+    updateUser(user.id, {email, name, file, first_name, last_name });
     this.setState({
       editing: false,
       formValues: {
@@ -58,6 +61,8 @@ class Settings extends React.Component {
         <Grid.Column width={8}>
           <Header as="h1">{user.email}</Header>
           <Header as="h1">{user.name}</Header>
+          <Header as="h1">{user.first_name}</Header>
+          <Header as="h1">{user.last_name}</Header>
         </Grid.Column>
       </Fragment>
     )
@@ -65,7 +70,7 @@ class Settings extends React.Component {
 
   editView = () => {
     const { auth: { user }, } = this.props;
-    const { formValues: { email, name, file, }, } = this.state;
+    const { formValues: { email, name, file, first_name, last_name }, } = this.state;
     return (
       <Form onSubmit={this.handleSubmit}>
         <Grid.Column width={4}>
@@ -99,7 +104,21 @@ class Settings extends React.Component {
             onChange={this.handleChange}
           />
           <Form.Input
-            label="name"
+            label="First Name"
+            name="first_name"
+            value={first_name}
+            required
+            onChange={this.handleChange}
+          />
+          <Form.Input
+            label="Last Name"
+            name="last_name"
+            value={last_name}
+            required
+            onChange={this.handleChange}
+          />
+          <Form.Input
+            label="Username"
             name="name"
             value={name}
             required

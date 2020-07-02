@@ -30,15 +30,15 @@ class Navbar extends React.Component {
         <Menu.Menu position='right'>
           <Link to='/login'>
             <Menu.Item
-              id='login'
-              name='login'
+              id='Sign In'
+              name='Sign In'
               active={location.pathname === '/login'}
             />
           </Link>
           <Link to='/register'>
             <Menu.Item
               id='register'
-              name='register'
+              name='Sign Up'
               active={location.pathname === '/register'}
             />
           </Link>
@@ -56,6 +56,14 @@ class Navbar extends React.Component {
               name='home'
               id='home'
               active={this.props.location.pathname === '/'}
+            />
+            
+          </Link>
+          <Link to='/landingPage'>
+            <Menu.Item
+              name='landingPage'
+              id='landingPage'
+              active={this.props.location.pathname === '/landingPage'}
             />
           </Link>
             { this.rightNavItems() }
