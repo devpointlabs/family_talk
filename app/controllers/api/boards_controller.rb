@@ -11,7 +11,6 @@ class Api::BoardsController < ApplicationController
     render json: board
   end
 
-
   def create
     board = Board.new(board_params)
 
@@ -21,10 +20,15 @@ class Api::BoardsController < ApplicationController
       render json: board.errors, status: 422
     end
   end
-
   
   def update
+     board = Board.find(params[:id]) 
     
+     if board.update(board_params)
+      render json: board
+     else
+      render json: board.errors, status: 422
+     end
   end
   
   def destroy
