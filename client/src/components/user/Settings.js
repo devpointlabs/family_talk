@@ -49,7 +49,7 @@ class Settings extends React.Component {
         file: "",
       },
     });
-  }
+  } 
 
   settingsView = () => {
     const { auth: { user }, } = this.props;

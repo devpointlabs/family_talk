@@ -2,45 +2,26 @@ import React, { useState, useEffect } from "react"
 import axios from "axios"
 import BoardForm from "./BoardForm"
 
-export default function Board() {
-  const [boards, setBoards] = useState([])
+export default function Board(props) {
+  const [board, setBoard] = useState({})
 
   useEffect(() => {
-    axios.get("/api/boards")
+    axios.get(`/api/boards/${props.match.params.id}`)
       .then(res => {
-      setBoards(res.data)
+      setBoard(res.data)
       })
       .catch((e) => {
       console.log(e)
     })
   }, [])
 
-  function addBoard(board) {
-    setBoards([board, ...boards])
-  }
-
-  function removeBoard(id) {
-    axios.delete(`/api/boards/${id}`)
-      .then((res) => {
-      setBoards(boards.filter(board => board.id !== id))
-    })
-  }
-
-  function renderBoards() {
-    return boards.map(b => (
-      <div>
-        <h1>{b.name}</h1>
-        <p>{b.description}</p>
-        <button onClick={() => removeBoard(b.id)}>Delete</button>
-      </div>
-    ))
-  }
-  
-
-  return (
-    <>
-      <BoardForm addBoard={addBoard}/>
-      {renderBoards()}
-    </>
+  return(
+    <div>
+      <h1>{board.name}</h1>
+        <p>{board.description}</p>
+        <button onClick={() => props.removeBoard(props.id)}>Delete</button>
+        <button onClick={() => props.editBoard(props.id)}>Edit</button>
+    </div>
+    
   )
 }
