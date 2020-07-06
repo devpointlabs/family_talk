@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
-import BoardForm from "./BoardForm"
 
 export default function Board(props) {
   const [board, setBoard] = useState({})
