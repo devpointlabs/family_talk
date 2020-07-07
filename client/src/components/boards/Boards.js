@@ -4,6 +4,7 @@ import BoardForm from "./BoardForm"
 import Board from "./Board"
 import { Link } from "react-router-dom"
 import { Button } from "semantic-ui-react"
+import BoardView from "./BoardView"
 
 export default function Boards() {
   const [boards, setBoards] = useState([])
@@ -43,12 +44,14 @@ export default function Boards() {
   //delete is doesnt work***********************************************
   function renderBoards() {
     return boards.map(board => (
-      <Board
-        key={board.id}
-        {...board}
-        editBoard={editBoard}
-        removeBoard={removeBoard}
-      />
+      <>
+        <Board
+          key={board.id}
+          {...board}
+          editBoard={editBoard}
+          removeBoard={removeBoard}
+        />
+       </>
     ))
   }
 

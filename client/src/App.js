@@ -10,6 +10,7 @@ import FetchUser from './components/user/FetchUser';
 import ProtectedRoute from './components/routes/ProtectedRoute';
 import Settings from './components/user/Settings';
 import LandingPage from './components/LandingPage'
+import BoardView from "./components/boards/BoardView"
 
 const App = () => (
   <Fragment>
@@ -21,7 +22,8 @@ const App = () => (
         <ProtectedRoute exact path="/settings" component={Settings} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
-        <Route exact path='/landingPage' component={LandingPage} />
+          <Route exact path='/landingPage' component={LandingPage} />
+          <Route exact path="/boardView/:id" component={BoardView} />
         <Route component={NoMatch} />
       </Switch>
     </Container>
