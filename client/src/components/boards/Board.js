@@ -15,7 +15,7 @@ const Board = (props) => {
       <br/>
       <button onClick={() => setEditing(!editing)}>{editing ? "Close Edit" : "Edit"}</button>
         {/*if editing is true then display form else null  */}
-      {editing ? <BoardForm editBook={props.editBook} {...props}/> : null } 
+      {editing ? <BoardForm toggleEdit={setEditing} editBook={props.editBook} {...props}/> : null } 
     </>
   )
 };

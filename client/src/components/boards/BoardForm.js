@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Form, Button } from "semantic-ui-react"
 import axios from "axios"
 
@@ -6,12 +6,20 @@ const BoardForm = (props) => {
   const [name, setName] = useState('')
   const [des, setDes] = useState('')
     
-  const board = {name: name, description: des}
+  const board = { name: name, description: des }
+  
+  useEffect(() => {
+    if (props.id) {
+      setName(props.name)
+      setDes(props.des)
+    }
+  },[])
 
   function handleSubmit(e) {
     e.preventDefault()
     if (props.editBoard) {
       props.editBoard(props.id, board)
+      props.toggleEdit()
     } else {  
        axios.put("/api/boards", board)
       .then((res) => {
