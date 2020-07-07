@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { Form, Button } from "semantic-ui-react"
 import axios from "axios"
 
-const BoardForm = ({addBoard, editBoard}) => {
+const BoardForm = (props) => {
   const [name, setName] = useState('')
   const [des, setDes] = useState('')
     
@@ -10,15 +10,12 @@ const BoardForm = ({addBoard, editBoard}) => {
 
   function handleSubmit(e) {
     e.preventDefault()
-    if (!board.id) {
-      axios.post("/api/boards", board)
-      .then((res) => {
-      addBoard(res.data)
-      })
+    if (props.editBoard) {
+      props.editBoard(props.id, board)
     } else {  
-       axios.put(`/api/boards/${board.id}`, board)
+       axios.put("/api/boards", board)
       .then((res) => {
-        editBoard(res.data)
+        props.addBoard(res.data)
       })
       .catch((e) => {
         console.log(e)

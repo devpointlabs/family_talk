@@ -52,15 +52,15 @@ export default function Boards() {
     ))
   }
 
-  const editBoard = (id, board) => {
+  const editBoard = (id, board) => { //we pass the id from our state, add board from form
     axios.put(`/api/boards/${id}`, board)
       .then(res => {
-        const updateBoard = board.map(board => {
-          if (board.id === id)
-            return res.data
-          return board
+        const updateBoard = boards.map(board => {
+          if (board.id === id) //if the board.id matches the id that we clicked on then.. 
+            return res.data //return the data that was updated
+          return board //else just return the board as is
         })
-        setBoards(updateBoard)
+        setBoards(updateBoard) //we then push the updated board to our state
       })
   }
   
@@ -68,9 +68,11 @@ export default function Boards() {
   return (
     <>
       {showForm && <BoardForm addBoard={addBoard} toggleForm={setShowForm} />}
-      <Button onClick={() => setShowForm(!showForm)}>
+      <br/>
+      <button onClick={() => setShowForm(!showForm)}>
         {showForm ? "Close Form" : "Add Board"}
-      </Button>
+      </button>
+      <br/>
 
 
       {renderBoards()}
