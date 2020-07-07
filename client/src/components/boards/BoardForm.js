@@ -34,19 +34,6 @@ const BoardForm = (props) => {
     }
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-    
   return (
     <Form onSubmit={handleSubmit}>
         <Form.Input
