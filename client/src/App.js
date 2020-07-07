@@ -9,8 +9,9 @@ import { Container, } from "semantic-ui-react";
 import FetchUser from './components/user/FetchUser';
 import ProtectedRoute from './components/routes/ProtectedRoute';
 import Settings from './components/user/Settings';
-import LandingPage from './components/LandingPage'
-import BoardView from "./components/boards/BoardView"
+import LandingPage from './components/LandingPage';
+import BoardView from "./components/boards/BoardView";
+import Posts from "./components/posts/Posts";
 
 const App = () => (
   <Fragment>
