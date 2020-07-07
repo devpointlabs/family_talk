@@ -11,7 +11,7 @@ const BoardForm = (props) => {
   useEffect(() => {
     if (props.id) {
       setName(props.name)
-      setDes(props.des)
+      setDes(props.description)
     }
   },[])
 
