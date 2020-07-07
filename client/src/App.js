@@ -16,7 +16,7 @@ const App = () => (
   <Fragment>
     <Navbar />
     <FetchUser>
-    <Container>
+    
       <Switch>
         <Route exact path="/" component={Home} />
         <ProtectedRoute exact path="/settings" component={Settings} />
@@ -26,7 +26,7 @@ const App = () => (
           <Route exact path="/boardView/:id" component={BoardView} />
         <Route component={NoMatch} />
       </Switch>
-    </Container>
+   
     </FetchUser>
   </Fragment>
 )
