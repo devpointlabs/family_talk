@@ -21,9 +21,10 @@ const BoardForm = (props) => {
       props.editBoard(props.id, board)
       props.toggleEdit()
     } else {  
-       axios.put("/api/boards", board)
+       axios.post("/api/boards", board)
       .then((res) => {
         props.addBoard(res.data)
+         props.toggleForm();
       })
       .catch((e) => {
         console.log(e)
@@ -32,6 +33,19 @@ const BoardForm = (props) => {
       setDes('')
     }
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
     
   return (
     <Form onSubmit={handleSubmit}>
