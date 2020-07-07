@@ -1,46 +1,33 @@
-import React, { useState, useEffect } from "react"
-import axios from "axios"
-import BoardForm from "./BoardForm"
+import React, { useState, } from "react";
+import { Link, } from "react-router-dom"
+import { Button } from "semantic-ui-react";
+import BoardForm from "./BoardForm";
+import BoardView from "./BoardView"
 
-export default function Board() {
-  const [boards, setBoards] = useState([])
+const Board = (props) => {
+  const [ editing, setEditing] = useState(false)
 
-  useEffect(() => {
-    axios.get("/api/boards")
-      .then(res => {
-      setBoards(res.data)
-      })
-      .catch((e) => {
-      console.log(e)
-    })
-  }, [])
-
-  function addBoard(board) {
-    setBoards([board, ...boards])
-  }
-
-  function removeBoard(id) {
-    axios.delete(`/api/boards/${id}`)
-      .then((res) => {
-      setBoards(boards.filter(board => board.id !== id))
-    })
-  }
-
-  function renderBoards() {
-    return boards.map(b => (
-      <div>
-        <h1>{b.name}</h1>
-        <p>{b.description}</p>
-        <button onClick={() => removeBoard(b.id)}>Delete</button>
-      </div>
-    ))
-  }
-  
-
-  return (
+  return ( 
     <>
-      <BoardForm addBoard={addBoard}/>
-      {renderBoards()}
+      <div>
+        <h1>{props.name}</h1>
+        <p>{props.description}</p>
+      </div>
+      <br/>
+      <button onClick={() => setEditing(!editing)}>{editing ? "Close Edit" : "Edit"}</button>
+      <button onClick={() => props.removeBoard(props.id)}>Delete</button> 
+      <Link to={`/boardView/${props.id}`}
+          key={props.id}
+          {...props}>
+        <button>View</button>
+        </Link>
+
+        {/*if editing is true then display form else null  */}
+      {editing ? <BoardForm toggleEdit={setEditing} editBook={props.editBook} {...props}/> : null } 
     </>
   )
-}
+};
+
+
+
+export default Board;

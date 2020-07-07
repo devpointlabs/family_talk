@@ -33,6 +33,7 @@ class Api::BoardsController < ApplicationController
   
   def destroy
    render json: Board.find(params[:id]).destroy
+
   end
 
   private

@@ -1,24 +1,37 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Form, Button } from "semantic-ui-react"
 import axios from "axios"
 
-const BoardForm = ({addBoard}) => {
+const BoardForm = (props) => {
   const [name, setName] = useState('')
   const [des, setDes] = useState('')
     
-  const board = {name: name, description: des}
+  const board = { name: name, description: des }
+  
+  useEffect(() => {
+    if (props.id) {
+      setName(props.name)
+      setDes(props.description)
+    }
+  },[])
 
   function handleSubmit(e) {
     e.preventDefault()
-    axios.post("/api/boards", board)
+    if (props.editBoard) {
+      props.editBoard(props.id, board)
+      props.toggleEdit()
+    } else {  
+       axios.post("/api/boards", board)
       .then((res) => {
-      addBoard(res.data)
+        props.addBoard(res.data)
+         props.toggleForm();
       })
       .catch((e) => {
-      console.log(e)
-    })
-    setName('')
-    setDes('')
+        console.log(e)
+      })
+      setName('')
+      setDes('')
+    }
   }
 
   return (
