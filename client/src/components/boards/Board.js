@@ -23,7 +23,7 @@ const Board = (props) => {
         </Link>
 
         {/*if editing is true then display form else null  */}
-      {editing ? <BoardForm toggleEdit={setEditing} editBook={props.editBook} {...props}/> : null } 
+      {editing ? <BoardForm toggleEdit={setEditing} {...props}/> : null } 
     </>
   )
 };
