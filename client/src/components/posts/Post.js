@@ -16,7 +16,7 @@ const Post = (props) => {
         <button onClick={() => setEditing(!editing)}>{editing ? "Close Edit" : "Edit"}</button>
         <button onClick={() => props.removePost(props.post.id)}>Delete</button>
 
-        {editing ? <PostForm toggleEdit={setEditing} editPost={props.editPost} post={props.post}/> : null } 
+        {editing ? <PostForm toggleEdit={setEditing} editPost={props.editPost} post={props.post} userId={props.userId}/> : null } 
         
 
       </Card>

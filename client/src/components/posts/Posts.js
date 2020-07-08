@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import {AuthConsumer} from "../../providers/AuthProvider"
-import Axios from "axios"
+import axios from "axios"
 import Post from "./Post"
 import PostForm from "./PostForm"
 
@@ -11,7 +11,7 @@ const Posts = (props) => {
 
 
   useEffect(() => {
-    Axios.get(`/api/boards/${props.boardId}/posts`)
+    axios.get(`/api/boards/${props.boardId}/posts`)
       .then(res => {
         setPosts(res.data)
       })
@@ -19,14 +19,14 @@ const Posts = (props) => {
   
   const renderPosts = () => {
     return posts.map(post => (
-      <Post key={post.id} post={post} editPost={editPost} removePost={removePost}/>
+      <Post key={post.id} post={post} editPost={editPost} removePost={removePost} userId={props.auth.user}/>
     ))
   }
 
   const addPost = (post) => setPosts([post, ...posts])
 
   const editPost = (id, post) => {
-    Axios.put(`/api/boards/${props.boardId}/posts/${id}`, post)
+    axios.put(`/api/boards/${props.boardId}/posts/${id}`, post)
       .then(res => {
         const updatePost = posts.map(p => {
           if (p.id === id)
@@ -38,7 +38,7 @@ const Posts = (props) => {
   }
 
   const removePost = (id) => {
-    Axios.delete(`/api/boards/${props.boardId}/posts/${id}`)
+    axios.delete(`/api/boards/${props.boardId}/posts/${id}`)
       .then(res => {
       setPosts(posts.filter(post => post.id !== id))
     })
@@ -47,7 +47,7 @@ const Posts = (props) => {
   return (
     <>
       <h2>Posts</h2>
-      {showForm && <PostForm addPost={addPost} boardId={props.boardId} userId={props.auth.user.id} />} 
+      {showForm && <PostForm addPost={addPost} boardId={props.boardId} userId={props.auth.user} />} 
        <button onClick={() => setShowForm(!showForm)}>
         {showForm ? "Close Form" : "Add Post"}
       </button>
