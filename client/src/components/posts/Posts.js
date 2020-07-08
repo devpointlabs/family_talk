@@ -25,7 +25,7 @@ const Posts = (props) => {
       //   <Header> {post.title}</Header>
       //   <description>{post.description}</description>
       // </Card>
-      <Post key={post.id} post={post} editPost={editPost} removePost={removePost}/>
+      <Post key={post.id} post={post} editPost={editPost} removePost={removePost} userId={props.auth.user}/>
     ))
   }
 
@@ -54,7 +54,7 @@ const Posts = (props) => {
     <>
       <h2>Posts</h2>
       {/* we pass the addPost and boardId function to the PostForm */}
-      {showForm && <PostForm addPost={addPost} boardId={props.boardId} userId={props.auth.user.id} />} 
+      {showForm && <PostForm addPost={addPost} boardId={props.boardId} userId={props.auth.user} />} 
     
        <button onClick={() => setShowForm(!showForm)}>
         {showForm ? "Close Form" : "Add Post"}
