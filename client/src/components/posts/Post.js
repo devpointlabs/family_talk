@@ -1,22 +1,22 @@
 import React, { useState } from "react"
-import { Image, Card, Icon, Header } from "semantic-ui-react"
+import { Image, Card, Header } from "semantic-ui-react"
 import PostForm from "./PostForm"
 
 
-const Post = ({ post, editPost,removePost, userId }) => {  
+const Post = (props) => {  
   const [ editing, setEditing] = useState(false)
 
   return(
     <div>
-       <Card key={post.id}>
-         <Image src={post.image}/>
-         <Header> {post.title}</Header>
-        <description>{post.description}</description>
+       <Card key={props.post.id}>
+         <Image src={props.post.image}/>
+         <Header> {props.post.title}</Header>
+        <description>{props.post.description}</description>
         
         <button onClick={() => setEditing(!editing)}>{editing ? "Close Edit" : "Edit"}</button>
-        <button onClick={() => removePost(post.id)}>Delete</button>
+        <button onClick={() => props.removePost(props.post.id)}>Delete</button>
 
-        {editing ? <PostForm toggleEdit={setEditing} editPost={editPost} post={post} userId={userId}/> : null } 
+        {editing ? <PostForm toggleEdit={setEditing} editPost={props.editPost} post={props.post} userId={props.userId}/> : null } 
         
 
       </Card>

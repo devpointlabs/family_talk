@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react"
-import { Form, Button, FormInput } from "semantic-ui-react"
-import Axios from "axios"
+import { Form, Button } from "semantic-ui-react"
+import axios from "axios"
 
 const PostForm = (props) => {
   const [title, setTitle] = useState('')
@@ -11,10 +11,10 @@ const PostForm = (props) => {
     if (props.post) {
       setTitle(props.post.title)
       setDescription(props.post.description)
-    }
+    } 
   },[])
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     const thePost = { title: title, description: description, user_id: props.userId.id }
     if (props.editPost) {
       props.editPost(props.post.id, thePost)
@@ -22,7 +22,7 @@ const PostForm = (props) => {
     }
     else {
       e.preventDefault()
-      Axios.post(`/api/boards/${props.boardId}/posts`, thePost) //whenver we do a post we have to pass in two arguments, the path and the object so it knows what we are passing through to that route
+      axios.post(`/api/boards/${props.boardId}/posts`, thePost) //whenver we do a post we have to pass in two arguments, the path and the object so it knows what we are passing through to that route
         .then(res => {
           props.addPost(res.data) //res.data will be used in posts.js as post to add to the state
         })
