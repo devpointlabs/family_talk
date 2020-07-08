@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react"
 import Axios from "axios"
-import { Image, Card, Icon  } from "semantic-ui-react"
+import Post from "./Post"
+import { Image, Card, Icon, Header } from "semantic-ui-react"
+
 
 const Posts = ({boardId}) => {
   const [posts, setPosts] = useState([])
@@ -14,11 +16,12 @@ const Posts = ({boardId}) => {
   
   function renderPosts() {
     return posts.map(post => (
-      <Card key={post.id}>
-        <h3> {post.title}</h3>
-        <p>{post.description}</p>
-        <Image src={post.image}/>
-      </Card>
+      // <Card key={post.id}>
+      //   <Image src={post.image}/>
+      //   <Header> {post.title}</Header>
+      //   <description>{post.description}</description>
+      // </Card>
+      <Post key={post.id} post={post}/>
     ))
   }
 

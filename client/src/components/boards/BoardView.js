@@ -17,8 +17,8 @@ export default function BoardView(props) {
 
   return(
     <div>
-      <h1>{board.name}</h1>
-        <p>{board.description}</p>
+      {/* <h1>{board.name}</h1>
+        <p>{board.description}</p> */}
         {/* <button onClick={() => props.removeBoard(props.id)}>Delete</button>
         <button onClick={() => props.editBoard(props.id)}>Edit</button> */}
       <Posts boardId={props.match.params.id}/>
