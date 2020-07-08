@@ -16,7 +16,6 @@ const Posts = (props) => {
       .then(res => {
         setPosts(res.data)
       })
-    console.log(props.auth.user)
   }, [])
   
   function renderPosts() {
