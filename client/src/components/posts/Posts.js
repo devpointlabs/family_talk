@@ -26,11 +26,23 @@ const Posts = (props) => {
       //   <Header> {post.title}</Header>
       //   <description>{post.description}</description>
       // </Card>
-      <Post key={post.id} post={post}/>
+      <Post key={post.id} post={post} editPost={editPost}/>
     ))
   }
 
   const addPost = (post) => setPosts([post, ...posts]) //we get the post from PostForm as res.data to pass to the state
+
+  const editPost = (id, post) => {
+    Axios.put(`/api/boards/${props.boardId}/posts/${id}`, post)
+      .then(res => {
+        const updatePost = posts.map(p => {
+          if (p.id === id)
+            return res.data
+          return p;
+        })
+        setPosts(updatePost)
+      })
+  }
 
   return (
     <>
