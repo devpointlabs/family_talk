@@ -16,6 +16,18 @@ class Api::PostsController < ApplicationController
     end
   end
 
+  # def create
+  #   post = @board.reviews.new(post_params)
+
+  #   if post.save
+  #     render json: post
+  #   else
+  #     render json: { errors: post.errors }, status: :unprocessble_entity
+  #   end
+  # end
+
+
+
   private
   def set_board
     @board = Board.find(params[:board_id])
