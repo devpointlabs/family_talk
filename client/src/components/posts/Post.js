@@ -6,7 +6,7 @@ const Post = ({post}) => {
   return(
     <div>
        <Card key={post.id}>
-         {/* <Image src={post.image}/> */}
+         <Image src={post.image}/>
          <Header> {post.title}</Header>
          <description>{post.description}</description>
       </Card>
