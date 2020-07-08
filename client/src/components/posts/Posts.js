@@ -26,7 +26,7 @@ const Posts = (props) => {
       //   <Header> {post.title}</Header>
       //   <description>{post.description}</description>
       // </Card>
-      <Post key={post.id} post={post} editPost={editPost}/>
+      <Post key={post.id} post={post} editPost={editPost} removePost={removePost}/>
     ))
   }
 
@@ -42,6 +42,13 @@ const Posts = (props) => {
         })
         setPosts(updatePost)
       })
+  }
+
+  const removePost = (id) => {
+    Axios.delete(`/api/boards/${props.boardId}/posts/${id}`)
+      .then(res => {
+      setPosts(posts.filter(post => post.id !== id))
+    })
   }
 
   return (
