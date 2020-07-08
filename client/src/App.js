@@ -22,8 +22,8 @@ const App = () => (
         <ProtectedRoute exact path="/settings" component={Settings} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
-          <Route exact path='/landingPage' component={LandingPage} />
-          <Route exact path="/boardView/:id" component={BoardView} />
+        <Route exact path='/landingPage' component={LandingPage} />
+        <Route exact path="/boardView/:id" component={BoardView} />
         <Route component={NoMatch} />
       </Switch>
    
