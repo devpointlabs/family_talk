@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react"
-import { Form, Button, FormInput } from "semantic-ui-react"
+import { Form, Button } from "semantic-ui-react"
 import Axios from "axios"
 
 const PostForm = (props) => {
@@ -10,13 +10,14 @@ const PostForm = (props) => {
   const thePost = { title: title, description: description, user_id: props.userId }
   
   useEffect(() => {
+    //adding post does not work because no ID exsists
     if (props.post.id) {
       setTitle(props.post.title)
       setDescription(props.post.description)
-    }
+    } 
   },[])
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     if (props.editPost) {
       props.editPost(props.post.id, thePost)
       props.toggleEdit()
