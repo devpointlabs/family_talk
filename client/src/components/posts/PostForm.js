@@ -6,17 +6,16 @@ const PostForm = (props) => {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   //we need an image as well
-
-  const thePost = { title: title, description: description, user_id: props.userId }
   
   useEffect(() => {
-    if (props.post.id) {
+    if (props.post) {
       setTitle(props.post.title)
       setDescription(props.post.description)
     }
   },[])
 
   function handleSubmit(e) {
+    const thePost = { title: title, description: description, user_id: props.userId.id }
     if (props.editPost) {
       props.editPost(props.post.id, thePost)
       props.toggleEdit()
