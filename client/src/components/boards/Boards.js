@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 import { Button } from "semantic-ui-react"
 import BoardView from "./BoardView"
 
-export default function Boards() {
+const Boards = () => {
   const [boards, setBoards] = useState([])
   const [showForm, setShowForm] = useState(false)
 
@@ -20,29 +20,18 @@ export default function Boards() {
     })
   }, [])
 
-  function addBoard(board) {
+  const addBoard = (board) => {
     setBoards([board, ...boards])
   }
  
-  function removeBoard(id) {
+  const removeBoard = (id) => {
     axios.delete(`/api/boards/${id}`)
       .then((res) => {
       setBoards(boards.filter(board => board.id !== id))
     })
   }
-
-  // function renderBoards() {
-  //   return boards.map(b => (
-  //     <div>
-  //       <h1>{b.name}</h1>
-  //       <p>{b.description}</p>
-  //       <button onClick={() => removeBoard(b.id)}>Delete</button>
-  //     </div>
-  //   ))
-  // }
-
-  //delete is doesnt work***********************************************
-  function renderBoards() {
+  
+  const renderBoards = () => {
     return boards.map(board => (
       <>
         <Board
@@ -82,3 +71,5 @@ export default function Boards() {
     </>
   )
 }
+
+export default Boards;
