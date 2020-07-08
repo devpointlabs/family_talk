@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from "react"
+import {AuthConsumer} from "../../providers/AuthProvider"
 import Axios from "axios"
 import Post from "./Post"
 import { Image, Card, Icon, Header } from "semantic-ui-react"
 import PostForm from "./PostForm"
 
 
-const Posts = ({boardId}) => {
+const Posts = (props) => {
   const [posts, setPosts] = useState([])
   const [showForm, setShowForm] = useState(false)
 
 
   useEffect(() => {
-    Axios.get(`/api/boards/${boardId}/posts`)
+    Axios.get(`/api/boards/${props.boardId}/posts`)
       .then(res => {
         setPosts(res.data)
       })
+    console.log(props.auth.user)
   }, [])
   
   function renderPosts() {
@@ -34,7 +36,7 @@ const Posts = ({boardId}) => {
     <>
       <h2>Posts</h2>
       {/* we pass the addPost and boardId function to the PostForm */}
-      {showForm && <PostForm addPost={addPost} boardId={boardId} />} 
+      {showForm && <PostForm addPost={addPost} boardId={props.boardId} userId={props.auth.user.id} />} 
     
        <button onClick={() => setShowForm(!showForm)}>
         {showForm ? "Close Form" : "Add Post"}
@@ -47,4 +49,12 @@ const Posts = ({boardId}) => {
   )
 }
 
-export default Posts
+
+const ConnectedPosts = (props) => (
+  <AuthConsumer>
+    { auth => 
+      <Posts { ...props } auth={auth} />
+    }
+  </AuthConsumer>
+)
+export default ConnectedPosts;
