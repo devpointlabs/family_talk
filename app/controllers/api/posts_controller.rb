@@ -1,5 +1,5 @@
 class Api::PostsController < ApplicationController
-  before_action :set_board, only: [:index, :create, :update, :destroy]
+  before_action :set_board, only: [:index, :create, :update, :show, :destroy]
 
   #! all the posts
   def index
@@ -15,6 +15,10 @@ class Api::PostsController < ApplicationController
   #     render json: post.errors, status: 422
   #   end
   # end
+
+  def show 
+    @board.post.find(params[:id])
+  end
 
   def create
     post = @board.posts.new(post_params)
