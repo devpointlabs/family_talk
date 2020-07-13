@@ -41,7 +41,6 @@ class Api::Boards::PostsController < ApplicationController
   end
 
 
-
   private
   def set_board
     @board = Board.find(params[:board_id])

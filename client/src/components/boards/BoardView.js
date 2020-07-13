@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
-import Posts from "../posts/Posts"
+import Posts from "../boardPosts/Posts"
 
 const BoardView = (props) => {
   const [board, setBoard] = useState({})
