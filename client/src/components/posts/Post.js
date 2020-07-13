@@ -16,9 +16,9 @@ const Post = (props) => {
         
         <button onClick={() => setEditing(!editing)}>{editing ? "Close Edit" : "Edit"}</button>
         <button onClick={() => props.removePost(props.post.id)}>Delete</button>
-        <Link to={`/Post/${props.post.id}`}
-          {...props}
-         boardId={props.boardId}>
+        <Link to={{ pathname:`/Post/${props.post.id }`, showProps: {...props}}}
+        
+         >
         <button>View</button>
         </Link>
 

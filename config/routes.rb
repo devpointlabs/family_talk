@@ -6,11 +6,14 @@ Rails.application.routes.draw do
   namespace :api do
 
     resources :users, only: [:index, :update]
-    resources :posts
+    
+    resources :posts, only: [:index]
    
     resources :posts do
       resources :comments
     end
+
+
     resources :boards do 
       resources :posts, module: "boards"
     end

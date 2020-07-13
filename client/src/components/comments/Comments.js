@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 
-function Comments(){
-    const [comments, setComments] = setState([])
+function Comments(props){
+    const [comments, setComments] = useState([])
      
     useEffect(() => {
       getComments();
@@ -10,12 +10,24 @@ function Comments(){
 
   
     async function getComments(){
-    let res = await axios.post(`/api/boards/:board_id/posts/:post_id/comments`)
+       
+    let res = await axios.get(`/api/posts/${props.postId}/comments`)
+    setComments(res.data)
     }
   
   
   
     return(
+        <div>
+            {comments.map((c) => (
+                <>
+                <hr/>
+                <p>{c.description}</p>
+                </>
+         
+            ))}
+
+        </div>
 
 
 

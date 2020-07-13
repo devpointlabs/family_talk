@@ -16,9 +16,10 @@ class Api::Boards::PostsController < ApplicationController
   #   end
   # end
   def show 
-    @board.post.find(params[:id])
+   render json: @board.posts.find(params[:id])
+    
   end
-  
+
   def create
     post = @board.posts.new(post_params)
   
