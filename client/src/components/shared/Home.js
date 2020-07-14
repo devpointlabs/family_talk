@@ -5,7 +5,7 @@ import AddPost from '../userPosts/AddPost'
 
 const Home = () => (
   <>
-    <Header as="h3" textAlign="center">Devise Auth App</Header>
+    <Header as="h3" textAlign="center">Welcome to Family Talk</Header>
     <AddPost />
     <Boards />
   </>

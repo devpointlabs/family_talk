@@ -4,19 +4,19 @@ import PostForm from "./PostForm"
 import Comments from '../comments/Comments'
 import Axios from "axios"
 import CommentsForm from "../comments/CommentsForm"
-
+import { BoardProvider, BoardConsumer } from "../../providers/BoardProvider"
 
 
 const PostView = (props) => {  
   const [ editing, setEditing] = useState(false)
-  const [card, setCard] =useState({})
+  const [card, setCard] = useState({})
 
   useEffect(() => {
   
     getCard();
   }, [])
 
-
+  props.board.getBoard(card.board_id);
   
 
   async function getCard(){
@@ -47,4 +47,12 @@ const PostView = (props) => {
   )
 }
 
-export default PostView
+const ConnectedPostView = (props) => {
+  return(
+  <BoardConsumer>
+    {board => <PostView {...props} board = {board}/>}
+    </BoardConsumer>
+      )
+}
+
+export default ConnectedPostView

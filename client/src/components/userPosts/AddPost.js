@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { AuthConsumer } from "../../providers/AuthProvider";
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 const AddPost = (props) => {
   const [toggleForm, setToggleForm] = useState(false)
@@ -38,15 +39,17 @@ const AddPost = (props) => {
   const handleSubmit= (e) => {
     const thePost = { title: title, description: description, board_id: boardChoice }
     e.preventDefault()
-    debugger
     axios.post(`/api/users/${props.auth.user.id}/posts`, thePost)
     .then( res => {
-      
+      window.location.href=`/Post/${res.data.id}`
     })
     .catch ( err => {
       console.log("error")
     })
   }
+
+
+  // <Redirect to={"/search/" + this.state.name} />
 
   // automatically redirect user to newly created post within the chosen board
   // link_to situation? 
@@ -85,7 +88,7 @@ const AddPost = (props) => {
             <option>Boards...</option>
             {theBoards()}
           </select>
-          <button type="submit">submit</button>
+          <button type="submit" >submit</button>
         </form>
       ) : null}
     </div>

@@ -11,8 +11,8 @@ import ProtectedRoute from './components/routes/ProtectedRoute';
 import Settings from './components/user/Settings';
 import LandingPage from './components/LandingPage'
 import BoardView from "./components/boards/BoardView"
-import PostView from './components/posts/PostView';
-import AllPosts from './postexamples/AllPosts'
+import PostView from './components/boardPosts/PostView';
+import AllPosts from './components/onlyPosts/AllPosts'
 
 const App = () => (
   <Fragment>
