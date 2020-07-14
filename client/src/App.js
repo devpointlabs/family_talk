@@ -11,6 +11,8 @@ import ProtectedRoute from './components/routes/ProtectedRoute';
 import Settings from './components/user/Settings';
 import LandingPage from './components/LandingPage'
 import BoardView from "./components/boards/BoardView"
+import PostView from './components/posts/PostView';
+import AllPosts from './postexamples/AllPosts'
 
 const App = () => (
   <Fragment>
@@ -24,6 +26,8 @@ const App = () => (
         <Route exact path="/register" component={Register} />
         <Route exact path='/landingPage' component={LandingPage} />
         <Route exact path="/boardView/:id" component={BoardView} />
+        <Route exact path="/Post/:id" component={PostView} />
+        <Route exact path='/posts' component={AllPosts} />
         <Route component={NoMatch} />
       </Switch>
    
