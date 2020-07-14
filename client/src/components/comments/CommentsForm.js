@@ -7,25 +7,30 @@ const CommentsForm = (props) => {
 
   const comment = { description: des, user_id: props.userId }
 
-//   useEffect(() => {
-//     if (props.comment) {
-//       setDescription(props.post.description)
-//     } 
-//   },[])
+  useEffect(() => {
+    if (props.commentId) {
+      setDes(props.description)
+    } 
+  },[])
     
   
   const handleSubmit = (e) => {
     // e.preventDefault()
-       axios.post(`/api/posts/${props.postId}/comments`, comment)
-      .then((res) => {
-        props.addComment(res.data)
-        //  props.toggleForm();
-      })
-      .catch((e) => {
-        console.log(e)
-      })
-    
-      setDes('')
+    if (props.editComment) {
+        props.editComment(props.commentId, comment)
+      } else {
+        axios.post(`/api/posts/${props.postId}/comments`, comment)
+        .then((res) => {
+          props.addComment(res.data)
+          //  props.toggleForm();
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+      
+        setDes('')
+
+      }
     }
   
 
@@ -33,14 +38,14 @@ const CommentsForm = (props) => {
       <>
       <Form onSubmit={handleSubmit}>
       <Form.Input
-          label="Description"
+          label="Comment"
         //   name="description"
-          placeholder="Description"
+          placeholder="Enter Comment Here"
           value={des}
           onChange={(e) => setDes(e.target.value)}
           required
       />
-      <Button>Create</Button>
+      <Button>{props.editing ? 'Update' : 'Create'}</Button>
       </Form>
 </>
   )  

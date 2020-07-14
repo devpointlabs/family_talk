@@ -21,7 +21,7 @@ def create
 end
 
 def update
-    comment = @posts.commments.find(params[:id])
+    comment = @post.comments.find(params[:id])
     if comment.update(comment_params)
       render json: comment
     else
