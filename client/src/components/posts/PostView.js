@@ -3,6 +3,7 @@ import { Image, Button, Card, Header } from "semantic-ui-react"
 import PostForm from "./PostForm"
 import Comments from '../comments/Comments'
 import Axios from "axios"
+import CommentsForm from "../comments/CommentsForm"
 
 
 
@@ -16,6 +17,8 @@ const PostView = (props) => {
   }, [])
 
 
+  
+
   async function getCard(){
  let res = await Axios.get(`/api/boards/${props.location.showProps.boardId}/posts/${props.match.params.id}`)
  setCard(res.data);
@@ -28,7 +31,7 @@ const PostView = (props) => {
          <Header> {card.title}</Header>
         <description>{card.description}</description>
         <h3>Comments</h3>
-        <Comments postId = {props.match.params.id}/>
+        <Comments postId = {props.match.params.id} userId = {props.location.showProps.userId}/>
         <Button onClick={props.history.goBack}>Go Back</Button>
         <button onClick={() => setEditing(!editing)}>{editing ? "Close Edit" : "Edit"}</button>
         <button onClick={() => props.removePost(props.id)}>Delete</button>
