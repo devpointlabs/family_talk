@@ -15,6 +15,10 @@ class Api::Boards::PostsController < ApplicationController
   #     render json: post.errors, status: 422
   #   end
   # end
+  def show 
+   render json: @board.posts.find(params[:id])
+    
+  end
 
   def create
     post = @board.posts.new(post_params)

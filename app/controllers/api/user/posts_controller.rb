@@ -7,7 +7,6 @@ class Api::User::PostsController < ApplicationController
 
   def create
     post = @user.posts.new(post_params)
-  
     if post.save
       render json: post
       
@@ -35,7 +34,7 @@ class Api::User::PostsController < ApplicationController
   end
 
   def set_user
-    @user = User.find(params[:id])
+    @user = User.find(params[:user_id])
   end
 
   def post_params

@@ -36,11 +36,12 @@ const AddPost = (props) => {
   // }
 
   const handleSubmit= (e) => {
-    const thePost = { title: title, description: description, board_id: props.boardId.id }
+    const thePost = { title: title, description: description, board_id: boardChoice }
     e.preventDefault()
-    axios.post(`/api/users/${props.userId}/posts`, thePost)
+    debugger
+    axios.post(`/api/users/${props.auth.user.id}/posts`, thePost)
     .then( res => {
-      console.log('this is the then lol')
+      
     })
     .catch ( err => {
       console.log("error")
