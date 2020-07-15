@@ -32,7 +32,6 @@ const handleSubmit = (e) => {
     }
   }
 
-  
   // const handleSubmit = (e) => {
   //   // e.preventDefault()
   //      axios.post(`/api/posts/${props.postId}/comments`, comment)
