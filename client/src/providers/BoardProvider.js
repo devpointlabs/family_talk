@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-
+import Board from '../components/boards/Board';
 
 const BoardContext = React.createContext();
 export const BoardConsumer = BoardContext.Consumer;
@@ -29,3 +29,4 @@ export class BoardProvider extends React.Component {
     )
   }
 }
+

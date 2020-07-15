@@ -15,7 +15,7 @@ const BoardForm = (props) => {
     }
   },[])
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault()
     if (props.editBoard) {
       props.editBoard(props.id, board)
