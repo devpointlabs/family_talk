@@ -51,7 +51,7 @@ function Comments(props){
                 <hr/>
                 <p>{c.description}</p>
                 <Button onClick = {() => removeComment(c.id)}>Delete</Button>
-                <Button onClick = {() => setEditing(true)}>Edit</Button>
+                <Button onClick = {() => setEditing(!editing)}>Edit</Button>
                 {editing ? <CommentsForm postId = {props.postId} userId = {props.userId} editComment = {editComment} editing = {editing} /> : null}
                 </>
          

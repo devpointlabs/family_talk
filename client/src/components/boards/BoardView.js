@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 import Posts from "../boardPosts/Posts"
+import { BoardConsumer } from "../../providers/BoardProvider"
 
 const BoardView = (props) => {
   const [board, setBoard] = useState({})
@@ -9,6 +10,7 @@ const BoardView = (props) => {
     axios.get(`/api/boards/${props.match.params.id}`)
       .then(res => {
       setBoard(res.data)
+      props.board.getBoard(res.data.id)
       })
       .catch((e) => {
       console.log(e)
@@ -23,4 +25,12 @@ const BoardView = (props) => {
   )
 }
 
-export default BoardView;
+const ConnectedBoardView = (props) => {
+  return (
+  <BoardConsumer>
+    {board => (<BoardView {...props} board={board} />)}
+  </BoardConsumer>
+  )
+}
+
+export default ConnectedBoardView;

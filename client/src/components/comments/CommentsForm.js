@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react"
 import { Form, Button } from "semantic-ui-react"
 import axios from "axios"
+import { withRouter } from "react-router-dom"
+import { AuthConsumer } from "../../providers/AuthProvider"
 
 const CommentsForm = (props) => {
   const [des, setDes] = useState('')
 
-  const comment = { description: des, user_id: props.userId }
+  const comment = { description: des, user_id: props.auth.user.id }
 
 //   useEffect(() => {
 //     if (props.comment) {
@@ -13,10 +15,12 @@ const CommentsForm = (props) => {
 //     } 
 //   },[])
     
-  
-  const handleSubmit = (e) => {
-    // e.preventDefault()
-       axios.post(`/api/posts/${props.postId}/comments`, comment)
+const handleSubmit = (e) => {
+  // e.preventDefault()
+  if (props.editComment) {
+      props.editComment(props.commentId, comment)
+    } else {
+      axios.post(`/api/posts/${props.postId}/comments`, comment)
       .then((res) => {
         props.addComment(res.data)
         //  props.toggleForm();
@@ -24,9 +28,24 @@ const CommentsForm = (props) => {
       .catch((e) => {
         console.log(e)
       })
-    
       setDes('')
     }
+  }
+
+  
+  // const handleSubmit = (e) => {
+  //   // e.preventDefault()
+  //      axios.post(`/api/posts/${props.postId}/comments`, comment)
+  //     .then((res) => {
+  //       props.addComment(res.data)
+  //       //  props.toggleForm();
+  //     })
+  //     .catch((e) => {
+  //       console.log(e)
+  //     })
+    
+  //     setDes('')
+  //   }
   
 
   return (
@@ -46,4 +65,12 @@ const CommentsForm = (props) => {
   )  
 }
 
-export default CommentsForm
+const ConnectedCommentsForm = (props) => {
+  return (
+    <AuthConsumer>
+      {auth => (<CommentsForm {...props} auth={auth}/>)}
+    </AuthConsumer>
+      )
+}
+
+export default ConnectedCommentsForm;

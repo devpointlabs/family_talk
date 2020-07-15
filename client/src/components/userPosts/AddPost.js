@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { AuthConsumer } from "../../providers/AuthProvider";
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
+import { BoardConsumer } from '../../providers/BoardProvider';
+
 
 const AddPost = (props) => {
   const [toggleForm, setToggleForm] = useState(false)
@@ -39,15 +41,22 @@ const AddPost = (props) => {
   const handleSubmit= (e) => {
     const thePost = { title: title, description: description, board_id: boardChoice }
     e.preventDefault()
+    props.board.getBoard(boardChoice)
     axios.post(`/api/users/${props.auth.user.id}/posts`, thePost)
     .then( res => {
-      window.location.href=`/Post/${res.data.id}`
+      debugger;
+      // window.location.href=`/Post/${res.data.id}`
+      props.history.push(`/board/${boardChoice}/post/${res.data.id}`)
+    
     })
     .catch ( err => {
+      debugger;
       console.log("error")
     })
   }
 
+  
+   
 
   // <Redirect to={"/search/" + this.state.name} />
 
@@ -96,7 +105,15 @@ const AddPost = (props) => {
 }
 
 const ConnectedAddPosts = (props) => (
-  <AuthConsumer>{(auth) => <AddPost {...props} auth={auth} />}</AuthConsumer>
+  <AuthConsumer>
+      {auth => (
+        <BoardConsumer>
+          {board => (
+            <AddPost {...props} auth={auth} board={board} />
+          )}
+          </BoardConsumer>
+      )}
+    </AuthConsumer>
 );
-export default ConnectedAddPosts;
+export default withRouter(ConnectedAddPosts);
 

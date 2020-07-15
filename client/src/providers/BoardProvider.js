@@ -9,13 +9,17 @@ export class BoardProvider extends React.Component {
   state = { board: null, };
 
   getBoard = (boardId) => {
-    axios.get(`api/boards/${boardId}`)
+    axios.get(`/api/boards/${boardId}`)
       .then(res => {
-        this.setState({board: res.data, })
+        this.setState({board: res.data })
       })
       .catch(res => {
         console.log("error")
       })
+  }
+
+  setBoard = (board) => {
+    this.setState({board: board})
   }
 
   render() {
@@ -23,6 +27,7 @@ export class BoardProvider extends React.Component {
       <BoardContext.Provider value = {{
         ...this.state,
         getBoard: this.getBoard,
+        setBoard: this.setBoard,
       }}>
         {this.props.children}
       </BoardContext.Provider>

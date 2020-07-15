@@ -25,8 +25,8 @@ const App = () => (
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route exact path='/landingPage' component={LandingPage} />
-        <Route exact path="/boardView/:id" component={BoardView} />
-        <Route exact path="/Post/:id" component={PostView} />
+        <Route exact path="/board/:id" component={BoardView} />
+        <Route exact path="/board/:board_id/post/:id" component={PostView} />
         <Route exact path='/posts' component={AllPosts} />
         <Route component={NoMatch} />
       </Switch>
