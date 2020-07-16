@@ -9,11 +9,11 @@ const CommentsForm = (props) => {
 
   const comment = { description: des, user_id: props.auth.user.id }
 
-//   useEffect(() => {
-//     if (props.comment) {
-//       setDescription(props.post.description)
-//     } 
-//   },[])
+  useEffect(() => {
+    if (props.commentId) {
+      setDes(props.description)
+    } 
+  },[])
     
 const handleSubmit = (e) => {
   // e.preventDefault()
@@ -51,14 +51,14 @@ const handleSubmit = (e) => {
       <>
       <Form onSubmit={handleSubmit}>
       <Form.Input
-          label="Description"
+          label="Comment"
         //   name="description"
-          placeholder="Description"
+          placeholder="Enter Comment Here"
           value={des}
           onChange={(e) => setDes(e.target.value)}
           required
       />
-      <Button>Create</Button>
+      <Button>{props.editing ? 'Update' : 'Create'}</Button>
       </Form>
 </>
   )  
