@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Form, Button } from "semantic-ui-react"
 import axios from "axios"
-import { withRouter } from "react-router-dom"
 import { AuthConsumer } from "../../providers/AuthProvider"
 
 const CommentsForm = (props) => {
@@ -14,16 +13,17 @@ const CommentsForm = (props) => {
       setDes(props.description)
     } 
   },[])
+
     
 const handleSubmit = (e) => {
   // e.preventDefault()
   if (props.editComment) {
       props.editComment(props.commentId, comment)
+      props.changeEdit()
     } else {
       axios.post(`/api/posts/${props.postId}/comments`, comment)
       .then((res) => {
         props.addComment(res.data)
-        //  props.toggleForm();
       })
       .catch((e) => {
         console.log(e)
@@ -32,35 +32,19 @@ const handleSubmit = (e) => {
     }
   }
 
-  // const handleSubmit = (e) => {
-  //   // e.preventDefault()
-  //      axios.post(`/api/posts/${props.postId}/comments`, comment)
-  //     .then((res) => {
-  //       props.addComment(res.data)
-  //       //  props.toggleForm();
-  //     })
-  //     .catch((e) => {
-  //       console.log(e)
-  //     })
-    
-  //     setDes('')
-  //   }
-  
-
   return (
       <>
       <Form onSubmit={handleSubmit}>
       <Form.Input
           label="Comment"
-        //   name="description"
           placeholder="Enter Comment Here"
           value={des}
           onChange={(e) => setDes(e.target.value)}
           required
       />
-      <Button>{props.editing ? 'Update' : 'Create'}</Button>
+       <Button>{props.editing ? 'Update' : 'Create'}</Button>
       </Form>
-</>
+    </>
   )  
 }
 

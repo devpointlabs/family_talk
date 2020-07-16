@@ -33,24 +33,15 @@ const AddPost = (props) => {
       ))
     )
   }
-
-  // const addPost = () => {
-
-  // }
-
   const handleSubmit= (e) => {
     const thePost = { title: title, description: description, board_id: boardChoice }
     e.preventDefault()
     props.board.getBoard(boardChoice)
     axios.post(`/api/users/${props.auth.user.id}/posts`, thePost)
-    .then( res => {
-      debugger;
-      // window.location.href=`/Post/${res.data.id}`
+    .then( res => { 
       props.history.push(`/board/${boardChoice}/post/${res.data.id}`)
-    
     })
-    .catch ( err => {
-      debugger;
+    .catch ( err => {  
       console.log("error")
     })
   }
