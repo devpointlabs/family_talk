@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react"
 import axios from "axios"
 import Posts from "../boardPosts/Posts"
 import { BoardConsumer } from "../../providers/BoardProvider"
+import BoardForm from "./BoardForm"
 
 const BoardView = (props) => {
   const [board, setBoard] = useState({})
+    const [showForm, setShowForm] = useState(false)
 
   useEffect(() => {
     axios.get(`/api/boards/${props.match.params.id}`)
@@ -19,6 +21,13 @@ const BoardView = (props) => {
 
   return(
     <div>
+      <h1>{board.name}</h1>
+      <p>{board.description}</p>
+      {showForm && <BoardForm />}
+      <button onClick={() => setShowForm(!showForm)}>
+        {showForm ? "Close Form" : "Edit"}
+      </button>
+        
       <Posts boardId={props.match.params.id}/>
     </div>
     

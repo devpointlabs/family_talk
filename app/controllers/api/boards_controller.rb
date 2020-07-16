@@ -23,9 +23,12 @@ class Api::BoardsController < ApplicationController
   
   def update
      board = Board.find(params[:id]) 
+     board.name = params[:name] ? params[:name] : board.name
+     board.description = params[:description] ? params[:description] : board.description
+     board.public = params[:public] ? params[:public] : board.public
 
      file = params[:file]
-     # binding.pry
+     
      if file != "undefined" && file != ""
      
        begin
@@ -38,7 +41,8 @@ class Api::BoardsController < ApplicationController
          end
      end
     
-     if board.update(board_params)
+     if board.save
+      binding.pry
       render json: board
      else
       render json: board.errors, status: 422

@@ -18,7 +18,8 @@ const BoardForm = (props) => {
   },[])
 
   const handleDrop = (file) => {
-    setFile(file)
+    // debugger
+    setFile(file[0]) //ask harlan about this [0]
   }
 
   const handleSubmit = (e) => {
@@ -60,7 +61,7 @@ const BoardForm = (props) => {
           required
       />
       <Dropzone
-            onDrop={(e) => handleDrop(file)}
+            onDrop={handleDrop}
             multiple={false}
           >
             {({ getRootProps, getInputProps, isDragActive }) => {
@@ -70,7 +71,7 @@ const BoardForm = (props) => {
                   style={styles.dropzone}
                 >
                   <input {...getInputProps()} />
-                  {
+                 {
                     isDragActive ?
                       <p>Drop files here...</p> :
                       <p>Try dropping some files here, or click to select files to upload.</p>

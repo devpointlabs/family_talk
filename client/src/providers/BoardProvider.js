@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import Board from '../components/boards/Board';
+import BoardForm from '../components/boards/BoardForm'
 
 const BoardContext = React.createContext();
 export const BoardConsumer = BoardContext.Consumer;
@@ -21,6 +22,18 @@ export class BoardProvider extends React.Component {
   setBoard = (board) => {
     this.setState({board: board})
   }
+
+  updateBoard = (board) => {
+    let data = new FormData()
+    data.append('file', board.file)
+      // debugger
+    axios.put(`/api/boards/${board.id}?name=${board.name}&description=${board.description}&public=${board.public}`, data)
+        .then(res => {
+      this.setState({board:res.data}) //we then push the updated board to our state
+        })
+  }
+
+
 
   render() {
     return (
