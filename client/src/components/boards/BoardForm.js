@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Form, Button } from "semantic-ui-react"
+import Dropzone from 'react-dropzone';
 import axios from "axios"
 
 const BoardForm = (props) => {
@@ -53,6 +54,7 @@ const BoardForm = (props) => {
           onChange={(e) => setDes(e.target.value)}
           required
       />
+
       <Button>Create</Button>
       </Form>
   )  
