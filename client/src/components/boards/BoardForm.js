@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react"
 import { Form, Button } from "semantic-ui-react"
 import Dropzone from 'react-dropzone';
 import axios from "axios"
+import UserBoardForm from "../userBoard/UserBoardForm";
+import { AuthConsumer } from "../../providers/AuthProvider";
 
 const BoardForm = (props) => {
   const [name, setName] = useState('')
@@ -16,6 +18,19 @@ const BoardForm = (props) => {
     }
   },[])
 
+  const userBoard = {user_id: props.auth.user.id, board_id: props.id}
+
+  const createUserBoard = (userBoard) => {
+    debugger;
+    axios.post(`/api/user_boards`, {user_id: props.auth.user.id, board_id: userBoard.id})
+    .then((res)=>  {
+     console.log('success')
+     console.log(res.data)
+    }).catch((err) =>  {
+       console.log("failure")
+    })}
+
+
   const handleSubmit = (e) => {
     e.preventDefault()
     if (props.editBoard) {
@@ -25,6 +40,7 @@ const BoardForm = (props) => {
        axios.post("/api/boards", board)
       .then((res) => {
         props.addBoard(res.data)
+        createUserBoard(res.data);
          props.toggleForm();
       })
       .catch((e) => {
@@ -60,4 +76,14 @@ const BoardForm = (props) => {
   )  
 }
 
-export default BoardForm
+
+export default function ConnectedBoardForm (props) {
+    return (
+      <AuthConsumer>
+        { auth => 
+          <BoardForm { ...props } auth={auth} />
+        }
+      </AuthConsumer>
+    )
+}
+
