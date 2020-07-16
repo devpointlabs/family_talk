@@ -6,8 +6,9 @@ import axios from "axios"
 const BoardForm = (props) => {
   const [name, setName] = useState('')
   const [des, setDes] = useState('')
+  const [file, setFile] = useState('')
     
-  const board = { name: name, description: des }
+  const board = { name: name, description: des, file: file }
   
   useEffect(() => {
     if (props.id) {
@@ -15,6 +16,10 @@ const BoardForm = (props) => {
       setDes(props.description)
     }
   },[])
+
+  const handleDrop = (file) => {
+    setFile(file)
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -54,10 +59,43 @@ const BoardForm = (props) => {
           onChange={(e) => setDes(e.target.value)}
           required
       />
+      <Dropzone
+            onDrop={(e) => handleDrop(file)}
+            multiple={false}
+          >
+            {({ getRootProps, getInputProps, isDragActive }) => {
+              return (
+                <div
+                  {...getRootProps()}
+                  style={styles.dropzone}
+                >
+                  <input {...getInputProps()} />
+                  {
+                    isDragActive ?
+                      <p>Drop files here...</p> :
+                      <p>Try dropping some files here, or click to select files to upload.</p>
+                  }
+                </div>
+              )
+            }}
+      </Dropzone>
 
-      <Button>Create</Button>
+      <Button>Save</Button>
       </Form>
   )  
+}
+
+const styles = {
+  dropzone: {
+    height: "150px",
+    width: "150px",
+    border: "1px dashed black",
+    borderRadius: "5px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "10px",
+  },
 }
 
 export default BoardForm

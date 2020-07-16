@@ -4,8 +4,10 @@ class Api::UsersController < ApplicationController
   def index
   end
 
+  def create 
+  end
+
   def update
-    #update 
     user = User.find(params[:id])
     user.name = params[:name] ? params[:name] : user.name
     user.email = params[:email] ? params[:email] : user.email
@@ -21,16 +23,17 @@ class Api::UsersController < ApplicationController
         user.image = cloud_image["secure_url"]
         rescue => e
           render json: {errors: e, status: 422}
-          return
+          return                               
         end
     end
-    if user.save
+    if user.update(user_params)
     
       render json: user
     else
       render json: { errors: user.errors.full_messages }, status: 422
     end
   end
+
   private
     def user_params
       params.require(:user).permit(:email, :password, :first_name, :last_name, :name)
