@@ -4,23 +4,21 @@ import PostForm from "./PostForm"
 import Comments from '../comments/Comments'
 import Axios from "axios"
 import CommentsForm from "../comments/CommentsForm"
-
+import { BoardProvider, BoardConsumer } from "../../providers/BoardProvider"
+import { AuthConsumer } from "../../providers/AuthProvider"
 
 
 const PostView = (props) => {  
   const [ editing, setEditing] = useState(false)
-  const [card, setCard] =useState({})
+  const [card, setCard] = useState({})
 
   useEffect(() => {
-  
+
     getCard();
   }, [])
 
-
-  
-
   async function getCard(){
- let res = await Axios.get(`/api/boards/${props.location.showProps.boardId}/posts/${props.match.params.id}`)
+ let res = await Axios.get(`/api/boards/${props.match.params.board_id}/posts/${props.match.params.id}`)
  setCard(res.data);
 }
 
@@ -31,7 +29,7 @@ const PostView = (props) => {
          <Header> {card.title}</Header>
         <description>{card.description}</description>
         <h3>Comments</h3>
-        <Comments postId = {props.match.params.id} userId = {props.location.showProps.userId}/>
+        <Comments postId = {props.match.params.id} />
         <Button onClick={props.history.goBack}>Go Back</Button>
         <button onClick={() => setEditing(!editing)}>{editing ? "Close Edit" : "Edit"}</button>
         <button onClick={() => props.removePost(props.id)}>Delete</button>
@@ -47,4 +45,18 @@ const PostView = (props) => {
   )
 }
 
-export default PostView
+const ConnectedPostView = (props) => {
+  return (
+    <AuthConsumer>
+      {auth => (
+        <BoardConsumer>
+          {board => (
+            <PostView {...props} auth={auth} board={board} />
+          )}
+          </BoardConsumer>
+      )}
+    </AuthConsumer>
+      )
+}
+
+export default ConnectedPostView

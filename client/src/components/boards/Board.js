@@ -16,7 +16,7 @@ const Board = (props) => {
       <br/>
       <button onClick={() => setEditing(!editing)}>{editing ? "Close Edit" : "Edit"}</button>
       <button onClick={() => props.removeBoard(props.id)}>Delete</button> 
-      <Link to={`/boardView/${props.id}`}
+      <Link to={`/board/${props.id}`}
           key={props.id}
           {...props}>
         <button>View</button>

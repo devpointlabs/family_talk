@@ -32,6 +32,7 @@ function Comments(props){
               return c;
             })
             setComments(updateComment)
+            setEditing(!editing)
           })
       }
     
@@ -51,13 +52,14 @@ function Comments(props){
                 <hr/>
                 <p>{c.description}</p>
                 <Button onClick = {() => removeComment(c.id)}>Delete</Button>
-                <Button onClick = {() => setEditing(true)}>Edit</Button>
-                {editing ? <CommentsForm postId = {props.postId} userId = {props.userId} editComment = {editComment} editing = {editing} /> : null}
+                <Button onClick = {() => setEditing(!editing)}>Edit</Button>
+                {editing ? <CommentsForm postId = {c.postId} userId = {c.userId} editComment = {editComment} 
+                editing = {editing} description = {c.description} commentId = {c.id}/> : null}
                 </>
          
             ))}
 
-           <CommentsForm addComment = {addComment} postId = {props.postId} userId = {props.userId} />
+           <CommentsForm addComment = {addComment} postId = {props.postId} userId = {props.userId}  />
 
         </div>
 
