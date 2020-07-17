@@ -19,9 +19,9 @@
         end
         
         
-        Board.create(name:'Test board 1', description:Faker::TvShows::MichaelScott.quote)
-        Board.create(name:'Test board 2', description:Faker::TvShows::MichaelScott.quote)
-        Board.create(name:'Test board 3', description:Faker::TvShows::MichaelScott.quote)
+        Board.create(name:'Test board 1', user_id: rand(1..5), code: rand(1..5), description:Faker::TvShows::MichaelScott.quote)
+        Board.create(name:'Test board 2', user_id: rand(1..5), code: rand(1..5), description:Faker::TvShows::MichaelScott.quote)
+        Board.create(name:'Test board 3', user_id: rand(1..5), code: rand(1..5), description:Faker::TvShows::MichaelScott.quote)
         
         
         10.times do |u|

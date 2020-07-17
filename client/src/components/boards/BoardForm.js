@@ -9,7 +9,7 @@ const BoardForm = (props) => {
   const [name, setName] = useState('')
   const [des, setDes] = useState('')
     
-  const board = { name: name, description: des }
+  const board = { name: name, description: des, user_id: props.auth.user.id }
   
   useEffect(() => {
     if (props.id) {
@@ -30,6 +30,10 @@ const BoardForm = (props) => {
        console.log("failure")
     })}
 
+  const randomCode = () => {
+    return Math.floor(Math.random() * 1000000)
+  }
+
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -37,6 +41,7 @@ const BoardForm = (props) => {
       props.editBoard(props.id, board)
       props.toggleEdit()
     } else {  
+       board.code = randomCode()
        axios.post("/api/boards", board)
       .then((res) => {
         props.addBoard(res.data)
