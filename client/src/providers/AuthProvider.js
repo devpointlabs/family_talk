@@ -5,7 +5,7 @@ const AuthContext = React.createContext();
 export const AuthConsumer = AuthContext.Consumer;
 
 export class AuthProvider extends React.Component {
-  state = { user: null, };
+  state = { user: null, userError: null };
 
   handleRegister = (user, history) => {
     axios.post("/api/auth", user)
@@ -15,9 +15,11 @@ export class AuthProvider extends React.Component {
       })
     .catch( res => {
       console.log(res);
+      this.setState({userError: res.response.data.errors})
+      
     })
   }
-  
+
   handleLogin = (user, history) => {
     axios.post("/api/auth/sign_in", user)
       .then( res => {

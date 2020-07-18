@@ -1,6 +1,6 @@
 import React from 'react'
 import { AuthConsumer, } from "../../providers/AuthProvider";
-import { Menu, } from 'semantic-ui-react'
+import { Menu, Dropdown, } from 'semantic-ui-react'
 import { Link, withRouter, } from 'react-router-dom'
 
 class Navbar extends React.Component {
@@ -46,7 +46,20 @@ class Navbar extends React.Component {
       )
     }
   }
-  
+
+// render() {
+//   return( 
+//     <div>
+// <Dropdown >
+//   <Dropdown.Menu>
+//     <Dropdown.Item as={Link} to='/'>Home</Dropdown.Item>
+//     <Dropdown.Item as={Link} to='/landingPage'>Landing Page</Dropdown.Item>
+//   </Dropdown.Menu>
+// </Dropdown>
+
+// {this.rightNavItems()}
+// </div>
+// )}
   render() {
     return (
       <div>

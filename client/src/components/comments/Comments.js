@@ -53,8 +53,8 @@ function Comments(props){
                 <p>{c.description}</p>
                 <Button onClick = {() => removeComment(c.id)}>Delete</Button>
                 <Button onClick = {() => setEditing(!editing)}>Edit</Button>
-                {editing ? <CommentsForm postId = {c.postId} userId = {c.userId} editComment = {editComment} 
-                editing = {editing} description = {c.description} commentId = {c.id}/> : null}
+                {editing && <CommentsForm postId = {c.postId} userId = {c.userId} editComment = {editComment} 
+                editing = {editing} description = {c.description} commentId = {c.id}/>}
                 </>
          
             ))}
