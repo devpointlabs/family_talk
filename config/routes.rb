@@ -13,12 +13,14 @@ Rails.application.routes.draw do
       resources :comments
     end
 
-
+    resources :user_boards, only: [:create, :destroy]
+    
     resources :boards do 
       resources :posts, module: "boards"
     end
 
     resources :users do 
+      
       resources :posts, module: "user"
     end
 

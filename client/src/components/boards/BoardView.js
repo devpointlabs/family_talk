@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 import Posts from "../boardPosts/Posts"
-import { BoardConsumer } from "../../providers/BoardProvider"
+import { AuthConsumer, } from "../../providers/AuthProvider";
+
 
 const BoardView = (props) => {
   const [board, setBoard] = useState({})
+  const [code, setCode] = useState(false)
 
   useEffect(() => {
     axios.get(`/api/boards/${props.match.params.id}`)
@@ -16,7 +18,16 @@ const BoardView = (props) => {
       console.log(e)
     })
   }, [])
-
+ 
+ if (board.user_id === props.auth.user.id){
+  return(
+    <div>
+      {board.code}
+      <Posts boardId={props.match.params.id}/>
+    </div>
+    
+  )
+} else {
   return(
     <div>
       <Posts boardId={props.match.params.id}/>
@@ -24,12 +35,13 @@ const BoardView = (props) => {
     
   )
 }
+}
 
 const ConnectedBoardView = (props) => {
   return (
-  <BoardConsumer>
-    {board => (<BoardView {...props} board={board} />)}
-  </BoardConsumer>
+  <AuthConsumer>
+    {auth=> (<BoardView {...props} auth={auth} />)}
+  </AuthConsumer>
   )
 }
 

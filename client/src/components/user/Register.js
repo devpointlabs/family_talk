@@ -1,9 +1,10 @@
 import React from 'react';
 import { AuthConsumer,  } from "../../providers/AuthProvider";
 import { Button, Form, Segment, Header, } from 'semantic-ui-react';
+import { withRouter } from 'react-router-dom';
 
 class Register extends React.Component {
-  state = { name: "", email: '', password: '', passwordConfirmation: '', first_name: '', last_name: '' };
+  state = { name: "name", email: 'random@test.com', password: '1234567', passwordConfirmation: '1234567', first_name: 'rick', last_name: 'davis' };
   
   handleSubmit = (e) => {
     e.preventDefault();
@@ -91,7 +92,7 @@ class Register extends React.Component {
   }
 }
 
-export default class ConnectedRegister extends React.Component {
+class ConnectedRegister extends React.Component {
   render() {
     return (
       <AuthConsumer>
@@ -100,3 +101,5 @@ export default class ConnectedRegister extends React.Component {
     )
   }
 }
+
+export default withRouter(ConnectedRegister);

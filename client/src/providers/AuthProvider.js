@@ -14,6 +14,7 @@ export class AuthProvider extends React.Component {
         history.push("/");
       })
     .catch( res => {
+      debugger;
       console.log(res);
       this.setState({userError: res.response.data.errors})
       
@@ -35,7 +36,7 @@ export class AuthProvider extends React.Component {
     axios.delete("/api/auth/sign_out")
       .then( res => {
         this.setState({ user: null, });
-        history.push('/login');
+        history.push('/landingPage');
       })
       .catch( res => {
         console.log(res);
