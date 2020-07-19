@@ -57,16 +57,6 @@ const Boards = (props) => {
       })
   }
 
-  const createUserBoard = (board) => {
-    axios.post(`/api/user_boards`, {user_id: props.auth.user.id, board_id: board.id})
-    .then((res)=>  {
-     console.log('success')
-     console.log(res.data)
-    }).catch((err) =>  {
-       console.log("failure")
-    })}
-  
-
   return (
     <>
       {showForm && <BoardForm addBoard={addBoard} toggleForm={setShowForm} />}

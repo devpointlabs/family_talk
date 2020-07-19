@@ -9,8 +9,11 @@ class Api::UserBoardsController < ApplicationController
     end
     end
 
+    # works sometimes? not sure what is going on
     def destroy
-       render json: current_user.user_boards.find(params[:id]).destroy 
+        user_board = current_user.user_boards.find(params[:board_id])
+        binding.pry
+        render json: user_board.destroy
     end
   
 

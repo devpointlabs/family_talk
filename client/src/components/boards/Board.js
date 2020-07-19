@@ -1,9 +1,22 @@
 import React, { useState, } from "react";
 import { Link, } from "react-router-dom"
 import BoardForm from "./BoardForm";
+import axios from 'axios';
 
 const Board = (props) => {
   const [ editing, setEditing] = useState(false)
+
+//this is working some times. not functional at all***********************
+const unfollowBoard = (boardId) => {
+  debugger;
+  axios.delete(`/api/user_board/boards/${boardId}`)
+  .then((res) => {
+    console.log("unfollowed")
+  }).catch((err) => {
+    console.log("fail!")
+  })
+}
+//************************************************ */
 
   return ( 
     <>
@@ -19,6 +32,7 @@ const Board = (props) => {
           {...props}>
         <button>View</button>
         </Link>
+        <button onClick={() => unfollowBoard(props.id)}>Unfollow</button>
 
         {/*if editing is true then display form else null  */}
       {editing ? <BoardForm toggleEdit={setEditing} {...props}/> : null } 

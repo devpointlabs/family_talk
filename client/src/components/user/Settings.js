@@ -68,6 +68,7 @@ class Settings extends React.Component {
     axios.post(`/api/user_boards`, {user_id: this.props.auth.user.id, board_id: boardId})
     .then((res)=>  {
       this.setState({followCode: ''})
+      console.log("success")
     }).catch((err) =>  {
        console.log("failure")
     })}
