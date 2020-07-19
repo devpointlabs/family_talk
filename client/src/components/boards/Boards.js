@@ -5,8 +5,9 @@ import Board from "./Board"
 import { Link } from "react-router-dom"
 import { Button } from "semantic-ui-react"
 import BoardView from "./BoardView"
+import { AuthConsumer } from "../../providers/AuthProvider"
 
-const Boards = () => {
+const Boards = (props) => {
   const [boards, setBoards] = useState([])
   const [showForm, setShowForm] = useState(false)
 
@@ -55,6 +56,15 @@ const Boards = () => {
         setBoards(updateBoard) //we then push the updated board to our state
       })
   }
+
+  const createUserBoard = (board) => {
+    axios.post(`/api/user_boards`, {user_id: props.auth.user.id, board_id: board.id})
+    .then((res)=>  {
+     console.log('success')
+     console.log(res.data)
+    }).catch((err) =>  {
+       console.log("failure")
+    })}
   
 
   return (
@@ -72,4 +82,5 @@ const Boards = () => {
   )
 }
 
-export default Boards;
+export default Boards; 
+

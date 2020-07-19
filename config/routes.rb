@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     end
 
     resources :user_boards, only: [:create, :destroy]
+    get "user_board/board/:code", to: "boards#set_board"
     
     resources :boards do 
       resources :posts, module: "boards"

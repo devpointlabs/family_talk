@@ -1,8 +1,6 @@
 import React, { useState, } from "react";
 import { Link, } from "react-router-dom"
-import { Button } from "semantic-ui-react";
 import BoardForm from "./BoardForm";
-import BoardView from "./BoardView"
 
 const Board = (props) => {
   const [ editing, setEditing] = useState(false)

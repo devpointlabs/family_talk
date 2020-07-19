@@ -1,13 +1,16 @@
 import React, { Fragment } from 'react';
 import { AuthConsumer, } from "../../providers/AuthProvider";
-import { Button, Form, Segment, Header, Grid, Divider, Container, Image } from "semantic-ui-react";
+import { Button, Form, Segment, Header, Grid, Divider, Container, Image, Input } from "semantic-ui-react";
 import Dropzone from 'react-dropzone';
+import axios from 'axios';
 
 const defaultImage = 'https://d30y9cdsu7xlg0.cloudfront.net/png/15724-200.png';
 
 class Settings extends React.Component {
-  state = { editing: false, formValues: { name: '', email: '', file: '', first_name: '', last_name: '' }, 
-  
+  state = { editing: false, 
+    formValues: { name: '', email: '', file: '', first_name: '', last_name: '' }, 
+    followCode: '',
+    boardId: '',
 };
 
   componentDidMount() {
@@ -50,9 +53,34 @@ class Settings extends React.Component {
       },
     });
   }
+  
+  setBoard = (code) => {
+    axios.get(`/api/user_board/board/${code}`)
+    .then((res) => {
+      this.setState({boardId: res.data[0].id})
+  }).catch((err) => {
+    console.log(err)
+  })
+}
+
+  createUserBoard = () => {
+    const {boardId} = this.state
+    axios.post(`/api/user_boards`, {user_id: this.props.auth.user.id, board_id: boardId})
+    .then((res)=>  {
+      this.setState({followCode: ''})
+    }).catch((err) =>  {
+       console.log("failure")
+    })}
+
+
+  followSubmit = (e) => {
+    const {followCode} = this.state
+    this.createUserBoard()
+  }
 
   settingsView = () => {
     const { auth: { user }, } = this.props;
+    const  {followCode} = this.state;
     return (
       <Fragment>
         <Grid.Column width={4}>
@@ -63,6 +91,16 @@ class Settings extends React.Component {
           <Header as="h1">{user.name}</Header>
           <Header as="h1">{user.first_name}</Header>
           <Header as="h1">{user.last_name}</Header>
+          <Form onSubmit={this.followSubmit}>
+            <Form.Input
+          label="Enter code to follow board:"
+          name="followCode"
+          value={followCode}
+          // sets state of boardId to on change but it works. Might be a better way to utilize with componentDidUpdate but I couldnt figure it out - Shawn
+          onChange={(e) => this.setState({followCode: e.target.value, boardId: this.setBoard(e.target.value)})}
+            />
+          <Button>Follow</Button>
+          </Form>
         </Grid.Column>
       </Fragment>
     )
