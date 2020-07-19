@@ -40,9 +40,19 @@ const Boards = (props) => {
           {...board}
           editBoard={editBoard}
           removeBoard={removeBoard}
+          unfollowBoard={unfollowBoard}
         />
        </>
     ))
+  }
+
+  const unfollowBoard = (boardId) => {
+    axios.delete(`/api/user_boards/unfollow/${boardId}`)
+    .then((res) => {
+      console.log("unfollowed")
+    }).catch((err) => {
+      console.log("fail!")
+    })
   }
 
   const editBoard = (id, board) => { //we pass the id from our state, add board from form

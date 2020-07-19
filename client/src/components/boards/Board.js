@@ -6,17 +6,6 @@ import axios from 'axios';
 const Board = (props) => {
   const [ editing, setEditing] = useState(false)
 
-//this is working some times. not functional at all***********************
-const unfollowBoard = (boardId) => {
-  axios.delete(`/api/user_boards/unfollow/${boardId}`)
-  .then((res) => {
-    console.log("unfollowed")
-  }).catch((err) => {
-    console.log("fail!")
-  })
-}
-//************************************************ */
-
   return ( 
     <>
       <div>
@@ -31,7 +20,7 @@ const unfollowBoard = (boardId) => {
           {...props}>
         <button>View</button>
         </Link>
-        <button onClick={() => unfollowBoard(props.id)}>Unfollow</button>
+        <button onClick={() => props.unfollowBoard(props.id)}>Unfollow</button>
 
         {/*if editing is true then display form else null  */}
       {editing ? <BoardForm toggleEdit={setEditing} {...props}/> : null } 

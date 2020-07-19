@@ -12,11 +12,10 @@ class Api::UserBoardsController < ApplicationController
     end
     end
 
-    # works sometimes? not sure what is going on
     def destroy
-        board = UserBoard.set_user_board(params[:board_id], current_user.id)
-        # binding.pry
-        # render json: board.destroy
+        boards = current_user.user_boards.all
+        board = boards.find_by_board_id(params[:board_id])
+        render json: board.destroy
     end
   
 
