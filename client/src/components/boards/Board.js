@@ -8,8 +8,7 @@ const Board = (props) => {
 
 //this is working some times. not functional at all***********************
 const unfollowBoard = (boardId) => {
-  debugger;
-  axios.delete(`/api/user_board/boards/${boardId}`)
+  axios.delete(`/api/user_boards/unfollow/${boardId}`)
   .then((res) => {
     console.log("unfollowed")
   }).catch((err) => {

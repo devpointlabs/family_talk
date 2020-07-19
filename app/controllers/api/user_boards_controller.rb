@@ -1,5 +1,8 @@
 class Api::UserBoardsController < ApplicationController
- 
+    def index
+        render json: User.find(params[:user_id]).user_boards.all
+    end
+
     def create
     userBoard = current_user.user_boards.new(user_board_params)
     if userBoard.save
@@ -11,9 +14,9 @@ class Api::UserBoardsController < ApplicationController
 
     # works sometimes? not sure what is going on
     def destroy
-        user_board = current_user.user_boards.find(params[:board_id])
-        binding.pry
-        render json: user_board.destroy
+        board = UserBoard.set_user_board(params[:board_id], current_user.id)
+        # binding.pry
+        # render json: board.destroy
     end
   
 
