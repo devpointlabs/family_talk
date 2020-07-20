@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 import axios from "axios"
 
 
-const Post = (props) => {  
+const Post = (props) => {
   const [editing, setEditing] = useState(false)
   const [like, setLike] = useState({})
   const [postLikes, setPostLikes] = useState('')
@@ -13,25 +13,25 @@ const Post = (props) => {
   useEffect(() => {
     findLike(props.post.id)
     renderLikes(props.post.id)
-  },[])
+  }, [])
 
   const findLike = (id) => {
     axios.get(`/api/users/${props.userId}/users/likes/${id}`)
       .then((res) => {
         setLike(res.data)
       }).catch((err) => {
-      console.log(err)
-    })
+        console.log(err)
+      })
   }
 
   const likePost = (postId) => {
-    axios.post(`/api/users/${props.userId}/likes`, {post_id: postId, user_id: props.userId})
+    axios.post(`/api/users/${props.userId}/likes`, { post_id: postId, user_id: props.userId })
       .then(res => {
         setLike(res.data)
         renderLikes(postId)
       }).catch((err) => {
-      console.log(err)
-    })
+        console.log(err)
+      })
   }
 
   const unlikePost = (postId) => {
@@ -40,20 +40,16 @@ const Post = (props) => {
         setLike(null)
         renderLikes(postId)
         console.log(res.data)
-    })
+      })
   }
 
-  const renderLikes = (postId) => [
+  const renderLikes = (postId) => {
     axios.get(`/api/likes/${postId}`)
       .then((res) => {
         setPostLikes(res.data)
-    })
-    
-  ]
+      })
+}
 
-  const likes = () => {
-    
-  }
 
   return(
     <div>
@@ -67,7 +63,13 @@ const Post = (props) => {
         <h4>Likes: {postLikes ? postLikes.length : "0"}</h4>
         {like ? <button onClick={() => unlikePost(props.post.id)}>Unlike</button> : <button onClick={() => likePost(props.post.id)}>Like</button>}
 
-        <Link to={{ pathname:`/board/${props.post.board_id}/post/${props.post.id}`, showProps: {...props}}}
+        <Link to={{
+          pathname: `/board/${props.post.board_id}/post/${props.post.id}`, showProps: { ...props },
+          findLike: {findLike},
+          likePost:  {likePost},
+          unlikePost:  {unlikePost},
+          renderLikes:  {renderLikes},
+        }}
         
          >
         <button>View</button>
