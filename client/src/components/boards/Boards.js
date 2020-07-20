@@ -5,8 +5,9 @@ import Board from "./Board"
 import { Link } from "react-router-dom"
 import { Button } from "semantic-ui-react"
 import BoardView from "./BoardView"
+import { AuthConsumer } from "../../providers/AuthProvider"
 
-const Boards = () => {
+const Boards = (props) => {
   const [boards, setBoards] = useState([])
   const [showForm, setShowForm] = useState(false)
 
@@ -39,9 +40,19 @@ const Boards = () => {
           {...board}
           editBoard={editBoard}
           removeBoard={removeBoard}
+          unfollowBoard={unfollowBoard}
         />
        </>
     ))
+  }
+
+  const unfollowBoard = (boardId) => {
+    axios.delete(`/api/user_boards/unfollow/${boardId}`)
+    .then((res) => {
+      console.log("unfollowed")
+    }).catch((err) => {
+      console.log("fail!")
+    })
   }
 
   const editBoard = (id, board) => { //we pass the id from our state, add board from form
@@ -55,7 +66,6 @@ const Boards = () => {
         setBoards(updateBoard) //we then push the updated board to our state
       })
   }
-  
 
   return (
     <>
@@ -72,4 +82,5 @@ const Boards = () => {
   )
 }
 
-export default Boards;
+export default Boards; 
+

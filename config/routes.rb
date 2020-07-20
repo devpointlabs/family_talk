@@ -13,7 +13,10 @@ Rails.application.routes.draw do
       resources :comments
     end
 
-    resources :user_boards, only: [:create, :destroy]
+    resources :user_boards, only: [:create]
+    get "user_boards/:user_id", to: "user_boards#index"
+    get "user_board/board/:code", to: "boards#set_board"
+    delete "user_boards/unfollow/:board_id", to: "user_boards#destroy"
     
     resources :boards do 
       resources :posts, module: "boards"

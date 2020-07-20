@@ -18,11 +18,8 @@ const BoardForm = (props) => {
     }
   },[])
 
-  const userBoard = {user_id: props.auth.user.id, board_id: props.id}
-
-  const createUserBoard = (userBoard) => {
-    debugger;
-    axios.post(`/api/user_boards`, {user_id: props.auth.user.id, board_id: userBoard.id})
+  const createUserBoard = (board) => {
+    axios.post(`/api/user_boards`, {user_id: props.auth.user.id, board_id: board.id})
     .then((res)=>  {
      console.log('success')
      console.log(res.data)
@@ -34,7 +31,7 @@ const BoardForm = (props) => {
     return Math.floor(Math.random() * 1000000)
   }
 
-
+  
   const handleSubmit = (e) => {
     e.preventDefault()
     if (props.editBoard) {
