@@ -1,4 +1,11 @@
 class Api::LikesController < ApplicationController
+
+  def index
+    post = Post.find(params[:post_id])
+
+    render json: post.likes.all
+  end
+
   def create
     like = Like.new(liked_params)
     
