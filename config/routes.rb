@@ -23,9 +23,13 @@ Rails.application.routes.draw do
     end
 
     resources :users do 
-      
+      resources :likes, only: [:create]
+      get "users/likes/:post_id", to: "likes#show"
+      delete "users/likes/:post_id", to: "likes#destroy"
+
       resources :posts, module: "user"
     end
+
 
     
   end
