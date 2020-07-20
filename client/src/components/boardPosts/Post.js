@@ -22,6 +22,24 @@ const Post = (props) => {
     })
   }
 
+  const likePost = (postId) => {
+    axios.post(`/api/users/${props.userId}/likes`, {post_id: postId, user_id: props.userId})
+      .then(res => {
+        setLike(res.data)
+      }).catch((err) => {
+      console.log(err)
+    })
+  }
+
+  const unlikePost = (postId) => {
+    axios.delete(`/api/users/${props.userId}/users/likes/${postId}`)
+      .then(res => {
+        setLike(null)
+        console.log(res.data)
+    })
+  }
+
+
   return(
     <div>
        <Card key={props.post.id}>
@@ -31,7 +49,7 @@ const Post = (props) => {
         
         <button onClick={() => setEditing(!editing)}>{editing ? "Close Edit" : "Edit"}</button>
         <button onClick={() => props.removePost(props.post.id)}>Delete</button>
-        {like ? <button onClick={() => props.unlikePost(props.post.id)}>Unlike</button> : <button onClick={() => props.likePost(props.post.id)}>Like</button>}
+        {like ? <button onClick={() => unlikePost(props.post.id)}>Unlike</button> : <button onClick={() => likePost(props.post.id)}>Like</button>}
 
         <Link to={{ pathname:`/board/${props.post.board_id}/post/${props.post.id}`, showProps: {...props}}}
         

@@ -26,8 +26,6 @@ const Posts = (props) => {
         removePost={removePost}
         userId={props.auth.user.id}
         boardId={props.boardId}
-        likePost={likePost}
-        unlikePost={unlikePost}
       />
     ))
   }
@@ -59,22 +57,6 @@ const Posts = (props) => {
     axios.delete(`/api/boards/${props.boardId}/posts/${id}`)
       .then(res => {
       setPosts(posts.filter(post => post.id !== id))
-    })
-  }
-
-  const likePost = (postId) => {
-    axios.post(`/api/users/${props.auth.user.id}/likes`, {post_id: postId, user_id: props.auth.user.id})
-      .then(res => {
-        console.log("liked!!")
-      }).catch((err) => {
-      console.log(err)
-    })
-  }
-
-  const unlikePost = (postId) => {
-    axios.delete(`/api/users/${props.auth.user.id}/users/likes/${postId}`)
-      .then(res => {
-      console.log("deleted")
     })
   }
 
