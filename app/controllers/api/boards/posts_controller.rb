@@ -6,15 +6,6 @@ class Api::Boards::PostsController < ApplicationController
     render json: @board.posts
   end
 
-  # def create
-  #   post = Post.new(post_params)
-
-  #   if post.save 
-  #     render json: @board.posts.all
-  #   else
-  #     render json: post.errors, status: 422
-  #   end
-  # end
   def show 
    render json: @board.posts.find(params[:id])
     

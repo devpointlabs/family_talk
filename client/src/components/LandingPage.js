@@ -33,20 +33,6 @@ const LandingPage = () => {
     )
 }
 
-{/* <Modal trigger={<Button>Show Modal</Button>}>
-    <Modal.Content image>
-      <Image wrapped size='medium' src='/images/avatar/large/rachel.png' />
-      <Modal.Description>
-        <Header>Default Profile Image</Header>
-        <p>
-          We've found the following gravatar image associated with your e-mail
-          address.
-        </p>
-        <p>Is it okay to use this photo?</p>
-      </Modal.Description>
-    </Modal.Content>
-  </Modal> */}
-
 const ButtonContent = styled.div `
 display: flex;
 flex-flow: row wrap;

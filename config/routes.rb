@@ -5,8 +5,9 @@ Rails.application.routes.draw do
 
   namespace :api do
 
-    resources :users, only: [:index, :update]
-    
+    resources :users, only: [:index, :update, :destroy]
+     get "user/boards", to: "boards#index_created"
+     get "user/posts", to: "posts#index_created"
     resources :posts, only: [:index]
    
     resources :posts do
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
     get "user_boards/:user_id", to: "user_boards#index"
     get "user_board/board/:code", to: "boards#set_board"
     delete "user_boards/unfollow/:board_id", to: "user_boards#destroy"
+
     
     resources :boards do 
       resources :posts, module: "boards"
@@ -29,6 +31,7 @@ Rails.application.routes.draw do
       resources :likes, only: [:create]
       get "users/likes/:post_id", to: "likes#show"
       delete "users/likes/:post_id", to: "likes#destroy"
+      
 
       resources :posts, module: "user"
     end

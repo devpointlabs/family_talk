@@ -15,6 +15,10 @@ const UserUnfollow = (props) => {
 
     }
 
+    const getUserBoardId = () => {
+        axios.get()
+    }
+
 
     return(
         <div>
