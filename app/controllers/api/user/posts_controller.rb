@@ -9,8 +9,11 @@ class Api::User::PostsController < ApplicationController
     post = @user.posts.new
     post.title = params[:title] ? params[:title] : post.title
     post.description = params[:description] ? params[:description] : post.description
+    post.board_id = params[:board_id ] ? params[:board_id ] : post.board_id 
+    
 
     file = params[:file]
+    binding.pry
     if file != "undefined" && file != "" 
        begin
         ext = File.extname(file.tempfile)
@@ -34,7 +37,7 @@ class Api::User::PostsController < ApplicationController
     post = @user.posts.find(params[:id])
     post.name = params[:name] ? params[:name] : post.name
     post.description = params[:description] ? params[:description] : post.description
-    post.public = params[:public] ? params[:public] : post.public
+    post.board_id = params[:board_id ] ? params[:board_id ] : post.board_id 
 
     file = params[:file]
      
@@ -70,6 +73,6 @@ class Api::User::PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :description, :board_id, :user_id)
+    params.require(:post).permit(:title, :description, :board_id, :user_id, :image)
   end
 end

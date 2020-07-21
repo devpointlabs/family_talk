@@ -22,26 +22,25 @@ const BoardView = (props) => {
     })
   }, [])
  
- if (board.user_id === props.auth.user.id){
+ if ((board.user_id === props.auth.user.id)) {
   return(
     <div>
-       {board.code}
-      <h1>{board.name}</h1>
-      <p>{board.description}</p>
-      {showForm && <BoardForm />}
-      <button onClick={() => setShowForm(!showForm)}>
-        {showForm ? "Close Form" : "Edit"}
-      </button>
-      <Posts boardId={props.match.params.id}/>
-    </div>
-    
+    {board.code}
+   <h1>{board.name}</h1>
+   <p>{board.description}</p>
+   {showForm && <BoardForm />}
+   <button onClick={() => setShowForm(!showForm)}>
+     {showForm ? "Close Form" : "Edit"}
+   </button>
+   <Posts boardId={props.match.params.id}/>
+ </div>
   )
+
 } else {
   return(
     <div>
-      <Posts boardId={props.match.params.id}/>
-    </div>
-    
+    <Posts boardId={props.match.params.id}/>
+  </div>
   )
 }
 }

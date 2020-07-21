@@ -83,9 +83,7 @@ const PostForm = (props) => {
               )
             }}
       </Dropzone>
-
       <Button>Submit</Button>
-
       </Form>
     </div>
   )
