@@ -8,6 +8,7 @@ const PublicBoard = (props) => {
       <div>
         <h1>{props.name}</h1>
         <p>{props.description}</p>
+        <img src={props.image} />
       </div>
       <br/>
       <Link to={`/board/${props.id}`}
@@ -21,4 +22,4 @@ const PublicBoard = (props) => {
   )
 };
 
-export default PublicBoard;
+export default PublicBoard; 

@@ -13,7 +13,7 @@ const PublicPage = () => {
     .catch(badRes => {
       console.log(badRes)
     })
-  })
+  }, [])
 
   const renderPubBoards = () => {
     return (
@@ -21,7 +21,9 @@ const PublicPage = () => {
         <>
         <PublicBoard 
           key = {board.id}
-          {...board}
+          name = {board.name}
+          description = {board.description}
+          image = {board.image}
         />
         </>
       ))
@@ -30,7 +32,7 @@ const PublicPage = () => {
 
   return (
     <div>
-    {renderPubBoards}
+    {renderPubBoards()}
     </div>
   )
 }

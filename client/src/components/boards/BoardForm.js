@@ -9,12 +9,15 @@ const BoardForm = (props) => {
   const [name, setName] = useState('')
   const [des, setDes] = useState('')
   const [file, setFile] = useState('')
-  
-  const board = { name: name, description: des, user_id: props.auth.user.id, file: file }
-
   const [pub, setPub] = useState(false)
-    
-  const board = { name: name, description: des, public: pub, user_id: props.auth.user.id }
+  
+  const board = { 
+    name: name, 
+    description: des, 
+    user_id: props.auth.user.id, 
+    file: file,
+    public: pub
+  }
   
   useEffect(() => {
     if (props.id) {
@@ -25,12 +28,10 @@ const BoardForm = (props) => {
 
   },[])
 
-
   const handleDrop = (file) => {
     // debugger
     setFile(file[0]) //ask harlan about this [0]
   }
-
 
   const createUserBoard = (board) => {
     axios.post(`/api/user_boards`, {user_id: props.auth.user.id, board_id: board.id})
@@ -44,7 +45,6 @@ const BoardForm = (props) => {
   const randomCode = () => {
     return Math.floor(Math.random() * 1000000)
   }
-
  
   const handleSubmit = (e) => {
     e.preventDefault()
