@@ -12,6 +12,9 @@ Rails.application.routes.draw do
     resources :posts do
       resources :comments
     end
+      
+    get "likes/:post_id", to: "likes#index"
+
 
     resources :user_boards, only: [:create]
     get "user_boards/:user_id", to: "user_boards#index"
@@ -23,9 +26,13 @@ Rails.application.routes.draw do
     end
 
     resources :users do 
-      
+      resources :likes, only: [:create]
+      get "users/likes/:post_id", to: "likes#show"
+      delete "users/likes/:post_id", to: "likes#destroy"
+
       resources :posts, module: "user"
     end
+
 
     
   end

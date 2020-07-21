@@ -19,7 +19,14 @@ const Posts = (props) => {
   
   const renderPosts = () => {
     return posts.map(post => (
-      <Post key={post.id} post={post} editPost={editPost} removePost={removePost} userId={props.auth.user.id} boardId={props.boardId}/>
+      <Post
+        key={post.id}
+        post={post}
+        editPost={editPost}
+        removePost={removePost}
+        userId={props.auth.user.id}
+        boardId={props.boardId}
+      />
     ))
   }
 
