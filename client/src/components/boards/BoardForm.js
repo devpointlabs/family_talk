@@ -8,8 +8,10 @@ import { AuthConsumer } from "../../providers/AuthProvider";
 const BoardForm = (props) => {
   const [name, setName] = useState('')
   const [des, setDes] = useState('')
-    
-  const board = { name: name, description: des, user_id: props.auth.user.id }
+  const [file, setFile] = useState('')
+  
+  const board = { name: name, description: des, user_id: props.auth.user.id, file: file }
+
   
   useEffect(() => {
     if (props.id) {
@@ -17,6 +19,13 @@ const BoardForm = (props) => {
       setDes(props.description)
     }
   },[])
+
+
+  const handleDrop = (file) => {
+    // debugger
+    setFile(file[0]) //ask harlan about this [0]
+  }
+
 
   const createUserBoard = (board) => {
     axios.post(`/api/user_boards`, {user_id: props.auth.user.id, board_id: board.id})
@@ -31,7 +40,7 @@ const BoardForm = (props) => {
     return Math.floor(Math.random() * 1000000)
   }
 
-  
+ 
   const handleSubmit = (e) => {
     e.preventDefault()
     if (props.editBoard) {
@@ -72,11 +81,47 @@ const BoardForm = (props) => {
           onChange={(e) => setDes(e.target.value)}
           required
       />
+      <Dropzone
+            onDrop={handleDrop}
+            multiple={false}
+          >
+            {({ getRootProps, getInputProps, isDragActive }) => {
+              return (
+                <div
+                  {...getRootProps()}
+                  style={styles.dropzone}
+                >
+                  <input {...getInputProps()} />
+                 {
+                    isDragActive ?
+                      <p>Drop files here...</p> :
+                      <p>Try dropping some files here, or click to select files to upload.</p>
+                  }
+                </div>
+              )
+            }}
+      </Dropzone>
 
-      <Button>Create</Button>
+      <Button>Save</Button>
       </Form>
   )  
 }
+
+
+const styles = {
+  dropzone: {
+    height: "150px",
+    width: "150px",
+    border: "1px dashed black",
+    borderRadius: "5px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "10px",
+  },
+}
+
+export default BoardForm
 
 
 export default function ConnectedBoardForm (props) {
@@ -88,4 +133,5 @@ export default function ConnectedBoardForm (props) {
       </AuthConsumer>
     )
 }
+
 

@@ -1,7 +1,10 @@
 import React, { useState, } from "react";
 import { Link, } from "react-router-dom"
+import { Button, Image } from "semantic-ui-react";
 import BoardForm from "./BoardForm";
 import axios from 'axios';
+
+const defaultImage = 'https://simpleicon.com/wp-content/uploads/picture.png';
 
 const Board = (props) => {
   const [ editing, setEditing] = useState(false)
@@ -11,6 +14,7 @@ const Board = (props) => {
       <div>
         <h1>{props.name}</h1>
         <p>{props.description}</p>
+        <Image src={props.image || defaultImage}/>
       </div>
       <br/>
       <button onClick={() => setEditing(!editing)}>{editing ? "Close Edit" : "Edit"}</button>

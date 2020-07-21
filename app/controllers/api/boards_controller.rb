@@ -23,8 +23,26 @@ class Api::BoardsController < ApplicationController
   
   def update
      board = Board.find(params[:id]) 
+     board.name = params[:name] ? params[:name] : board.name
+     board.description = params[:description] ? params[:description] : board.description
+     board.public = params[:public] ? params[:public] : board.public
+
+     file = params[:file]
+     
+     if file != "undefined" && file != ""
+     
+       begin
+       #cloudinary stuff here
+         cloud_image = Cloudinary::Uploader.upload(file, public_id: file.original_filename, secure: true, resource_type: :auto)
+         board.image = cloud_image["secure_url"]
+         rescue => e
+           render json: {errors: e, status: 422}
+           return
+         end
+     end
     
-     if board.update(board_params)
+     if board.save
+      binding.pry
       render json: board
      else
       render json: board.errors, status: 422
