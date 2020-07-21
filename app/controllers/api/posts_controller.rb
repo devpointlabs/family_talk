@@ -40,8 +40,6 @@ class Api::PostsController < ApplicationController
   #   render json: @board.posts.find(params[:id]).destroy
   # end
 
-
-
   # private
   # def set_board
   #   @board = Board.find(params[:board_id])
