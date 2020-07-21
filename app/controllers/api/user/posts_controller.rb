@@ -7,12 +7,10 @@ class Api::User::PostsController < ApplicationController
 
   def create
     post = @user.posts.new
-    post.name = params[:name] ? params[:name] : post.name
+    post.title = params[:title] ? params[:title] : post.title
     post.description = params[:description] ? params[:description] : post.description
-    post.public = params[:public] ? params[:public] : post.public
 
     file = params[:file]
-     binding.pry
     if file != "undefined" && file != "" 
        begin
         ext = File.extname(file.tempfile)
