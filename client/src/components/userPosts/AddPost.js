@@ -3,6 +3,7 @@ import { AuthConsumer } from "../../providers/AuthProvider";
 import axios from 'axios';
 import { Redirect, withRouter } from 'react-router-dom';
 import { BoardConsumer } from '../../providers/BoardProvider';
+import Dropzone from 'react-dropzone';
 
 
 const AddPost = (props) => {
@@ -11,7 +12,7 @@ const AddPost = (props) => {
   const [boardChoice, setBoardChoice] = useState()
   const [title, setTitle] = useState('')
   const [description, setDecription] = useState('')
-  // const [image, setImage] = useState('') 
+  const [file, setFile] = useState('')
 
   useEffect(() => {
     axios.get('/api/boards')
@@ -24,7 +25,9 @@ const AddPost = (props) => {
     setToggleForm(!toggleForm)
   }
 
-  // handleChange
+  const handleDrop = (file) => {
+    setFile(file[0]) 
+  }
 
   const theBoards = () => {
     return (
@@ -33,6 +36,7 @@ const AddPost = (props) => {
       ))
     )
   }
+
   const handleSubmit= (e) => {
     const thePost = { title: title, description: description, board_id: boardChoice }
     e.preventDefault()
@@ -45,14 +49,6 @@ const AddPost = (props) => {
       console.log("error")
     })
   }
-
-  
-   
-
-  // <Redirect to={"/search/" + this.state.name} />
-
-  // automatically redirect user to newly created post within the chosen board
-  // link_to situation? 
 
   return (
     <div>
@@ -72,14 +68,28 @@ const AddPost = (props) => {
             placeholder="Description"
             value={description}
             onChange={(e) => setDecription(e.target.value)}
-
           />
-          {/* <input 
-            name="image" 
-            label="Image"
-            placeholder="Image"
-            value={image}
-          /> */}
+          
+          <Dropzone
+            onDrop={handleDrop}
+            multiple={false}
+          >
+            {({ getRootProps, getInputProps, isDragActive }) => {
+              return (
+                <div
+                  {...getRootProps()}
+                  style={styles.dropzone}
+                >
+                  <input {...getInputProps()} />
+                 {
+                    isDragActive ?
+                      <p>Drop files here...</p> :
+                      <p>Try dropping some files here, or click to select files to upload.</p>
+                  }
+                </div>
+              )
+            }}
+          </Dropzone>
             
           <select
             value={boardChoice}
@@ -93,6 +103,19 @@ const AddPost = (props) => {
       ) : null}
     </div>
   );
+}
+
+const styles = {
+  dropzone: {
+    height: "150px",
+    width: "150px",
+    border: "1px dashed black",
+    borderRadius: "5px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "10px",
+  },
 }
 
 const ConnectedAddPosts = (props) => (
