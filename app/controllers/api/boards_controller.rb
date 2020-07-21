@@ -30,7 +30,6 @@ class Api::BoardsController < ApplicationController
      file = params[:file]
      
      if file != "undefined" && file != ""
-     
        begin
        #cloudinary stuff here
          cloud_image = Cloudinary::Uploader.upload(file, public_id: file.original_filename, secure: true, resource_type: :auto)

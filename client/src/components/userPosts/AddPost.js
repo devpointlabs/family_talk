@@ -40,8 +40,11 @@ const AddPost = (props) => {
   const handleSubmit= (e) => {
     const thePost = { title: title, description: description, board_id: boardChoice, image: file }
     e.preventDefault()
+    let data = new FormData()
+    data.append('file', file)
     props.board.getBoard(boardChoice)
-    axios.post(`/api/users/${props.auth.user.id}/posts`, thePost)
+    debugger;
+    axios.post(`/api/users/${props.auth.user.id}/posts?title=${title}&description=${description}&board_id=${boardChoice}`, data)
     .then( res => { 
       debugger;
       props.history.push(`/board/${boardChoice}/post/${res.data.id}`)
