@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Form, Button } from "semantic-ui-react"
+import { Form, Button, Radio } from "semantic-ui-react"
 import Dropzone from 'react-dropzone';
 import axios from "axios"
 import UserBoardForm from "../userBoard/UserBoardForm";
@@ -9,23 +9,28 @@ const BoardForm = (props) => {
   const [name, setName] = useState('')
   const [des, setDes] = useState('')
   const [file, setFile] = useState('')
+  const [pub, setPub] = useState(false)
   
-  const board = { name: name, description: des, user_id: props.auth.user.id, file: file }
-
+  const board = { 
+    name: name, 
+    description: des, 
+    user_id: props.auth.user.id, 
+    file: file,
+    public: pub
+  }
   
   useEffect(() => {
     if (props.id) {
       setName(props.name)
       setDes(props.description)
+      setPub(props.public ? props.public : false)
     }
   },[])
-
 
   const handleDrop = (file) => {
     // debugger
     setFile(file[0]) //ask harlan about this [0]
   }
-
 
   const createUserBoard = (board) => {
     axios.post(`/api/user_boards`, {user_id: props.auth.user.id, board_id: board.id})
@@ -39,7 +44,6 @@ const BoardForm = (props) => {
   const randomCode = () => {
     return Math.floor(Math.random() * 1000000)
   }
-
  
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -59,6 +63,7 @@ const BoardForm = (props) => {
       })
       setName('')
       setDes('')
+      setPub(false)
     }
   }
 
@@ -72,7 +77,6 @@ const BoardForm = (props) => {
           onChange={(e) => setName(e.target.value)}
           required
       />
-
       <Form.Input
           label="Description"
           name="description"
@@ -102,7 +106,16 @@ const BoardForm = (props) => {
             }}
       </Dropzone>
 
-      <Button>Save</Button>
+      <Form.Radio 
+          toggle 
+          label="Public"
+          name="public"
+          value={pub}
+          checked={pub}
+          onChange={(e) => setPub(!pub)}
+      />
+      <br/>
+      <Button>Submit</Button>
       </Form>
   )  
 }
@@ -120,8 +133,6 @@ const styles = {
     padding: "10px",
   },
 }
-
-
 
 export default function ConnectedBoardForm (props) {
     return (
