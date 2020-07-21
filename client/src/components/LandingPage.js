@@ -2,15 +2,24 @@
 import React from 'react';
 import styled from 'styled-components'
 import image from '../images/jump.jpg'
-import { Button } from 'semantic-ui-react';
+import { Button, Modal } from 'semantic-ui-react';
+import Register from './user/Register';
+import Login from './user/Login';
+import { AuthConsumer } from '../providers/AuthProvider';
+
 
 const LandingPage = () => {
     return (
    
    <ImageContent>
   <ButtonContent>
-    <Button>Sign in</Button>
-    <Button>Sign Out</Button>
+  
+  <Modal trigger = {<Button>Sign Up</Button>}>
+      <Register />
+    </Modal>
+    <Modal trigger = {<Button>Sign In</Button>}>
+      < Login />
+    </Modal>
   </ButtonContent>
   <div>
   <HeaderText> Family Talk </HeaderText>
@@ -23,6 +32,20 @@ const LandingPage = () => {
   
     )
 }
+
+{/* <Modal trigger={<Button>Show Modal</Button>}>
+    <Modal.Content image>
+      <Image wrapped size='medium' src='/images/avatar/large/rachel.png' />
+      <Modal.Description>
+        <Header>Default Profile Image</Header>
+        <p>
+          We've found the following gravatar image associated with your e-mail
+          address.
+        </p>
+        <p>Is it okay to use this photo?</p>
+      </Modal.Description>
+    </Modal.Content>
+  </Modal> */}
 
 const ButtonContent = styled.div `
 display: flex;
@@ -60,5 +83,12 @@ font-family: cursive;
 font-size: 2em;
 `
 
-export default LandingPage;
+export default function ConnectedLandingPage (props) {
+    return (
+      <AuthConsumer>
+        { auth => <LandingPage { ...props } auth={auth} /> }
+      </AuthConsumer>
+    )
+  }
+
 

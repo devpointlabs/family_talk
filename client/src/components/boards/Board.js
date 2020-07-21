@@ -2,7 +2,7 @@ import React, { useState, } from "react";
 import { Link, } from "react-router-dom"
 import { Button, Image } from "semantic-ui-react";
 import BoardForm from "./BoardForm";
-import BoardView from "./BoardView"
+import axios from 'axios';
 
 const defaultImage = 'https://simpleicon.com/wp-content/uploads/picture.png';
 
@@ -24,6 +24,7 @@ const Board = (props) => {
           {...props}>
         <button>View</button>
         </Link>
+        <button onClick={() => props.unfollowBoard(props.id)}>Unfollow</button>
 
         {/*if editing is true then display form else null  */}
       {editing ? <BoardForm toggleEdit={setEditing} {...props}/> : null } 

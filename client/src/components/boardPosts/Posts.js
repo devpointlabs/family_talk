@@ -37,6 +37,15 @@ const Posts = (props) => {
       })
   }
 
+  const unfollowBoard = (boardId) => {
+    axios.delete(`/api/user_boards/unfollow/${boardId}`)
+    .then((res) => {
+      console.log("unfollowed")
+    }).catch((err) => {
+      console.log("fail!")
+    })
+  }
+
   const removePost = (id) => {
     axios.delete(`/api/boards/${props.boardId}/posts/${id}`)
       .then(res => {
@@ -47,6 +56,7 @@ const Posts = (props) => {
   return (
     <>
       <h2>Posts</h2>
+      <button onClick={() => {unfollowBoard(props.boardId)}}>Unfollow</button>
       {showForm && <PostForm addPost={addPost} boardId={props.boardId} userId={props.auth.user} />} 
        <button onClick={() => setShowForm(!showForm)}>
         {showForm ? "Close Form" : "Add Post"}

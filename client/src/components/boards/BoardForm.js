@@ -2,13 +2,16 @@ import React, { useState, useEffect } from "react"
 import { Form, Button } from "semantic-ui-react"
 import Dropzone from 'react-dropzone';
 import axios from "axios"
+import UserBoardForm from "../userBoard/UserBoardForm";
+import { AuthConsumer } from "../../providers/AuthProvider";
 
 const BoardForm = (props) => {
   const [name, setName] = useState('')
   const [des, setDes] = useState('')
   const [file, setFile] = useState('')
-    
-  const board = { name: name, description: des, file: file }
+  
+  const board = { name: name, description: des, user_id: props.auth.user.id, file: file }
+
   
   useEffect(() => {
     if (props.id) {
@@ -17,20 +20,38 @@ const BoardForm = (props) => {
     }
   },[])
 
+
   const handleDrop = (file) => {
     // debugger
     setFile(file[0]) //ask harlan about this [0]
   }
 
+
+  const createUserBoard = (board) => {
+    axios.post(`/api/user_boards`, {user_id: props.auth.user.id, board_id: board.id})
+    .then((res)=>  {
+     console.log('success')
+     console.log(res.data)
+    }).catch((err) =>  {
+       console.log("failure")
+    })}
+
+  const randomCode = () => {
+    return Math.floor(Math.random() * 1000000)
+  }
+
+ 
   const handleSubmit = (e) => {
     e.preventDefault()
     if (props.editBoard) {
       props.editBoard(props.id, board)
       props.toggleEdit()
     } else {  
+       board.code = randomCode()
        axios.post("/api/boards", board)
       .then((res) => {
         props.addBoard(res.data)
+        createUserBoard(res.data);
          props.toggleForm();
       })
       .catch((e) => {
@@ -86,6 +107,7 @@ const BoardForm = (props) => {
   )  
 }
 
+
 const styles = {
   dropzone: {
     height: "150px",
@@ -100,3 +122,16 @@ const styles = {
 }
 
 export default BoardForm
+
+
+export default function ConnectedBoardForm (props) {
+    return (
+      <AuthConsumer>
+        { auth => 
+          <BoardForm { ...props } auth={auth} />
+        }
+      </AuthConsumer>
+    )
+}
+
+

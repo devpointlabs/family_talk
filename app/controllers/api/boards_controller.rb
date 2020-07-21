@@ -51,12 +51,15 @@ class Api::BoardsController < ApplicationController
   
   def destroy
    render json: Board.find(params[:id]).destroy
+  end
 
+  def set_board
+    render json: Board.find_board(params[:code])
   end
 
   private
 
   def board_params 
-    params.require(:board).permit(:name, :description, :public, :image)
+    params.require(:board).permit(:name, :description, :user_id, :code, :public)
   end
 end
