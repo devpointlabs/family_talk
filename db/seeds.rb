@@ -28,7 +28,6 @@
             Post.create(board_id: rand(1..3), user_id: rand(1..5), 
             description:Faker::Hipster.sentence, 
             title:Faker::Hipster.word,
-            likes: 20,
             image: (Faker::Avatar.image(
                 slug: (Faker::Hipster.word) , 
                 size: "200x200", format: "bmp", 
