@@ -121,7 +121,6 @@ const styles = {
   },
 }
 
-export default BoardForm
 
 
 export default function ConnectedBoardForm (props) {

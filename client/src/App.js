@@ -18,19 +18,17 @@ const App = () => (
   <Fragment>
     <Navbar />
     <FetchUser>
-    
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={LandingPage} />
         <ProtectedRoute exact path="/settings" component={Settings} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
-        <Route exact path='/landingPage' component={LandingPage} />
+        <ProtectedRoute exact path='/landingPage' component={Home} />
         <Route exact path="/board/:id" component={BoardView} />
         <Route exact path="/board/:board_id/post/:id" component={PostView} />
         <Route exact path='/posts' component={AllPosts} />
         <Route component={NoMatch} />
       </Switch>
-   
     </FetchUser>
   </Fragment>
 )

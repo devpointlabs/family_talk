@@ -1,14 +1,21 @@
-import React from 'react';
-import { Header, } from 'semantic-ui-react';
-import Boards from "../boards/Boards"
+import React, {useState} from 'react';
+import { Header, Button, } from 'semantic-ui-react';
 import AddPost from '../userPosts/AddPost'
+import CreatedBoards from '../user/CreatedBoards';
+import CreatedPosts from '../user/CreatedPosts';
 
-const Home = () => (
-  <>
+const Home = () => {
+ const [view, setView] = useState(true)
+     
+  return (
+     <>
     <Header as="h3" textAlign="center">Welcome to Family Talk</Header>
+      <Button onClick = {() => setView('Board') }>Boards</Button> 
+     <Button onClick = {() => setView('Post') }>Posts</Button>
     <AddPost />
-    <Boards />
+    { view === 'Board' ? <CreatedBoards /> : <CreatedPosts /> }
   </>
-)
+  )
+}
 
 export default Home;
