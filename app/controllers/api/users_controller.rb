@@ -14,7 +14,6 @@ class Api::UsersController < ApplicationController
     user.first_name = params[:first_name] ? params[:first_name] : user.first_name
     user.last_name = params[:last_name] ? params[:last_name] : user.last_name
     file = params[:file]
-    # binding.pry
     if file != "undefined" && file != ""
     
       begin

@@ -9,10 +9,11 @@ import { Container, } from "semantic-ui-react";
 import FetchUser from './components/user/FetchUser';
 import ProtectedRoute from './components/routes/ProtectedRoute';
 import Settings from './components/user/Settings';
-import LandingPage from './components/LandingPage'
-import BoardView from "./components/boards/BoardView"
+import LandingPage from './components/LandingPage';
+import BoardView from "./components/boards/BoardView";
 import PostView from './components/boardPosts/PostView';
-import AllPosts from './components/onlyPosts/AllPosts'
+import AllPosts from './components/onlyPosts/AllPosts';
+import PublicPage from "./components/PublicPage";
 
 const App = () => (
   <Fragment>
@@ -27,6 +28,7 @@ const App = () => (
         <Route exact path="/board/:id" component={BoardView} />
         <Route exact path="/board/:board_id/post/:id" component={PostView} />
         <Route exact path='/posts' component={AllPosts} />
+        <Route exact path='/publicPage' component={PublicPage} />
         <Route component={NoMatch} />
       </Switch>
     </FetchUser>
