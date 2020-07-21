@@ -57,6 +57,11 @@ class Api::BoardsController < ApplicationController
     render json: Board.find_board(params[:code])
   end
 
+  def togglePublic
+    board = Board.find(params[:id]) 
+    board.public = !board.public
+  end
+
   private
 
   def board_params 
