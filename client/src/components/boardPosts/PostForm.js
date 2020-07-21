@@ -21,7 +21,11 @@ const PostForm = (props) => {
   }
 
   const handleSubmit = (e) => {
-    const thePost = { title: title, description: description, user_id: props.userId.id }
+    const thePost = { 
+      title: title, 
+      description: description, 
+      user_id: props.auth.user.id 
+    }
     if (props.editPost) {
       props.editPost(props.post.id, thePost)
       props.toggleEdit()

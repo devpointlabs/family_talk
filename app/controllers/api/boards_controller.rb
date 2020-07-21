@@ -42,7 +42,6 @@ class Api::BoardsController < ApplicationController
      end
     
      if board.save
-      binding.pry
       render json: board
      else
       render json: board.errors, status: 422

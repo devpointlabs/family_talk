@@ -38,7 +38,7 @@ const AddPost = (props) => {
   }
 
   const handleSubmit= (e) => {
-    const thePost = { title: title, description: description, board_id: boardChoice }
+    const thePost = { title: title, description: description, board_id: boardChoice, file: file }
     e.preventDefault()
     props.board.getBoard(boardChoice)
     axios.post(`/api/users/${props.auth.user.id}/posts`, thePost)

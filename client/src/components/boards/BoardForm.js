@@ -25,7 +25,6 @@ const BoardForm = (props) => {
       setDes(props.description)
       setPub(props.public ? props.public : false)
     }
-
   },[])
 
   const handleDrop = (file) => {

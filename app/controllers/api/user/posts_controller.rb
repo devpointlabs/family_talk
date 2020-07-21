@@ -6,7 +6,24 @@ class Api::User::PostsController < ApplicationController
   end
 
   def create
-    post = @user.posts.new(post_params)
+    post = @user.posts.new
+    post.name = params[:name] ? params[:name] : post.name
+    post.description = params[:description] ? params[:description] : post.description
+    post.public = params[:public] ? params[:public] : post.public
+
+    file = params[:file]
+     binding.pry
+    if file != "undefined" && file != "" 
+       begin
+        ext = File.extname(file.tempfile)
+         cloud_image = Cloudinary::Uploader.upload(file, public_id: file.original_filename, secure: true, resource_type: :auto)
+         post.image = cloud_image["secure_url"]
+         rescue => e
+           render json: {errors: e, status: 422}
+           return
+         end
+     end
+
     if post.save
       render json: post
       
@@ -17,6 +34,23 @@ class Api::User::PostsController < ApplicationController
 
   def update
     post = @user.posts.find(params[:id])
+    post.name = params[:name] ? params[:name] : post.name
+    post.description = params[:description] ? params[:description] : post.description
+    post.public = params[:public] ? params[:public] : post.public
+
+    file = params[:file]
+     
+    if file != "undefined" && file != "" 
+       begin
+        ext = File.extname(file.tempfile)
+         cloud_image = Cloudinary::Uploader.upload(file, public_id: file.original_filename, secure: true, resource_type: :auto)
+         post.image = cloud_image["secure_url"]
+         rescue => e
+           render json: {errors: e, status: 422}
+           return
+         end
+     end
+
     if post.update(post_params)
       render json: post
     else
