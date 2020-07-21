@@ -3,6 +3,7 @@ import { Header, Button, } from 'semantic-ui-react';
 import AddPost from '../userPosts/AddPost'
 import CreatedBoards from '../user/CreatedBoards';
 import CreatedPosts from '../user/CreatedPosts';
+import Boards from '../boards/Boards'
 
 const Home = () => {
  const [view, setView] = useState(true)
@@ -12,6 +13,7 @@ const Home = () => {
     <Header as="h3" textAlign="center">Welcome to Family Talk</Header>
       <Button onClick = {() => setView('Board') }>Boards</Button> 
      <Button onClick = {() => setView('Post') }>Posts</Button>
+     <Boards />
     <AddPost />
     { view === 'Board' ? <CreatedBoards /> : <CreatedPosts /> }
   </>

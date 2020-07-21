@@ -53,7 +53,7 @@ const PostForm = (props) => {
         />
         {/* we will need an image as well */}
 
-      <Button>Create</Button>
+      <Button> {props.editing ? 'Update' :  'Create'}</Button>
 
       </Form>
     </div>

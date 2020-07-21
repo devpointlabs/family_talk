@@ -70,8 +70,13 @@ const unlikePost = (postId) => {
         <h3>Comments</h3>
         <Comments postId = {props.match.params.id} />
         <Button onClick={props.history.goBack}>Go Back</Button>
+
+        {props.auth.user.id === card.user_id ? 
+        <div>
         <button onClick={() => setEditing(!editing)}>{editing ? "Close Edit" : "Edit"}</button>
-        <button onClick={() => props.removePost(props.id)}>Delete</button>
+        <button onClick={() => props.removePost(props.id)}>Delete</button> </div> : null }
+
+
         {editing ? <PostForm toggleEdit={setEditing} editPost={props.editPost} post={props.post} userId={props.userId}/> : null } 
       </Card>
       <br/>
