@@ -72,6 +72,7 @@ class Settings extends React.Component {
     }).catch((err) =>  {
        console.log("failure")
     })}
+ 
 
 
   followSubmit = (e) => {
@@ -178,6 +179,7 @@ class Settings extends React.Component {
           <Grid.Row>
             { editing ? this.editView() : this.settingsView()}
             <Grid.Column>
+              <Button onClick = {() => this.props.auth.destroyUser(this.props.auth.user.id, this.props.history)}>Delete</Button>
               <Button onClick={this.toggleEdit}>{editing ? 'Cancel' : 'Edit'}</Button>
             </Grid.Column>
           </Grid.Row>

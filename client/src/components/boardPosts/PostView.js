@@ -3,7 +3,6 @@ import { Image, Button, Card, Header } from "semantic-ui-react"
 import PostForm from "./PostForm"
 import Comments from '../comments/Comments'
 import axios from "axios"
-import CommentsForm from "../comments/CommentsForm"
 import { AuthConsumer } from "../../providers/AuthProvider"
 
 

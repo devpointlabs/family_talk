@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   namespace :api do
 
-    resources :users, only: [:index, :update]
+    resources :users, only: [:index, :update, :destroy]
      get "user/boards", to: "boards#index_created"
      get "user/posts", to: "posts#index_created"
     resources :posts, only: [:index]

@@ -34,6 +34,11 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def destroy
+  render json: current_user.destroy 
+  # & current_user.boards.all.destroy & current_user.posts.all.destroy & current_user.comments.all.destroy & current_user.likes.all.destroy & current_user.user_boards.all.destroy
+  end
+
   private
     def user_params
       params.require(:user).permit(:email, :password, :first_name, :last_name, :name)

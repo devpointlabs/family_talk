@@ -51,6 +51,14 @@ export class AuthProvider extends React.Component {
   
       )
   }
+
+  destroyUser = (id, history ) => {
+    history.push('/')
+   axios.delete(`/api/users/${id}`)
+   .then(res => {
+     this.setState({ user: null, });
+   })
+  }
   
   render() {
     return (
@@ -62,6 +70,7 @@ export class AuthProvider extends React.Component {
         handleLogout: this.handleLogout,
         setUser: (user) => this.setState({ user, }),
         updateUser: this.updateUser,
+        destroyUser: this.destroyUser
       }}>
         { this.props.children }
       </AuthContext.Provider>
