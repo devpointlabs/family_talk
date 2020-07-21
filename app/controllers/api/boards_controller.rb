@@ -42,7 +42,6 @@ class Api::BoardsController < ApplicationController
      end
     
      if board.save
-      binding.pry
       render json: board
      else
       render json: board.errors, status: 422
@@ -55,6 +54,11 @@ class Api::BoardsController < ApplicationController
 
   def set_board
     render json: Board.find_board(params[:code])
+  end
+
+  def togglePublic
+    board = Board.find(params[:id]) 
+    board.public = !board.public
   end
 
   private
