@@ -24,7 +24,7 @@ const PostForm = (props) => {
     const thePost = { 
       title: title, 
       description: description, 
-      user_id: props.auth.user.id 
+      user_id: props.auth.user_id.id 
     }
     if (props.editPost) {
       props.editPost(props.post.id, thePost)

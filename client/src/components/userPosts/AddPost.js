@@ -43,14 +43,14 @@ const AddPost = (props) => {
     let data = new FormData()
     data.append('file', file)
     props.board.getBoard(boardChoice)
-    debugger;
+
     axios.post(`/api/users/${props.auth.user.id}/posts?title=${title}&description=${description}&board_id=${boardChoice}`, data)
     .then( res => { 
-      debugger;
+      
       props.history.push(`/board/${boardChoice}/post/${res.data.id}`)
     })
     .catch ( err => {  
-      debugger;
+     
       console.log("error")
     })
   }

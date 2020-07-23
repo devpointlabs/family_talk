@@ -13,7 +13,7 @@ class Api::User::PostsController < ApplicationController
     
 
     file = params[:file]
-    binding.pry
+
     if file != "undefined" && file != "" 
        begin
         ext = File.extname(file.tempfile)
