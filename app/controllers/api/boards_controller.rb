@@ -5,15 +5,28 @@ class Api::BoardsController < ApplicationController
     render json: Board.all
   end
 
+  def index_created
+    render json: current_user.boards.all
+  end
+
+  def followed
+    follows = current_user.user_boards.all
+    @boards = []
+    follows.each do |f|
+      board = Board.find(f.board_id)
+      @boards << board
+       end
+       render json: @boards
+  end
+
+
   def show
     board = Board.find(params[:id]) 
-
     render json: board
   end
 
   def create
     board = Board.new(board_params)
-
     if board.save
       render json: board
     else
@@ -30,7 +43,6 @@ class Api::BoardsController < ApplicationController
      file = params[:file]
      
      if file != "undefined" && file != ""
-     
        begin
        #cloudinary stuff here
          cloud_image = Cloudinary::Uploader.upload(file, public_id: file.original_filename, secure: true, resource_type: :auto)
@@ -42,7 +54,6 @@ class Api::BoardsController < ApplicationController
      end
     
      if board.save
-      binding.pry
       render json: board
      else
       render json: board.errors, status: 422
@@ -55,6 +66,11 @@ class Api::BoardsController < ApplicationController
 
   def set_board
     render json: Board.find_board(params[:code])
+  end
+
+  def togglePublic
+    board = Board.find(params[:id]) 
+    board.public = !board.public
   end
 
   private

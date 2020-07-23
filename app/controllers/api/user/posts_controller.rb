@@ -6,18 +6,50 @@ class Api::User::PostsController < ApplicationController
   end
 
   def create
-    post = @user.posts.new(post_params)
+    post = current_user.posts.new
+    post.title = params[:title] ? params[:title] : post.title
+    post.description = params[:description] ? params[:description] : post.description
+    post.board_id = params[:board_id ] ? params[:board_id ] : post.board_id 
+    file = params[:file]
+    if file != "undefined" && file != "" 
+       begin
+        ext = File.extname(file.tempfile)
+         cloud_image = Cloudinary::Uploader.upload(file, public_id: file.original_filename, secure: true, resource_type: :auto)
+         post.image = cloud_image["secure_url"]
+         rescue => e
+           render json: {errors: e, status: 422}
+           return
+         end
+     end
+
     if post.save
       render json: post
       
     else
-      render json: { errors: post.errors }, status: :unprocessble_entity
+      render json: { errors: post.errors }, status: :unprocessable_entity
     end
   end
 
   def update
     post = @user.posts.find(params[:id])
-    if post.update(post_params)
+    post.name = params[:name] ? params[:name] : post.name
+    post.description = params[:description] ? params[:description] : post.description
+    post.board_id = params[:board_id ] ? params[:board_id ] : post.board_id 
+
+    file = params[:file]
+     
+    if file != "undefined" && file != "" 
+       begin
+        ext = File.extname(file.tempfile)
+         cloud_image = Cloudinary::Uploader.upload(file, public_id: file.original_filename, secure: true, resource_type: :auto)
+         post.image = cloud_image["secure_url"]
+         rescue => e
+           render json: {errors: e, status: 422}
+           return
+         end
+     end
+
+    if post.save
       render json: post
     else
       render json: {errors: post.errors}, status: :unprocessble_entity
@@ -38,6 +70,6 @@ class Api::User::PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :description, :board_id, :user_id)
+    params.require(:post).permit(:title, :description, :board_id, :user_id, :image)
   end
 end

@@ -14,11 +14,8 @@ class Api::UsersController < ApplicationController
     user.first_name = params[:first_name] ? params[:first_name] : user.first_name
     user.last_name = params[:last_name] ? params[:last_name] : user.last_name
     file = params[:file]
-    # binding.pry
     if file != "undefined" && file != ""
-    
       begin
-      #cloudinary stuff here
         cloud_image = Cloudinary::Uploader.upload(file, public_id: file.original_filename, secure: true, resource_type: :auto)
         user.image = cloud_image["secure_url"]
         rescue => e
@@ -26,12 +23,15 @@ class Api::UsersController < ApplicationController
           return                               
         end
     end
-    if user.update(user_params)
-    
+    if user.save
       render json: user
     else
       render json: { errors: user.errors.full_messages }, status: 422
     end
+  end
+
+  def destroy
+  render json: current_user.destroy & current_user.boards.all.destroy & current_user.posts.all.destroy & current_user.comments.all.destroy & current_user.likes.all.destroy & current_user.user_boards.all.destroy 
   end
 
   private

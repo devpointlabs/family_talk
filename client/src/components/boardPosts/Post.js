@@ -3,6 +3,7 @@ import { Image, Card, Header } from "semantic-ui-react"
 import PostForm from "./PostForm"
 import {Link} from 'react-router-dom'
 import axios from "axios"
+import { AuthConsumer } from "../../providers/AuthProvider"
 
 
 const Post = (props) => {
@@ -49,17 +50,18 @@ const Post = (props) => {
         setPostLikes(res.data)
       })
 }
-
-
   return(
     <div>
        <Card key={props.post.id}>
          <Image src={props.post.image}/>
          <Header> {props.post.title}</Header>
         <description>{props.post.description}</description>
-        
+        {props.auth.user.id === props.post.user_id ? 
+        <div>
         <button onClick={() => setEditing(!editing)}>{editing ? "Close Edit" : "Edit"}</button>
-        <button onClick={() => props.removePost(props.post.id)}>Delete</button>
+        <button onClick={() => props.removePost(props.post.id, props.post.board_id)}>Delete</button> </div> : null}
+        
+        
         <h4>Likes: {postLikes ? postLikes.length : "0"}</h4>
         {like ? <button onClick={() => unlikePost(props.post.id)}>Unlike</button> : <button onClick={() => likePost(props.post.id)}>Like</button>}
 
@@ -75,7 +77,8 @@ const Post = (props) => {
         <button>View</button>
         </Link>
 
-        {editing ? <PostForm toggleEdit={setEditing} editPost={props.editPost} post={props.post} userId={props.userId}/> : null } 
+        {editing ? <PostForm toggleEdit={setEditing} editPost={props.editPost} post={props.post} 
+        userId={props.userId} editing = {editing}/> : null } 
         
 
       </Card>
@@ -85,4 +88,11 @@ const Post = (props) => {
   )
 }
 
-export default Post;
+const ConnectedPost = (props) => (
+  <AuthConsumer>
+    { auth => 
+      <Post { ...props } auth={auth} />
+    }
+  </AuthConsumer>
+)
+export default ConnectedPost;

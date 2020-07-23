@@ -3,6 +3,10 @@ class Api::UserBoardsController < ApplicationController
         render json: User.find(params[:user_id]).user_boards.all
     end
 
+    def get_user_boards
+        render json: current_user.user_boards.all
+    end
+
     def create
     userBoard = current_user.user_boards.new(user_board_params)
     if userBoard.save

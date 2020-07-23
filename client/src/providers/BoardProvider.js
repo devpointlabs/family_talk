@@ -26,7 +26,6 @@ export class BoardProvider extends React.Component {
   updateBoard = (board) => {
     let data = new FormData()
     data.append('file', board.file)
-      // debugger
     axios.put(`/api/boards/${board.id}?name=${board.name}&description=${board.description}&public=${board.public}`, data)
         .then(res => {
       this.setState({board:res.data}) //we then push the updated board to our state

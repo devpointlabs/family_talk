@@ -6,15 +6,6 @@ class Api::Boards::PostsController < ApplicationController
     render json: @board.posts
   end
 
-  # def create
-  #   post = Post.new(post_params)
-
-  #   if post.save 
-  #     render json: @board.posts.all
-  #   else
-  #     render json: post.errors, status: 422
-  #   end
-  # end
   def show 
    render json: @board.posts.find(params[:id])
     
@@ -22,7 +13,6 @@ class Api::Boards::PostsController < ApplicationController
 
   def create
     post = @board.posts.new(post_params)
-  
     if post.save
       render json: post
       
@@ -33,7 +23,7 @@ class Api::Boards::PostsController < ApplicationController
 
   def update
     post = @board.posts.find(params[:id])
-    if post.update(post_params)
+    if post.save
       render json: post
     else
       render json: {errors: post.errors}, status: :unprocessble_entity

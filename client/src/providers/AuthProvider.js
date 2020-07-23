@@ -11,10 +11,9 @@ export class AuthProvider extends React.Component {
     axios.post("/api/auth", user)
       .then( res => {
         this.setState({ user: res.data.data, });
-        history.push("/");
+        history.push("/landingPage");
       })
     .catch( res => {
-      debugger;
       console.log(res);
       this.setState({userError: res.response.data.errors})
       
@@ -25,7 +24,7 @@ export class AuthProvider extends React.Component {
     axios.post("/api/auth/sign_in", user)
       .then( res => {
         this.setState({ user: res.data.data, });
-        history.push("/");
+        history.push("/landingPage");
       })
       .catch( res => {
         console.log(res);
@@ -35,8 +34,8 @@ export class AuthProvider extends React.Component {
   handleLogout = (history) => {
     axios.delete("/api/auth/sign_out")
       .then( res => {
+        history.push('/');
         this.setState({ user: null, });
-        history.push('/landingPage');
       })
       .catch( res => {
         console.log(res);
@@ -51,6 +50,14 @@ export class AuthProvider extends React.Component {
   
       )
   }
+
+  destroyUser = (id, history ) => {
+   this.handleLogout(history)
+   axios.delete(`/api/users/${id}`)
+   .then(res => {
+     this.setState({ user: null, });
+   })
+  }
   
   render() {
     return (
@@ -62,6 +69,7 @@ export class AuthProvider extends React.Component {
         handleLogout: this.handleLogout,
         setUser: (user) => this.setState({ user, }),
         updateUser: this.updateUser,
+        destroyUser: this.destroyUser
       }}>
         { this.props.children }
       </AuthContext.Provider>

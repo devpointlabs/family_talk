@@ -3,7 +3,6 @@ import { Image, Button, Card, Header } from "semantic-ui-react"
 import PostForm from "./PostForm"
 import Comments from '../comments/Comments'
 import axios from "axios"
-import CommentsForm from "../comments/CommentsForm"
 import { AuthConsumer } from "../../providers/AuthProvider"
 
 
@@ -70,9 +69,14 @@ const unlikePost = (postId) => {
         <h3>Comments</h3>
         <Comments postId = {props.match.params.id} />
         <Button onClick={props.history.goBack}>Go Back</Button>
+
+        {props.auth.user.id === card.user_id ? 
+        <div>
         <button onClick={() => setEditing(!editing)}>{editing ? "Close Edit" : "Edit"}</button>
-        <button onClick={() => props.removePost(props.id)}>Delete</button>
-        {editing ? <PostForm toggleEdit={setEditing} editPost={props.editPost} post={props.post} userId={props.userId}/> : null } 
+        <button onClick={() => props.removePost(props.id)}>Delete</button> </div> : null }
+
+            {/* took out post={props.post} */}
+        {editing ? <PostForm toggleEdit={setEditing} post={card} editPost={props.editPost} editing={editing}  userId={props.userId}/> : null } 
       </Card>
       <br/>
     </div>
