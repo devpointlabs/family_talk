@@ -60,7 +60,7 @@ const Board = (props) => {
         <button>View</button>
         </Link>
       {following ? <button onClick={() => handleUnfollow(props.id)}>Unfollow</button> : null}
-      {editing ? <BoardForm toggleEdit={setEditing} {...props}/> : null } 
+      {editing ? <BoardForm toggleEdit={setEditing} editBoard={props.editBoard} {...props}/> : null } 
     </>
   )
 };

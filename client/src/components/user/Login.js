@@ -4,7 +4,7 @@ import { Button, Form, Segment, Header, } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 
 class Login extends React.Component {
-  state = { email: '0@test.com', password: '1234567' }
+  state = { email: '', password: '' }
   
   handleSubmit = (e) => {
     e.preventDefault();

@@ -19,6 +19,7 @@ const PublicPage = () => {
     return (
       pubBoards.map(board => (
         <>
+          <h1>Explore Boards</h1>
         <PublicBoard 
           key = {board.id}
           name = {board.name}
