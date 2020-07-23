@@ -9,27 +9,33 @@ const defaultImage = 'https://simpleicon.com/wp-content/uploads/picture.png';
 
 const Board = (props) => {
   const [ editing, setEditing] = useState(false)
-  const [follow, setFollow] = useState(false)
+  const [following, setFollowing] = useState(false)
 
   useEffect(() => {
     axios.get(`/api/user/${props.auth.user.id}/user_boards`)
     .then((res) => {
-      renderFollow(res.data)
+      res.data.map((f) => {
+        if (f.board_id === props.id) {
+          setFollowing(true)
+        } else {
+          setFollowing(false)
+        }
+      })
     })
   },[])
 
-  const renderFollow = (boards) => {
-      boards.map((f) => { 
-      if (f.board_id === props.id){
-      setFollow(true)
-      } else 
-      setFollow(false)
-    }) 
-  }
+  // const renderFollow = () => {
+  //     follow.map((f) => { 
+  //     if (f.board_id === props.id){
+  //     setFollowing(true)
+  //     } else 
+  //     setFollowing(false)
+  //   }) 
+  // }
 
   const handleUnfollow = (id) => {
     props.unfollowBoard(id)
-    setFollow(false)
+    setFollowing(false)
   }
 
   return ( 
@@ -50,10 +56,10 @@ const Board = (props) => {
           {...props}
           removeBoard={props.removeBoard}
           handleUnfollow={handleUnfollow}
-          follow={follow}>
+          following={following}>
         <button>View</button>
         </Link>
-      {follow ? <button onClick={() => handleUnfollow(props.id)}>Unfollow</button> : null}
+      {following ? <button onClick={() => handleUnfollow(props.id)}>Unfollow</button> : null}
       {editing ? <BoardForm toggleEdit={setEditing} {...props}/> : null } 
     </>
   )

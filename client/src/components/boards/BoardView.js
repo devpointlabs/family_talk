@@ -48,7 +48,7 @@ const BoardView = (props) => {
 } else {
   return(
     <div>
-    {props.follow ? <button onClick={() => props.handleUnfollow(props.id)}>Unfollow</button> : null}
+    {props.following ? <button onClick={() => props.handleUnfollow(props.id)}>Unfollow</button> : null}
     <Posts boardId={props.match.params.id}/>
   </div>
   )

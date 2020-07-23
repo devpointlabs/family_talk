@@ -73,8 +73,6 @@ const Boards = (props) => {
         {showForm ? "Close Form" : "Add Board"}
       </button>
       <br/>
-
-
       {renderBoards()}
     </>
   )

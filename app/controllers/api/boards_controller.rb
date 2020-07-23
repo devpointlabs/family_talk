@@ -10,10 +10,11 @@ class Api::BoardsController < ApplicationController
   end
 
   def followed
-    follows = User.first.user_boards.all
+    follows = current_user.user_boards.all
+    @boards = []
     follows.each do |f|
-      @boards = []
-      @boards.push(Board.find(f.board_id))
+      board = Board.find(f.board_id)
+      @boards << board
        end
        render json: @boards
   end
