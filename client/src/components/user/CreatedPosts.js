@@ -45,7 +45,6 @@ const CreatedPosts = (props) => {
   }
 
   const removePost = (id, boardId) => {
-    debugger;
     axios.delete(`/api/boards/${boardId}/posts/${id}`)
       .then(res => {
       setPosts(posts.filter(post => post.id !== id))

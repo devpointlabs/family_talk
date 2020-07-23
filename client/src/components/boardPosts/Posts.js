@@ -33,7 +33,6 @@ const Posts = (props) => {
   const addPost = (post) => setPosts([post, ...posts])
 
   const editPost = (id, post) => {
-    debugger;
     axios.put(`/api/boards/${props.boardId}/posts/${id}`, post)
       .then(res => {
         const updatePost = posts.map(p => {
@@ -43,15 +42,6 @@ const Posts = (props) => {
         })
         setPosts(updatePost)
       })
-  }
-
-  const unfollowBoard = (boardId) => {
-    axios.delete(`/api/user_boards/unfollow/${boardId}`)
-    .then((res) => {
-      console.log("unfollowed")
-    }).catch((err) => {
-      console.log("fail!")
-    })
   }
 
   const removePost = (id) => {
