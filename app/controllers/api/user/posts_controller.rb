@@ -62,7 +62,6 @@ class Api::User::PostsController < ApplicationController
 
   private
   def set_board
-    binding.pry
     @board = Board.find(params[:board_id])
   end
 
