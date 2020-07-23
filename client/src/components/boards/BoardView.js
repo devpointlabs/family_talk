@@ -31,9 +31,11 @@ const BoardView = (props) => {
  if ((board.user_id === props.auth.user.id)) {
   return(
     <div>
-    {board.code}
    <h1>{board.name}</h1>
    <p>{board.description}</p>
+   <p>Your board code is: {board.code}
+   <br />
+   Invite your family and friends!</p>
    {showForm && <BoardForm />}
    <button onClick={() => setShowForm(!showForm)}>
      {showForm ? "Close Form" : "Edit"}
@@ -46,6 +48,7 @@ const BoardView = (props) => {
 } else {
   return(
     <div>
+    {props.follow ? <button onClick={() => props.handleUnfollow(props.id)}>Unfollow</button> : null}
     <Posts boardId={props.match.params.id}/>
   </div>
   )

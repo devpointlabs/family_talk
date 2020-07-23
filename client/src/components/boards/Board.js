@@ -48,7 +48,9 @@ const Board = (props) => {
       <Link to={`/board/${props.id}`}
           key={props.id}
           {...props}
-          removeBoard={props.removeBoard}>
+          removeBoard={props.removeBoard}
+          handleUnfollow={handleUnfollow}
+          follow={follow}>
         <button>View</button>
         </Link>
       {follow ? <button onClick={() => handleUnfollow(props.id)}>Unfollow</button> : null}

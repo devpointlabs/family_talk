@@ -2,10 +2,6 @@ import React, { useState, useEffect } from "react"
 import axios from "axios"
 import BoardForm from "./BoardForm"
 import Board from "./Board"
-import { Link } from "react-router-dom"
-import { Button } from "semantic-ui-react"
-import BoardView from "./BoardView"
-import { AuthConsumer } from "../../providers/AuthProvider"
 
 const Boards = (props) => {
   const [boards, setBoards] = useState([])

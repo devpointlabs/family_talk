@@ -57,7 +57,7 @@ const AddPost = (props) => {
 
   return (
     <div>
-      <button onClick={toggle}>Add Post?</button>
+      <button onClick={toggle}>Add Post</button>
       {toggleForm ? (
         <form onSubmit={handleSubmit}>
           <input
