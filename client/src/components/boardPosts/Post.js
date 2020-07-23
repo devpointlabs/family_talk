@@ -77,7 +77,7 @@ const Post = (props) => {
         <button>View</button>
         </Link>
 
-        {editing ? <PostForm toggleEdit={setEditing} editPost={props.editPost} post={props.post} 
+        {editing ? <PostForm updatePost={props.updatePost}toggleEdit={setEditing} editPost={props.editPost} post={props.post} 
         userId={props.userId} editing = {editing}/> : null } 
         
 

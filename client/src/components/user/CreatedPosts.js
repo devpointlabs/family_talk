@@ -22,7 +22,7 @@ const CreatedPosts = (props) => {
       <Post
         key={post.id}
         post={post}
-        editPost={editPost}
+        updatePost={updatePost}
         removePost={removePost}
         userId={props.auth.user.id}
         boardId={props.boardId}
@@ -32,15 +32,15 @@ const CreatedPosts = (props) => {
 
 //  const addPost = (post) => setPosts([post, ...posts])
 
-  const editPost = (id, post) => {
-    axios.put(`/api/boards/${props.boardId}/posts/${id}`, post)
+  const updatePost = (id, post) => {
+    axios.put(`/api/boards/${post.board_id}/posts/${id}`, post)
       .then(res => {
-        const updatePost = posts.map(p => {
+        const updatedPosts = posts.map(p => {
           if (p.id === id)
             return res.data
           return p;
         })
-        setPosts(updatePost)
+        setPosts(updatedPosts)
       })
   }
 
