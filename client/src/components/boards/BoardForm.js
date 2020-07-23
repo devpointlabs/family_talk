@@ -28,8 +28,7 @@ const BoardForm = (props) => {
   },[])
 
   const handleDrop = (file) => {
-    // debugger
-    setFile(file[0]) //ask harlan about this [0]
+    setFile(file[0])
   }
 
   const createUserBoard = (board) => {

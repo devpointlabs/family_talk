@@ -18,7 +18,6 @@ class Settings extends React.Component {
     this.setState({ formValues: { email, name, first_name, last_name}, });
   }
 
-
   toggleEdit = () => {
     this.setState( state => {
       return { editing: !state.editing, };
@@ -26,11 +25,11 @@ class Settings extends React.Component {
   }
 
   onDrop = (files) => {
-    this.setState({ formValues: { ...this.state.formValues, file: files[0], } });
+    this.setState({ formValues: { ...this.state.formValues, file: files[0] } });
   }
 
   handleChange = (e) => {
-    const { name, value, } = e.target; 
+    const { name, value } = e.target; 
     this.setState({
       formValues: {
         ...this.state.formValues,
@@ -41,8 +40,8 @@ class Settings extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { formValues: { email, name, file, first_name, last_name }, } = this.state;
-    const { auth: { user, updateUser, }, } = this.props;
+    const { formValues: { email, name, file, first_name, last_name } } = this.state;
+    const { auth: { user, updateUser }, } = this.props;
 
     updateUser(user.id, {email, name, file, first_name, last_name });
     this.setState({
@@ -98,7 +97,6 @@ class Settings extends React.Component {
           label="Enter code to follow board:"
           name="followCode"
           value={followCode}
-          // sets state of boardId to on change but it works. Might be a better way to utilize with componentDidUpdate but I couldnt figure it out - Shawn
           onChange={(e) => this.setState({followCode: e.target.value, boardId: this.setBoard(e.target.value)})}
             />
           <Button>Follow</Button>

@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react"
 import { Form, Button } from "semantic-ui-react"
 import axios from "axios"
 import Dropzone from 'react-dropzone';
+import { AuthConsumer } from "../../providers/AuthProvider";
+import { withRouter } from "react-router-dom";
 
 const PostForm = (props) => {
   const [title, setTitle] = useState('')
@@ -24,11 +26,15 @@ const PostForm = (props) => {
     const thePost = { 
       title: title, 
       description: description, 
+<<<<<<< HEAD
       user_id: props.auth.user_id.id 
+=======
+      user_id: props.auth.user.id
+>>>>>>> 1e492cafa4b346fbfa038b36239bf9d1f54edade
     }
     if (props.editPost) {
       props.editPost(props.post.id, thePost)
-      props.toggleEdit()
+      props.toggleEdit(!props.editing)
     }
     else {
       e.preventDefault()
@@ -57,12 +63,14 @@ const PostForm = (props) => {
           placeholder="Description"
           type="input"
           required
-          autoFocus
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
+<<<<<<< HEAD
 
       <Button> {props.editing ? 'Update' :  'Create'}</Button>
+=======
+>>>>>>> 1e492cafa4b346fbfa038b36239bf9d1f54edade
         <Dropzone
             onDrop={handleDrop}
             multiple={false}
@@ -83,7 +91,8 @@ const PostForm = (props) => {
               )
             }}
       </Dropzone>
-      <Button>Submit</Button>
+      <Button> {props.editing ? 'Update' :  'Add Post'}</Button>
+
       </Form>
     </div>
   )
@@ -102,4 +111,13 @@ const styles = {
   },
 }
 
-export default PostForm
+
+const ConnectedPostForm = (props) => (
+  <AuthConsumer>
+    { auth => 
+      <PostForm { ...props } auth={auth} />
+    }
+  </AuthConsumer>
+)
+
+export default withRouter(ConnectedPostForm)

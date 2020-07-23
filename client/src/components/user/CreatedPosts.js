@@ -30,7 +30,7 @@ const CreatedPosts = (props) => {
     ))
   }
 
-//   const addPost = (post) => setPosts([post, ...posts])
+//  const addPost = (post) => setPosts([post, ...posts])
 
   const editPost = (id, post) => {
     axios.put(`/api/boards/${props.boardId}/posts/${id}`, post)
@@ -44,8 +44,8 @@ const CreatedPosts = (props) => {
       })
   }
 
-  const removePost = (id) => {
-    axios.delete(`/api/boards/${props.boardId}/posts/${id}`)
+  const removePost = (id, boardId) => {
+    axios.delete(`/api/boards/${boardId}/posts/${id}`)
       .then(res => {
       setPosts(posts.filter(post => post.id !== id))
     })

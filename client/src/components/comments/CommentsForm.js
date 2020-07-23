@@ -42,7 +42,7 @@ const handleSubmit = (e) => {
           onChange={(e) => setDes(e.target.value)}
           required
       />
-       <Button>{props.editing ? 'Update' : 'Create'}</Button>
+       <Button>{props.editing ? 'Update' : 'Add Comment'}</Button>
       </Form>
     </>
   )  

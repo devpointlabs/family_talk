@@ -11,10 +11,13 @@ export class AuthProvider extends React.Component {
     axios.post("/api/auth", user)
       .then( res => {
         this.setState({ user: res.data.data, });
-        history.push("/");
+        history.push("/landingPage");
       })
     .catch( res => {
+<<<<<<< HEAD
       
+=======
+>>>>>>> 1e492cafa4b346fbfa038b36239bf9d1f54edade
       console.log(res);
       this.setState({userError: res.response.data.errors})
       
@@ -53,7 +56,7 @@ export class AuthProvider extends React.Component {
   }
 
   destroyUser = (id, history ) => {
-    history.push('/')
+   this.handleLogout(history)
    axios.delete(`/api/users/${id}`)
    .then(res => {
      this.setState({ user: null, });

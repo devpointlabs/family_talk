@@ -4,7 +4,7 @@ import { Button, Form, Segment, Header, } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 
 class Register extends React.Component {
-  state = { name: "name", email: 'random@test.com', password: '1234567', passwordConfirmation: '1234567', first_name: 'rick', last_name: 'davis' };
+  state = { name: "", email: '', password: '', passwordConfirmation: '', first_name: '', last_name: '' };
   
   handleSubmit = (e) => {
     e.preventDefault();
@@ -40,7 +40,6 @@ class Register extends React.Component {
           />
           <Form.Input
             label="First Name"
-            autoFocus
             required     
             name='first_name'
             value={first_name}
@@ -49,7 +48,6 @@ class Register extends React.Component {
           />
           <Form.Input
             label="Last Name"
-            autoFocus
             required     
             name='last_name'
             value={last_name}
@@ -59,7 +57,6 @@ class Register extends React.Component {
           <Form.Input
             label="Email"
             required
-            autoFocus
             name='email'
             value={email}
             placeholder='Email'

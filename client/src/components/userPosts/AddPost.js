@@ -43,6 +43,7 @@ const AddPost = (props) => {
     let data = new FormData()
     data.append('file', file)
     props.board.getBoard(boardChoice)
+<<<<<<< HEAD
 
     axios.post(`/api/users/${props.auth.user.id}/posts?title=${title}&description=${description}&board_id=${boardChoice}`, data)
     .then( res => { 
@@ -51,13 +52,20 @@ const AddPost = (props) => {
     })
     .catch ( err => {  
      
+=======
+    axios.post(`/api/users/${props.auth.user.id}/posts?title=${title}&description=${description}&board_id=${boardChoice}`, data)
+    .then( res => { 
+      props.history.push(`/board/${boardChoice}/post/${res.data.id}`)
+    })
+    .catch ( err => {  
+>>>>>>> 1e492cafa4b346fbfa038b36239bf9d1f54edade
       console.log("error")
     })
   }
 
   return (
     <div>
-      <button onClick={toggle}>Add Post?</button>
+      <button onClick={toggle}>Add Post</button>
       {toggleForm ? (
         <form onSubmit={handleSubmit}>
           <input

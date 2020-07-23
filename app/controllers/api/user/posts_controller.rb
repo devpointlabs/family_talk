@@ -6,14 +6,15 @@ class Api::User::PostsController < ApplicationController
   end
 
   def create
-    post = @user.posts.new
+    post = current_user.posts.new
     post.title = params[:title] ? params[:title] : post.title
     post.description = params[:description] ? params[:description] : post.description
     post.board_id = params[:board_id ] ? params[:board_id ] : post.board_id 
-    
-
     file = params[:file]
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1e492cafa4b346fbfa038b36239bf9d1f54edade
     if file != "undefined" && file != "" 
        begin
         ext = File.extname(file.tempfile)
@@ -29,7 +30,7 @@ class Api::User::PostsController < ApplicationController
       render json: post
       
     else
-      render json: { errors: post.errors }, status: :unprocessble_entity
+      render json: { errors: post.errors }, status: :unprocessable_entity
     end
   end
 
@@ -52,7 +53,7 @@ class Api::User::PostsController < ApplicationController
          end
      end
 
-    if post.update(post_params)
+    if post.save
       render json: post
     else
       render json: {errors: post.errors}, status: :unprocessble_entity
