@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 import Posts from "../boardPosts/Posts"
-import { BoardConsumer } from "../../providers/BoardProvider"
 import BoardForm from "./BoardForm"
 import { AuthConsumer, } from "../../providers/AuthProvider";
+import { withRouter } from "react-router-dom";
 
 
 const BoardView = (props) => {
   const [board, setBoard] = useState({})
-  const [code, setCode] = useState(false)
   const [showForm, setShowForm] = useState(false)
 
   useEffect(() => {
@@ -22,6 +21,13 @@ const BoardView = (props) => {
     })
   }, [])
  
+  const removeBoard = (id) => {
+    axios.delete(`/api/boards/${id}`)
+      .then((res) => {
+      props.history.push('/landingPage')
+    })
+  }
+
  if ((board.user_id === props.auth.user.id)) {
   return(
     <div>
@@ -32,6 +38,7 @@ const BoardView = (props) => {
    <button onClick={() => setShowForm(!showForm)}>
      {showForm ? "Close Form" : "Edit"}
    </button>
+   <button onClick={() => removeBoard(board.id)}>Delete</button>
    <Posts boardId={props.match.params.id}/>
  </div>
   )
@@ -53,4 +60,4 @@ const ConnectedBoardView = (props) => {
   )
 }
 
-export default ConnectedBoardView;
+export default withRouter(ConnectedBoardView);

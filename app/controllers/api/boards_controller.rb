@@ -9,15 +9,23 @@ class Api::BoardsController < ApplicationController
     render json: current_user.boards.all
   end
 
+  def followed
+    follows = User.first.user_boards.all
+    follows.each do |f|
+      @boards = []
+      @boards.push(Board.find(f.board_id))
+       end
+       render json: @boards
+  end
+
+
   def show
     board = Board.find(params[:id]) 
-
     render json: board
   end
 
   def create
     board = Board.new(board_params)
-
     if board.save
       render json: board
     else

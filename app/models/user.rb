@@ -15,4 +15,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
+
+  def self.destroy_all
+    current_user.boards.all.destroy & current_user.posts.all.destroy & current_user.comments.all.destroy & current_user.likes.all.destroy & current_user.user_boards.all.destroy & current_user.destroy
+  end
+
 end

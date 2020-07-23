@@ -1,4 +1,4 @@
-import React, { useState, } from "react";
+import React, { useState, useEffect, } from "react";
 import { Link, } from "react-router-dom"
 import { Button, Image } from "semantic-ui-react";
 import BoardForm from "./BoardForm";
@@ -9,6 +9,28 @@ const defaultImage = 'https://simpleicon.com/wp-content/uploads/picture.png';
 
 const Board = (props) => {
   const [ editing, setEditing] = useState(false)
+  const [follow, setFollow] = useState(false)
+
+  useEffect(() => {
+    axios.get(`/api/user/${props.auth.user.id}/user_boards`)
+    .then((res) => {
+      renderFollow(res.data)
+    })
+  },[])
+
+  const renderFollow = (boards) => {
+      boards.map((f) => { 
+      if (f.board_id === props.id){
+      setFollow(true)
+      } else 
+      setFollow(false)
+    }) 
+  }
+
+  const handleUnfollow = (id) => {
+    props.unfollowBoard(id)
+    setFollow(false)
+  }
 
   return ( 
     <>
@@ -25,12 +47,11 @@ const Board = (props) => {
       </div> : null}
       <Link to={`/board/${props.id}`}
           key={props.id}
-          {...props}>
+          {...props}
+          removeBoard={props.removeBoard}>
         <button>View</button>
         </Link>
-        <button onClick={() => props.unfollowBoard(props.id)}>Unfollow</button>
-
-        {/*if editing is true then display form else null  */}
+      {follow ? <button onClick={() => handleUnfollow(props.id)}>Unfollow</button> : null}
       {editing ? <BoardForm toggleEdit={setEditing} {...props}/> : null } 
     </>
   )

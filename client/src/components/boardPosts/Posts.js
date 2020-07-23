@@ -33,6 +33,7 @@ const Posts = (props) => {
   const addPost = (post) => setPosts([post, ...posts])
 
   const editPost = (id, post) => {
+    debugger;
     axios.put(`/api/boards/${props.boardId}/posts/${id}`, post)
       .then(res => {
         const updatePost = posts.map(p => {

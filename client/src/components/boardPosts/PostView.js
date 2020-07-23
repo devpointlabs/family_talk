@@ -75,8 +75,8 @@ const unlikePost = (postId) => {
         <button onClick={() => setEditing(!editing)}>{editing ? "Close Edit" : "Edit"}</button>
         <button onClick={() => props.removePost(props.id)}>Delete</button> </div> : null }
 
-
-        {editing ? <PostForm toggleEdit={setEditing} editPost={props.editPost} post={props.post} userId={props.userId}/> : null } 
+            {/* took out post={props.post} */}
+        {editing ? <PostForm toggleEdit={setEditing} post={card} editPost={props.editPost} editing={editing}  userId={props.userId}/> : null } 
       </Card>
       <br/>
     </div>

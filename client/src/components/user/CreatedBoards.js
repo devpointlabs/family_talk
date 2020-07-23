@@ -2,12 +2,9 @@ import React, { useState, useEffect } from "react"
 import axios from "axios"
 import BoardForm from "../boards/BoardForm"
 import Board from "../boards/Board"
-import { Link } from "react-router-dom"
-import { Button } from "semantic-ui-react"
-
 import { AuthConsumer } from "../../providers/AuthProvider"
 
-const CreatedBoards = (props) => {
+const CreatedBoards = () => {
   const [boards, setBoards] = useState([])
   const [showForm, setShowForm] = useState(false)
   
@@ -20,6 +17,11 @@ const CreatedBoards = (props) => {
       console.log(e)
     })
   }, [])
+
+  const getFollowedBoards = () => {
+    axios.get(`/api/user/followedBoards`)
+  }
+
 
   const addBoard = (board) => {
     setBoards([board, ...boards])

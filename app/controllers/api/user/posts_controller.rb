@@ -6,14 +6,11 @@ class Api::User::PostsController < ApplicationController
   end
 
   def create
-    post = @user.posts.new
+    post = current_user.posts.new
     post.title = params[:title] ? params[:title] : post.title
     post.description = params[:description] ? params[:description] : post.description
     post.board_id = params[:board_id ] ? params[:board_id ] : post.board_id 
-    
-
     file = params[:file]
-    binding.pry
     if file != "undefined" && file != "" 
        begin
         ext = File.extname(file.tempfile)
@@ -29,7 +26,7 @@ class Api::User::PostsController < ApplicationController
       render json: post
       
     else
-      render json: { errors: post.errors }, status: :unprocessble_entity
+      render json: { errors: post.errors }, status: :unprocessable_entity
     end
   end
 
@@ -52,7 +49,7 @@ class Api::User::PostsController < ApplicationController
          end
      end
 
-    if post.update(post_params)
+    if post.save
       render json: post
     else
       render json: {errors: post.errors}, status: :unprocessble_entity
@@ -65,6 +62,7 @@ class Api::User::PostsController < ApplicationController
 
   private
   def set_board
+    binding.pry
     @board = Board.find(params[:board_id])
   end
 

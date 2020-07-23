@@ -58,7 +58,6 @@ const Boards = (props) => {
   const editBoard = (id, board) => { //we pass the id from our state, add board from form
     let data = new FormData()
     data.append('file', board.file)
-    // debugger
     axios.put(`/api/boards/${id}?name=${board.name}&description=${board.description}&public=${board.public}`, data)
       .then(res => {
         const updateBoard = boards.map(board => {

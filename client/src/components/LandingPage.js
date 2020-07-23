@@ -8,19 +8,18 @@ import Login from './user/Login';
 import { AuthConsumer } from '../providers/AuthProvider';
 
 
-const LandingPage = () => {
+const LandingPage = (props) => {
     return (
-   
    <ImageContent>
+    {props.auth.user ? null : 
   <ButtonContent>
-  
-  <Modal trigger = {<Button>Sign Up</Button>}>
+    <Modal trigger = {<Button>Sign Up</Button>}>
       <Register />
     </Modal>
     <Modal trigger = {<Button>Sign In</Button>}>
       < Login />
     </Modal>
-  </ButtonContent>
+  </ButtonContent> } 
   <div>
   <HeaderText> Family Talk </HeaderText>
   <br/>
@@ -29,7 +28,6 @@ const LandingPage = () => {
   </BodyText>
   </div>
    </ImageContent>
-  
     )
 }
 

@@ -50,8 +50,6 @@ const Post = (props) => {
         setPostLikes(res.data)
       })
 }
-
-
   return(
     <div>
        <Card key={props.post.id}>
@@ -61,7 +59,7 @@ const Post = (props) => {
         {props.auth.user.id === props.post.user_id ? 
         <div>
         <button onClick={() => setEditing(!editing)}>{editing ? "Close Edit" : "Edit"}</button>
-        <button onClick={() => props.removePost(props.post.id)}>Delete</button> </div> : null}
+        <button onClick={() => props.removePost(props.post.id, props.post.board_id)}>Delete</button> </div> : null}
         
         
         <h4>Likes: {postLikes ? postLikes.length : "0"}</h4>
