@@ -2,10 +2,6 @@ import React, { useState, useEffect } from "react"
 import axios from "axios"
 import BoardForm from "./BoardForm"
 import Board from "./Board"
-import { Link } from "react-router-dom"
-import { Button } from "semantic-ui-react"
-import BoardView from "./BoardView"
-import { AuthConsumer } from "../../providers/AuthProvider"
 
 const Boards = (props) => {
   const [boards, setBoards] = useState([])
@@ -58,7 +54,6 @@ const Boards = (props) => {
   const editBoard = (id, board) => { //we pass the id from our state, add board from form
     let data = new FormData()
     data.append('file', board.file)
-    // debugger
     axios.put(`/api/boards/${id}?name=${board.name}&description=${board.description}&public=${board.public}`, data)
       .then(res => {
         const updateBoard = boards.map(board => {
@@ -78,8 +73,6 @@ const Boards = (props) => {
         {showForm ? "Close Form" : "Add Board"}
       </button>
       <br/>
-
-
       {renderBoards()}
     </>
   )

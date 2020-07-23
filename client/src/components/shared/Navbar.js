@@ -35,7 +35,7 @@ class Navbar extends React.Component {
   <Dropdown>
     <Dropdown.Menu>
       <Dropdown.Item as={Link} to='/'>Home</Dropdown.Item>
-      <Dropdown.Item as ={Link} to='/landingPage'>Landing Page</Dropdown.Item>
+      <Dropdown.Item as ={Link} to='/landingPage'>Family Room</Dropdown.Item>
       <Dropdown.Item as={Link} to='/publicPage'>Explore</Dropdown.Item>
     </Dropdown.Menu>
   </Dropdown>

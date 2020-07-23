@@ -33,6 +33,7 @@ const Posts = (props) => {
   const addPost = (post) => setPosts([post, ...posts])
 
   const editPost = (id, post) => {
+    debugger;
     axios.put(`/api/boards/${props.boardId}/posts/${id}`, post)
       .then(res => {
         const updatePost = posts.map(p => {
@@ -63,7 +64,6 @@ const Posts = (props) => {
   return (
     <>
       <h2>Posts</h2>
-      <button onClick={() => {unfollowBoard(props.boardId)}}>Unfollow</button>
       {showForm && <PostForm addPost={addPost} boardId={props.boardId} userId={props.auth.user} />} 
        <button onClick={() => setShowForm(!showForm)}>
         {showForm ? "Close Form" : "Add Post"}

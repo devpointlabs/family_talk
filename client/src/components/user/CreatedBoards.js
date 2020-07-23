@@ -2,24 +2,32 @@ import React, { useState, useEffect } from "react"
 import axios from "axios"
 import BoardForm from "../boards/BoardForm"
 import Board from "../boards/Board"
-import { Link } from "react-router-dom"
-import { Button } from "semantic-ui-react"
-
 import { AuthConsumer } from "../../providers/AuthProvider"
 
-const CreatedBoards = (props) => {
+const CreatedBoards = () => {
   const [boards, setBoards] = useState([])
+  const [followedBoards, setFollowedBoards] = useState([])
   const [showForm, setShowForm] = useState(false)
   
   useEffect(() => {
+    getFollowedBoards()
     axios.get(`/api/user/boards`)
       .then(res => {
-      setBoards(res.data)
+      setBoards(res.data, ...boards)
       })
       .catch((e) => {
       console.log(e)
     })
+
   }, [])
+
+  const getFollowedBoards = () => {
+    axios.get(`/api/user/followedBoards`)
+    .then((res) => {
+      setFollowedBoards(res.data)
+    })
+  }
+
 
   const addBoard = (board) => {
     setBoards([board, ...boards])
@@ -34,6 +42,21 @@ const CreatedBoards = (props) => {
   
   const renderBoards = () => {
     return boards.map(board => (
+      <>
+        <Board
+          key={board.id}
+          {...board}
+          editBoard={editBoard}
+          removeBoard={removeBoard}
+          unfollowBoard={unfollowBoard}
+        />
+       </>
+    ))
+  }
+
+  const renderFollowedBoards = () => {
+    debugger;
+    return followedBoards.map(board => (
       <>
         <Board
           key={board.id}
@@ -81,6 +104,7 @@ const CreatedBoards = (props) => {
 
 
       {renderBoards()}
+      {renderFollowedBoards()}
     </>
   )
 }

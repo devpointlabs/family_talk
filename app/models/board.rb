@@ -10,4 +10,5 @@ class Board < ApplicationRecord
     .where("code = #{code}")
   end
 
+
 end

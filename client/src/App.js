@@ -5,7 +5,6 @@ import Navbar from './components/shared/Navbar';
 import Login from './components/user/Login';
 import Register from './components/user/Register';
 import { Switch, Route, } from 'react-router-dom';
-import { Container, } from "semantic-ui-react";
 import FetchUser from './components/user/FetchUser';
 import ProtectedRoute from './components/routes/ProtectedRoute';
 import Settings from './components/user/Settings';
