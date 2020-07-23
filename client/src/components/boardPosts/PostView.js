@@ -4,6 +4,7 @@ import PostForm from "./PostForm"
 import Comments from '../comments/Comments'
 import axios from "axios"
 import { AuthConsumer } from "../../providers/AuthProvider"
+import { withRouter } from "react-router-dom"
 
 
 const PostView = (props) => {  
@@ -57,6 +58,21 @@ const unlikePost = (postId) => {
       console.log(res.data)
     })
 }
+  
+  
+  const editSinglePost = (id, post) => {
+    axios.put(`/api/boards/${post.board_id}/posts/${id}`, post)
+      .then((res) => {
+      setCard(res.data)
+    })
+  }
+
+  const deletePost = (id) => {
+    axios.delete(`/api/boards/${card.board_id}/posts/${id}`)
+      .then(res => {
+        props.history.push(`/board/${card.board_id}`)
+    })
+  }
 
   return(
     <div>
@@ -73,10 +89,10 @@ const unlikePost = (postId) => {
         {props.auth.user.id === card.user_id ? 
         <div>
         <button onClick={() => setEditing(!editing)}>{editing ? "Close Edit" : "Edit"}</button>
-        <button onClick={() => props.removePost(props.id)}>Delete</button> </div> : null }
+        <button onClick={() => deletePost(card.id)}>Delete</button> </div> : null }
 
             {/* took out post={props.post} */}
-        {editing ? <PostForm toggleEdit={setEditing} post={card} editPost={props.editPost} editing={editing}  userId={props.userId}/> : null } 
+        {editing ? <PostForm toggleEdit={setEditing} post={card} editSinglePost={editSinglePost} editing={editing}  userId={props.userId}/> : null } 
       </Card>
       <br/>
     </div>
@@ -91,4 +107,4 @@ const ConnectedPostView = (props) => {
       )
 }
 
-export default ConnectedPostView
+export default withRouter(ConnectedPostView)

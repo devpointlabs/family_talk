@@ -15,29 +15,45 @@ const PostForm = (props) => {
       setTitle(props.post.title)
       setDescription(props.post.description)
       setFile(props.post.image)
-    } 
+    }
   }, [])
 
   const handleDrop = (file) => {
     setFile(file[0])
   }
 
+  const adding = (e) => {
+    e.preventDefault()
+      axios.post(`/api/boards/${props.boardId}/posts`, {
+      title: title, description: description,
+      user_id: props.auth.user.id
+    }) //whenver we do a post we have to pass in two arguments, the path and the object so it knows what we are passing through to that route
+      .then(res => {
+        props.addPost(res.data) //res.data will be used in posts.js as post to add to the state
+      })
+    }
+
   const handleSubmit = (e) => {
-    const thePost = { 
+    if (props.editPost || props.updatePost || props.editSinglePost) {
+      const thePost = { 
       title: title, 
       description: description, 
-      user_id: props.auth.user.id
+      user_id: props.auth.user.id,
+      board_id: props.post.board_id
     }
-    if (props.editPost) {
-      props.editPost(props.post.id, thePost)
-      props.toggleEdit(!props.editing)
-    }
-    else {
-      e.preventDefault()
-      axios.post(`/api/boards/${props.boardId}/posts`, thePost) //whenver we do a post we have to pass in two arguments, the path and the object so it knows what we are passing through to that route
-        .then(res => {
-          props.addPost(res.data) //res.data will be used in posts.js as post to add to the state
-        })
+        if (props.editPost) {
+          props.editPost(props.post.id, thePost)
+          props.toggleEdit(!props.editing)
+        } if (props.updatePost) {
+          props.updatePost(props.post.id, thePost)
+          props.toggleEdit(!props.editing)
+        }
+        if (props.editSinglePost) {
+          props.editSinglePost(props.post.id, thePost)
+          props.toggleEdit(!props.editing)
+        }
+    }else {
+      adding(e)
     }
   }
     
