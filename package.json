@@ -1,0 +1,26 @@
+{
+  "name": "family_talk",
+  "version": "1.0.0",
+  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd client && npm install --only=dev && npm install && npm run build && cd ..",
+    "deploy": "cp -a client/build/. public/",
+    "heroku-postbuild": "npm run build && npm run deploy && echo 'Client Built'"
+  },
+  "repository": "git+https://github.com/devpointlabs/family_talk.git",
+  "keywords": [],
+  "author": "Shawn Smith <srsmith11@live.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devpointlabs/family_talk/issues"
+  },
+  "homepage": "https://github.com/devpointlabs/family_talk#readme"
+}
