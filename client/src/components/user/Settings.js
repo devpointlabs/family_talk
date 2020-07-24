@@ -3,6 +3,7 @@ import { AuthConsumer, } from "../../providers/AuthProvider";
 import { Button, Form, Segment, Header, Grid, Divider, Container, Image, Input } from "semantic-ui-react";
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
+import './Settings.css'
 
 const defaultImage = 'https://d30y9cdsu7xlg0.cloudfront.net/png/15724-200.png';
 
@@ -83,15 +84,16 @@ class Settings extends React.Component {
     const { auth: { user }, } = this.props;
     const  {followCode} = this.state;
     return (
-      <Fragment>
-        <Grid.Column width={4}>
-          <Image src={user.image || defaultImage} />
-        </Grid.Column>
+      <div className="fragment">
+        <i class="user outline icon"></i>
+        <div>My Profile <br />how your acount looks like</div>  
+
         <Grid.Column width={8}>
-          <Header as="h1">{user.email}</Header>
-          <Header as="h1">{user.name}</Header>
-          <Header as="h1">{user.first_name}</Header>
-          <Header as="h1">{user.last_name}</Header>
+          <h2>My Family Talk Profile</h2>
+          <img src={user.image || defaultImage} />
+          <p>{user.name}</p>
+          <p>{user.first_name} {user.last_name}</p>
+          <p>{user.email}</p>
           <Form onSubmit={this.followSubmit}>
             <Form.Input
           label="Enter code to follow board:"
@@ -99,10 +101,10 @@ class Settings extends React.Component {
           value={followCode}
           onChange={(e) => this.setState({followCode: e.target.value, boardId: this.setBoard(e.target.value)})}
             />
-          <Button>Follow</Button>
+          <Button className="hi">Follow</Button>
           </Form>
         </Grid.Column>
-      </Fragment>
+      </div>
     )
   }
 
@@ -126,7 +128,7 @@ class Settings extends React.Component {
                   {
                     isDragActive ?
                       <p>Drop files here...</p> :
-                      <p>Try dropping some files here, or click to select files to upload.</p>
+                      <p><i class="cloud upload icon"></i> <br/>Drag and drop here</p>
                   }
                 </div>
               )
