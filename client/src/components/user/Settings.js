@@ -115,38 +115,44 @@ class Settings extends React.Component {
 
     return (
       <Form onSubmit={this.handleSubmit}>
-        <div>
+        <div className='all-info'>
+         
+          <div className="icon-and-dropzone">
+            <div>
+              <i class="user outline icon"></i>
+              <p className="profile-icon" >My Profile <br />how your acount looks like</p>  
+            </div>
 
-          <i class="user outline icon"></i>
-          <div className="profile-icon" >My Profile <br />how your acount looks like</div>  
-
-          <div>Upload Profile Image</div>
-          <Dropzone
-            onDrop={this.onDrop}
-            multiple={false}
-          >
-            {({ getRootProps, getInputProps, isDragActive }) => {
-              return (
-                <div
-                  {...getRootProps()}
-                  style={styles.dropzone}
-                >
-                  <input {...getInputProps()} />
-                  {
-                    isDragActive ?
-                      <p>Drop files here...</p> :
-                      <p><i class="cloud upload icon"></i> <br/>Click here to Upload</p>
-                  }
-                </div>
-              )
-            }}
-          </Dropzone>
+            <div>
+            <h3>Upload Profile Image</h3>
+            <Dropzone
+              onDrop={this.onDrop}
+              multiple={false}
+            >
+              {({ getRootProps, getInputProps, isDragActive }) => {
+                return (
+                  <div
+                    {...getRootProps()}
+                    style={styles.dropzone}
+                  >
+                    <input {...getInputProps()} />
+                    {
+                      isDragActive ?
+                        <p>Drop files here...</p> :
+                        <p><i class="cloud upload icon"></i> <br/>Click here to Upload</p>
+                    }
+                  </div>
+                )
+              }}
+              </Dropzone>
+              </div>
+            </div>
 
           <div className='profile-section'>
           <h2>My Family Talk Profile</h2>
             
           <div className="image-username">
-            <img src={user.image || defaultImage} />
+            <img className="settings-image" src={user.image || defaultImage} />
               
             <Form.Input className='username'
                 label="Username"
@@ -179,17 +185,21 @@ class Settings extends React.Component {
               onChange={this.handleChange}
               />
               
-            <Form onSubmit={this.followSubmit}>
+            <Form className="follow-form" onSubmit={this.followSubmit}>
                 <Form.Input
                 label="Enter code to follow board:"
                 name="followCode"
                 value={followCode}
                 onChange={(e) => this.setState({followCode: e.target.value, boardId: this.setBoard(e.target.value)})}
               />
-              <Button>Follow</Button>
+              <Button >Follow</Button>
             </Form>
+
+            <Button>Update</Button>
+              <Button onClick = {() => this.props.auth.destroyUser(this.props.auth.user.id, this.props.history)}>Delete</Button>
+
           </div>
-          <Button>Update</Button>
+          
         </div>
       </Form>
     )
@@ -204,7 +214,6 @@ class Settings extends React.Component {
           <Grid.Row>
             { editing ? this.editView() : this.settingsView()}
             <Grid.Column>
-              <Button onClick = {() => this.props.auth.destroyUser(this.props.auth.user.id, this.props.history)}>Delete</Button>
               <Button onClick={this.toggleEdit}>{editing ? 'Cancel' : 'Edit'}</Button>
             </Grid.Column>
           </Grid.Row>

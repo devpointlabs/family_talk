@@ -1,10 +1,6 @@
-.body{
-  background-color: blue;
-}
-
-img{
-  width: 80px;
-  height: 80px;
+.settings-image{
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
 }
 
@@ -29,9 +25,10 @@ i{
 }
 
 .profile-section{
-  border-style: ridge;
-  padding: 20px;
-  background-color: antiquewhite;
+  /* border-style: ridge; */
+  padding: 80px;
+  background-color:#FAF0E6;
+  border-radius: 1%;
 }
 
 .image-username{
@@ -46,4 +43,21 @@ i{
 
 .username{
   padding: 1em;
+}
+
+.follow-form{
+   display: flex;
+  justify-content: space-around;
+}
+
+.all-info{
+  display: flex;
+  justify-content: space-around;
+}
+
+.icon-and-dropzone{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
 }
