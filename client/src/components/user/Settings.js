@@ -86,9 +86,9 @@ class Settings extends React.Component {
     return (
       <div className="fragment">
         <i class="user outline icon"></i>
-        <div>My Profile <br />how your acount looks like</div>  
+        <div className="profile-icon" >My Profile <br />how your acount looks like</div>  
 
-        <Grid.Column width={8}>
+        <div className="main-content">
           <h2>My Family Talk Profile</h2>
           <img src={user.image || defaultImage} />
           <p>{user.name}</p>
@@ -103,7 +103,7 @@ class Settings extends React.Component {
             />
           <Button className="hi">Follow</Button>
           </Form>
-        </Grid.Column>
+        </div>
       </div>
     )
   }
@@ -111,9 +111,16 @@ class Settings extends React.Component {
   editView = () => {
     const { auth: { user }, } = this.props;
     const { formValues: { email, name, file, first_name, last_name }, } = this.state;
+    const {followCode} = this.state;
+
     return (
       <Form onSubmit={this.handleSubmit}>
-        <Grid.Column width={4}>
+        <div>
+
+          <i class="user outline icon"></i>
+          <div className="profile-icon" >My Profile <br />how your acount looks like</div>  
+
+          <div>Upload Profile Image</div>
           <Dropzone
             onDrop={this.onDrop}
             multiple={false}
@@ -128,44 +135,62 @@ class Settings extends React.Component {
                   {
                     isDragActive ?
                       <p>Drop files here...</p> :
-                      <p><i class="cloud upload icon"></i> <br/>Drag and drop here</p>
+                      <p><i class="cloud upload icon"></i> <br/>Click here to Upload</p>
                   }
                 </div>
               )
             }}
           </Dropzone>
-        </Grid.Column>
-        <Grid.Column width={8}>
+
+          <div className='profile-section'>
+          <h2>My Family Talk Profile</h2>
+            
+          <div className="image-username">
+            <img src={user.image || defaultImage} />
+              
+            <Form.Input className='username'
+                label="Username"
+                name="name"
+                value={name}
+                required
+                onChange={this.handleChange}
+                />  
+          </div>
           <Form.Input
-            label="Email"
-            name="email"
-            value={email}
-            required
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            label="First Name"
-            name="first_name"
-            value={first_name}
-            required
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            label="Last Name"
-            name="last_name"
-            value={last_name}
-            required
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            label="Username"
-            name="name"
-            value={name}
-            required
-            onChange={this.handleChange}
-          />
+              label="First Name"
+              name="first_name"
+              value={first_name}
+              required
+              onChange={this.handleChange}
+            />
+            <Form.Input
+              label="Last Name"
+              name="last_name"
+              value={last_name}
+              required
+              onChange={this.handleChange}
+            />
+            
+            <Form.Input
+              label="Email"
+              name="email"
+              value={email}
+              required
+              onChange={this.handleChange}
+              />
+              
+            <Form onSubmit={this.followSubmit}>
+                <Form.Input
+                label="Enter code to follow board:"
+                name="followCode"
+                value={followCode}
+                onChange={(e) => this.setState({followCode: e.target.value, boardId: this.setBoard(e.target.value)})}
+              />
+              <Button>Follow</Button>
+            </Form>
+          </div>
           <Button>Update</Button>
-        </Grid.Column>
+        </div>
       </Form>
     )
   }

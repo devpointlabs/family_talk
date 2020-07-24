@@ -18,3 +18,32 @@ i{
   display: flex;
   justify-content: center;
 }
+
+.profile-icon{
+  border-style: ridge;
+}
+
+.fragment{
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile-section{
+  border-style: ridge;
+  padding: 20px;
+  background-color: antiquewhite;
+}
+
+.image-username{
+  display: flex;
+  justify-content: space-around;
+}
+
+.displayflex{
+   display: flex;
+  justify-content: space-around;
+}
+
+.username{
+  padding: 1em;
+}
