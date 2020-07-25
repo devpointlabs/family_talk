@@ -24,15 +24,6 @@ const Board = (props) => {
     })
   },[])
 
-  // const renderFollow = () => {
-  //     follow.map((f) => { 
-  //     if (f.board_id === props.id){
-  //     setFollowing(true)
-  //     } else 
-  //     setFollowing(false)
-  //   }) 
-  // }
-
   const handleUnfollow = (id) => {
     props.unfollowBoard(id)
     setFollowing(false)
@@ -51,15 +42,22 @@ const Board = (props) => {
       <button onClick={() => setEditing(!editing)}>{editing ? "Close Edit" : "Edit"}</button>
       <button onClick={() => props.removeBoard(props.id)}>Delete</button> 
       </div> : null}
-      <Link to={`/board/${props.id}`}
-          key={props.id}
-          {...props}
-          removeBoard={props.removeBoard}
-          handleUnfollow={handleUnfollow}
-          following={following}>
+      <Link to={{
+        pathname:`/board/${props.id}`,
+          key: props.id,
+          boardProps:{...props},
+          removeBoard: props.deleteBoard,
+          handleUnfollow: handleUnfollow,
+          following: following,
+          editing: editing,
+          editBoard: props.editBoard,
+          toggleEdit: setEditing,
+          editSingleBoard: props.editSingleBoard
+          }}
+                    >
         <button>View</button>
         </Link>
-      {following ? <button onClick={() => handleUnfollow(props.id)}>Unfollow</button> : null}
+      {following  && props.auth.user.id !== props.user_id ? <button onClick={() => handleUnfollow(props.id)}>Unfollow</button> : null}
       {editing ? <BoardForm toggleEdit={setEditing} editBoard={props.editBoard} {...props}/> : null } 
     </>
   )

@@ -54,7 +54,7 @@ const Posts = (props) => {
   return (
     <>
       <h2>Posts</h2>
-      {showForm && <PostForm addPost={addPost} boardId={props.boardId} userId={props.auth.user} />} 
+      {showForm && <PostForm addPost={addPost} setShowForm={setShowForm} showForm={showForm} boardId={props.boardId} userId={props.auth.user}  />} 
        <button onClick={() => setShowForm(!showForm)}>
         {showForm ? "Close Form" : "Add Post"}
       </button>

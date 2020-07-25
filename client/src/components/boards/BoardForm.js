@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"
 import { Form, Button, Radio } from "semantic-ui-react"
 import Dropzone from 'react-dropzone';
 import axios from "axios"
-import UserBoardForm from "../userBoard/UserBoardForm";
 import { AuthConsumer } from "../../providers/AuthProvider";
 
 const BoardForm = (props) => {
@@ -49,13 +48,17 @@ const BoardForm = (props) => {
     if (props.editBoard) {
       props.editBoard(props.id, board)
       props.toggleEdit()
+    } 
+    if (props.editSingleBoard) {
+      props.editSingleBoard(props.id, board)
+      props.toggleEdit()  
     } else {  
        board.code = randomCode()
        axios.post("/api/boards", board)
       .then((res) => {
         props.addBoard(res.data)
         createUserBoard(res.data);
-         props.toggleForm();
+        props.toggleForm();
       })
       .catch((e) => {
         console.log(e)
@@ -114,7 +117,7 @@ const BoardForm = (props) => {
           onChange={(e) => setPub(!pub)}
       />
       <br/>
-      <Button>Submit</Button>
+      <Button>{props.id ? "Update" : "Submit"}</Button>
       </Form>
   )  
 }
