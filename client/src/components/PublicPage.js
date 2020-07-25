@@ -25,6 +25,7 @@ const PublicPage = () => {
           name = {board.name}
           description = {board.description}
           image = {board.image}
+          id = {board.id}
         />
         </>
       ))

@@ -8,12 +8,16 @@ import PostForm from "./PostForm"
 const Posts = (props) => {
   const [posts, setPosts] = useState([])
   const [showForm, setShowForm] = useState(false)
+  const [follows, setFollows] = useState([])
+  const [followBoard, setFollowBoard] = useState(false)
 
 
   useEffect(() => {
     axios.get(`/api/boards/${props.boardId}/posts`)
       .then(res => {
         setPosts(res.data)
+        getFollows() 
+        followed()
       })
   }, [])
   
@@ -28,6 +32,13 @@ const Posts = (props) => {
         boardId={props.boardId}
       />
     ))
+  }
+
+  const getFollows = () => {
+    axios.get(`/api/user/user_boards`)
+    .then((res) => {
+      setFollows(res.data);
+    })
   }
 
   const addPost = (post) => setPosts([post, ...posts])
@@ -51,6 +62,16 @@ const Posts = (props) => {
     })
   }
 
+const followed = () => {
+  follows.map((f) => {
+    if(f.board_id === props.boardId) {
+      setFollowBoard(true)
+    } else {
+      setFollowBoard(false)
+    }
+  })
+}
+  if (followBoard || props.auth.user.id === props.userId) {
   return (
     <>
       <h2>Posts</h2>
@@ -60,11 +81,16 @@ const Posts = (props) => {
       </button>
       <br/>
       <br/>
-
       {renderPosts()}
     </>
-  )
+  )} else {
+    return(
+    <>
+    {renderPosts()}
+    </>
+    )}
 }
+
 
 const ConnectedPosts = (props) => (
   <AuthConsumer>

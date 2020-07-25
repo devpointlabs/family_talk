@@ -19,6 +19,10 @@ class Api::BoardsController < ApplicationController
        render json: @boards
   end
 
+  def user_boards
+    render json: current_user.user_boards.all
+  end
+
 
   def show
     board = Board.find(params[:id]) 

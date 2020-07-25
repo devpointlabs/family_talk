@@ -49,13 +49,15 @@ const BoardView = (props) => {
    <button onClick={() => setEdit(!editing)}>{editing ? "Close Edit" : "Edit"}</button>
    {editing ? <BoardForm toggleEdit={setEdit} editSingleBoard={editSingleBoard} id={board.id} name={board.name} description={board.description}/> : null }
    <button onClick={() => removeBoard(board.id)}>Delete</button>
-   <Posts boardId={props.match.params.id}/>
+   <Posts boardId={props.match.params.id} userId={props.location.boardProps.user_id}/>
  </div>
   )
 
 } else {
   return(
     <div>
+   <h1>{board.name}</h1>
+   <p>{board.description}</p>
     {props.location.following ? <button onClick={() => props.location.handleUnfollow(board.id)}>Unfollow</button> : null}
     <Posts boardId={props.match.params.id}/>
   </div>
