@@ -14,7 +14,7 @@ const BoardView = (props) => {
     axios.get(`/api/boards/${props.match.params.id}`)
       .then(res => {
       setBoard(res.data)
-      props.board.getBoard(res.data.id)
+      // props.board.getBoard(res.data.id)
       })
       .catch((e) => {
       console.log(e)
@@ -45,21 +45,24 @@ const BoardView = (props) => {
    <p>Your board code is: {board.code}
    <br />
    Invite your family and friends!</p>
-
    <button onClick={() => setEdit(!editing)}>{editing ? "Close Edit" : "Edit"}</button>
    {editing ? <BoardForm toggleEdit={setEdit} editSingleBoard={editSingleBoard} id={board.id} name={board.name} description={board.description}/> : null }
    <button onClick={() => removeBoard(board.id)}>Delete</button>
-   <Posts boardId={props.match.params.id} userId={props.location.boardProps.user_id}/>
+   <button onClick={props.history.goBack}>Go Back</button>
+   <Posts boardId={board.id} userId={board.user_id}/>
  </div>
   )
 
+
+  // ask harlan why line 65 needs to be different from line 52
 } else {
   return(
     <div>
    <h1>{board.name}</h1>
    <p>{board.description}</p>
     {props.location.following ? <button onClick={() => props.location.handleUnfollow(board.id)}>Unfollow</button> : null}
-    <Posts boardId={props.match.params.id}/>
+    <button onClick={props.history.goBack}>Go Back</button>
+    <Posts boardId={props.match.params.id} userId={board.user_id} following={props.location.following}/>
   </div>
   )
 }

@@ -71,7 +71,7 @@ const followed = () => {
     }
   })
 }
-  if (followBoard || props.auth.user.id === props.userId) {
+  if (props.following || props.auth.user.id === props.userId) {
   return (
     <>
       <h2>Posts</h2>
@@ -86,6 +86,7 @@ const followed = () => {
   )} else {
     return(
     <>
+    <h2>Posts</h2>
     {renderPosts()}
     </>
     )}

@@ -99,8 +99,6 @@ const CreatedBoards = () => {
         {showForm ? "Close Form" : "Add Board"}
       </button>
       <br/>
-
-
       {renderBoards()}
       {renderFollowedBoards()}
     </>
