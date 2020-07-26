@@ -14,7 +14,7 @@ const BoardForm = (props) => {
     name: name, 
     description: des, 
     user_id: props.auth.user.id, 
-    file: file,
+    image: file,
     public: pub
   }
   
@@ -54,7 +54,9 @@ const BoardForm = (props) => {
       props.toggleEdit()  
     } else {  
        board.code = randomCode()
-       axios.post("/api/boards", board)
+       let data = new FormData()
+       data.append('file', file)
+       axios.post(`/api/boards?name=${board.name}&description=${board.description}&public=${board.public}&code=${board.code}`, data)
       .then((res) => {
         props.addBoard(res.data)
         createUserBoard(res.data);

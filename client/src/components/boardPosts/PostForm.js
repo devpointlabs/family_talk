@@ -27,10 +27,10 @@ const PostForm = (props) => {
       axios.post(`/api/boards/${props.boardId}/posts`, {
       title: title, description: description,
       user_id: props.auth.user.id
-    }) //whenver we do a post we have to pass in two arguments, the path and the object so it knows what we are passing through to that route
+    }) 
       .then(res => {
         props.addPost(res.data)
-        props.setShowForm(!props.showForm) //res.data will be used in posts.js as post to add to the state
+        props.setShowForm(!props.showForm) 
       })
     }
 

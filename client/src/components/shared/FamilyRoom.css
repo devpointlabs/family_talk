@@ -1,0 +1,20 @@
+.Header {
+  text-align: center;
+  color: red;
+}
+
+.Buttons {
+  text-align: center;
+}
+
+.AddPost {
+  display: flex;
+  flex-direction: row-reverse;
+  padding-right: 100px;
+}
+
+.View {
+  display: flex;
+  align-items: center;
+  flex-flow: row wrap;
+}

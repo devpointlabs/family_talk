@@ -59,7 +59,6 @@ const unlikePost = (postId) => {
     })
 }
   
-  
   const editSinglePost = (id, post) => {
     axios.put(`/api/boards/${post.board_id}/posts/${id}`, post)
       .then((res) => {

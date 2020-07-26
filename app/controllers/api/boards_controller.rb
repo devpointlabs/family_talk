@@ -28,7 +28,21 @@ class Api::BoardsController < ApplicationController
   end
 
   def create
-    board = Board.new(board_params)
+    board = current_user.boards.new
+    board.name = params[:name] ? params[:name] : board.name
+    board.code = params[:code] ? params[:code] : board.code
+    board.description = params[:description] ? params[:description] : board.description
+     board.public = params[:public] ? params[:public] : board.public
+     file = params[:file]
+     if file != "undefined" && file != ""
+      begin
+        cloud_image = Cloudinary::Uploader.upload(file, public_id: file.original_filename, secure: true, resource_type: :auto)
+        board.image = cloud_image["secure_url"]
+        rescue => e
+          render json: {errors: e, status: 422}
+          return
+        end
+    end
     if board.save
       render json: board
     else
@@ -46,7 +60,6 @@ class Api::BoardsController < ApplicationController
      
      if file != "undefined" && file != ""
        begin
-       #cloudinary stuff here
          cloud_image = Cloudinary::Uploader.upload(file, public_id: file.original_filename, secure: true, resource_type: :auto)
          board.image = cloud_image["secure_url"]
          rescue => e

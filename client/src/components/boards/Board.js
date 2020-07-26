@@ -4,6 +4,8 @@ import { Button, Image } from "semantic-ui-react";
 import BoardForm from "./BoardForm";
 import axios from 'axios';
 import { AuthConsumer } from "../../providers/AuthProvider";
+import "./BoardStyles.css"
+
 
 const defaultImage = 'https://simpleicon.com/wp-content/uploads/picture.png';
 
@@ -32,7 +34,7 @@ const Board = (props) => {
   return ( 
     <>
       <div>
-        <h1>{props.name}</h1>
+        <h1 className="title">{props.name}</h1>
         <p>{props.description}</p>
         <Image src={props.image || defaultImage}/>
       </div>
