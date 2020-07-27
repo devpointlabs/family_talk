@@ -1,13 +1,26 @@
 .settings-image{
-  width: 100px;
-  height: 100px;
+  width: 6rem;
+  height: 6rem;
   border-radius: 50%;
+  padding: .1rem;
+}
+.title{
+  font-size: 1.4rem;
+  color: gray;
 }
 
-i{
-  size: 40px;
-  width: 24px;
-    height: 24px;
+.image-title{
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: gray;
+  padding: 1.5rem;
+  text-align: center;
+  
+}
+
+.background{
+  background-color: #eff5f7;
+  padding-top: .5rem;
 }
 
 .fragment{
@@ -16,7 +29,11 @@ i{
 }
 
 .profile-icon{
-  border-style: ridge;
+  border-radius: 2%;
+  background-color: whitesmoke;
+  border:  0.05rem solid lightgrey;
+  padding: 1rem;
+
 }
 
 .fragment{
@@ -25,12 +42,13 @@ i{
 }
 
 .profile-section{
-  /* border-style: ridge; */
-  padding: 80px;
-  background-color:#FAF0E6;
+  padding: 5rem;
+  background-color:whitesmoke;
   border-radius: 1%;
-  padding-top: 20px;
+  padding-top: 2rem;
+  border:  0.05rem solid lightgrey; 
   width: 50%;
+  padding-bottom: 2rem;
 }
 
 .image-username{
@@ -62,8 +80,6 @@ i{
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  
-
 }
 
 .follow-button, .update-button, .delete-button {
@@ -72,19 +88,22 @@ i{
   color: white;
   text-align: center;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 1rem;
   cursor: pointer;
   border-radius: 5%;
-  size: 40px;
-  width: 100px;
-  height: 35px;
-  margin-top: 8px;
-  margin-left: 10px;
+  size: 40rem;
+  width: 5rem;
+  height: 2.5rem;
+  margin-top: .3rem;
+  margin-left: .7rem;
+
 }
 
 .dropzone-only{
-   background-color:#FAF0E6;
-   margin: 10px;
-   padding: 20px;
-   height: 200px;
+   background-color:white;
+   margin: 2rem;
+   padding: 2rem;
+   height: 7rem;
+  border-radius: 2%;
+
 }

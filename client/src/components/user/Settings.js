@@ -73,40 +73,38 @@ class Settings extends React.Component {
        console.log("failure")
     })}
  
-
-
   followSubmit = (e) => {
     const {followCode} = this.state
     this.createUserBoard()
   }
 
-  settingsView = () => {
-    const { auth: { user }, } = this.props;
-    const  {followCode} = this.state;
-    return (
-      <div className="fragment">
-        <i class="user outline icon"></i>
-        <div className="profile-icon" >My Profile <br />how your acount looks like</div>  
+  // settingsView = () => {
+  //   const { auth: { user }, } = this.props;
+  //   const  {followCode} = this.state;
+  //   return (
+  //     <div className="fragment">
+  //       <i class="user outline icon"></i>
+  //       <div className="profile-icon" >My Profile <br />how your acount looks like</div>  
 
-        <div className="main-content">
-          <h2>My Family Talk Profile</h2>
-          <img src={user.image || defaultImage} />
-          <p>{user.name}</p>
-          <p>{user.first_name} {user.last_name}</p>
-          <p>{user.email}</p>
-          <Form onSubmit={this.followSubmit}>
-            <Form.Input
-          label="Enter code to follow board:"
-          name="followCode"
-          value={followCode}
-          onChange={(e) => this.setState({followCode: e.target.value, boardId: this.setBoard(e.target.value)})}
-            />
-          <Button className="hi">Follow</Button>
-          </Form>
-        </div>
-      </div>
-    )
-  }
+  //       <div className="main-content">
+  //         <h2>My Family Talk Profile</h2>
+  //         <img src={user.image || defaultImage} />
+  //         <p>{user.name}</p>
+  //         <p>{user.first_name} {user.last_name}</p>
+  //         <p>{user.email}</p>
+  //         <Form onSubmit={this.followSubmit}>
+  //           <Form.Input
+  //         label="Enter code to follow board:"
+  //         name="followCode"
+  //         value={followCode}
+  //         onChange={(e) => this.setState({followCode: e.target.value, boardId: this.setBoard(e.target.value)})}
+  //           />
+  //         <Button className="hi">Follow</Button>
+  //         </Form>
+  //       </div>
+  //     </div>
+  //   )
+  // }
 
   editView = () => {
     const { auth: { user }, } = this.props;
@@ -118,13 +116,18 @@ class Settings extends React.Component {
         <div className='all-info'>
          
           <div className="icon-and-dropzone">
-            <div>
-              <i class="user outline icon"></i>
-              <div className="profile-icon" style={{color: 'black'}} >My Profile <br />how your acount looks like</div>  
+            <div className='profile-notification'>
+              <div className="profile-icon" style={{ color: 'black' }}> <i class="user icon"><br/>
+                </i> My Profile <br />how your acount looks like
+              </div>  
+
+              <div className="profile-icon"> <i class="bell icon"><br/>
+                </i> Notifications <br />email notification and all around
+              </div>  
             </div>
 
             <div className='dropzone-only'>
-              <h3 style={{color: 'gray', textAlign:'center'}}>Upload Profile Image</h3>
+              <div className='image-title'>Upload Profile Image</div>
               <Dropzone
                 onDrop={this.onDrop}
                 multiple={false}
@@ -149,57 +152,55 @@ class Settings extends React.Component {
           </div>
 
           <div className='profile-section'>
-          <h2>My Family Talk Profile</h2>
-            
-          <div className="image-username">
-            <img className="settings-image" src={user.image || defaultImage} />
+            <div className='title'>My Family Talk Profile</div>
               
-            <Form.Input className='username'
-                label="Username"
-                name="name"
-                value={name}
+            <div className="image-username">
+              <img className="settings-image" src={user.image || defaultImage} />
+                
+              <Form.Input className='username'
+                  label="Username"
+                  name="name"
+                  value={name}
+                  required
+                  onChange={this.handleChange}
+                  />  
+            </div>
+            <Form.Input
+                label="First Name"
+                name="first_name"
+                value={first_name}
                 required
                 onChange={this.handleChange}
-                />  
-          </div>
-          <Form.Input
-              label="First Name"
-              name="first_name"
-              value={first_name}
-              required
-              onChange={this.handleChange}
-            />
-            <Form.Input
-              label="Last Name"
-              name="last_name"
-              value={last_name}
-              required
-              onChange={this.handleChange}
-            />
-            
-            <Form.Input
-              label="Email"
-              name="email"
-              value={email}
-              required
-              onChange={this.handleChange}
+              />
+              <Form.Input
+                label="Last Name"
+                name="last_name"
+                value={last_name}
+                required
+                onChange={this.handleChange}
               />
               
-            <Form className="follow-form" onSubmit={this.followSubmit}>
-                <Form.Input
-                label="Enter code to follow board:"
-                name="followCode"
-                value={followCode}
-                onChange={(e) => this.setState({followCode: e.target.value, boardId: this.setBoard(e.target.value)})}
-              />
-              <button className='follow-button'>Follow</button>
-            </Form>
+              <Form.Input
+                label="Email"
+                name="email"
+                value={email}
+                required
+                onChange={this.handleChange}
+                />
+                
+              <Form className="follow-form" onSubmit={this.followSubmit}>
+                  <Form.Input
+                  label="Enter code to follow board:"
+                  name="followCode"
+                  value={followCode}
+                  onChange={(e) => this.setState({followCode: e.target.value, boardId: this.setBoard(e.target.value)})}
+                />
+                <button className='follow-button'>Follow</button>
+              </Form>
 
-            <button className='update-button'>Update</button>
+              <button className='update-button'>Update</button>
               <button className='delete-button' onClick = {() => this.props.auth.destroyUser(this.props.auth.user.id, this.props.history)}>Delete</button>
-
-          </div>
-          
+            </div>
         </div>
       </Form>
     )
@@ -208,18 +209,20 @@ class Settings extends React.Component {
   render() {
     const { editing, } = this.state;
     return (
+    <div className="background">
       <Container>
         <Divider hidden />
         <Grid>
           <Grid.Row>
             {/* { editing ? this.editView() : this.settingsView()} */}
             {this.editView()}
-            <Grid.Column>
+            {/* <Grid.Column>
               <Button onClick={this.toggleEdit}>{editing ? 'Cancel' : 'Edit'}</Button>
-            </Grid.Column>
+            </Grid.Column> */}
           </Grid.Row>
         </Grid>
-      </Container>
+        </Container>
+    </div>
     )
   }
 }
