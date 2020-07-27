@@ -24,10 +24,9 @@ const PostForm = (props) => {
 
   const adding = (e) => {
     e.preventDefault()
-      axios.post(`/api/boards/${props.boardId}/posts`, {
-      title: title, description: description,
-      user_id: props.auth.user.id
-    }) 
+    let data = new FormData()
+    data.append('file', file)
+      axios.post(`/api/boards/${props.boardId}/posts?title=${title}&description=${description}`, data) 
       .then(res => {
         props.addPost(res.data)
         props.setShowForm(!props.showForm) 
@@ -40,10 +39,11 @@ const PostForm = (props) => {
       title: title, 
       description: description, 
       user_id: props.auth.user.id,
-      board_id: props.post.board_id
+      board_id: props.post.board_id,
+      image: file,
     }
         if (props.editPost) {
-          props.editPost(props.post.id, thePost)
+          props.editPost(props.post.id, {id: props.post.id, ...thePost})
           props.toggleEdit(!props.editing)
         } if (props.updatePost) {
           props.updatePost(props.post.id, thePost)

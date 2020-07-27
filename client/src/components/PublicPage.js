@@ -79,6 +79,7 @@ const PublicPage = () => {
 
   return (
     <div>
+      <h1>Explore Boards</h1>
     {renderPublicBoards()}
     </div>
   )

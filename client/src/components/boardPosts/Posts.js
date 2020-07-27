@@ -44,7 +44,9 @@ const Posts = (props) => {
   const addPost = (post) => setPosts([post, ...posts])
 
   const editPost = (id, post) => {
-    axios.put(`/api/boards/${props.boardId}/posts/${id}`, post)
+    let data = new FormData()
+    data.append('file', post.image)
+    axios.put(`/api/users/${post.user_id}/posts/${post.id}?title=${post.title}&description=${post.description}&board_id=${post.board_id}`, data)
       .then(res => {
         const updatePost = posts.map(p => {
           if (p.id === id)
