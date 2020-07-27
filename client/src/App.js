@@ -13,6 +13,8 @@ import BoardView from "./components/boards/BoardView";
 import PostView from './components/boardPosts/PostView';
 import AllPosts from './components/onlyPosts/AllPosts';
 import PublicPage from "./components/PublicPage";
+import ContactUs from "./ContactUs";
+
 
 const App = () => (
   <Fragment>
@@ -28,6 +30,7 @@ const App = () => (
         <Route exact path="/board/:board_id/post/:id" component={PostView} />
         <Route exact path='/posts' component={AllPosts} />
         <Route exact path='/publicPage' component={PublicPage} />
+        <Route exact path='/contactUs' component={ContactUs} />
         <Route component={NoMatch} />
       </Switch>
     </FetchUser>

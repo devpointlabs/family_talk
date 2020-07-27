@@ -138,6 +138,8 @@ const styles = {
   },
 }
 
+
+
 export default function ConnectedBoardForm (props) {
     return (
       <AuthConsumer>

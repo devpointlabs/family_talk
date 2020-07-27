@@ -79,6 +79,8 @@ const PostForm = (props) => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
+
+      <Button> {props.editing ? 'Update' :  'Create'}</Button>
         <Dropzone
             onDrop={handleDrop}
             multiple={false}
