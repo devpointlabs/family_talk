@@ -7,24 +7,22 @@ import Register from './user/Register';
 import Login from './user/Login';
 import { AuthConsumer } from '../providers/AuthProvider';
 
-
 const LandingPage = (props) => {
     return (
    <ImageContent>
     {props.auth.user ? null : 
   <ButtonContent>
-    <Modal trigger = {<Button>Sign Up</Button>}>
-      <Register />
-    </Modal>
     <Modal trigger = {<Button>Sign In</Button>}>
       < Login />
+    </Modal>
+    <Modal trigger = {<Button>Sign Up</Button>}>
+      <Register />
     </Modal>
   </ButtonContent> } 
   <div>
   <HeaderText> Family Talk </HeaderText>
-  <br/>
   <BodyText>
-    Live, Laugh, Love
+    Keep in touch... no matter where you are
   </BodyText>
   </div>
    </ImageContent>
@@ -43,27 +41,27 @@ const ImageContent = styled.div`
  background-image: url(${image});
  height: 100% ;
  width: 100%  ;
- margin: 0 !important;
+ margin: auto;
  background-repeat: no-repeat;
  background-position: center;
  padding: 0 !important;
- background-size: cover;
+ background-size: 50%;
  position: absolute;
  `;
+
 const HeaderText = styled.h1`
   color: black !important;
   text-align: center;  
   padding-top: 10%;
-  font-family: cursive;
+  font-family: sans-serif;
   font-size: 5em;
   text-shadow: 2px 2px #dce0e0;
-
   `;
 
 const BodyText = styled.p `
 color: black;
 text-align: center;
-font-family: cursive;
+font-family: sans-serif;
 font-size: 2em;
 `
 
