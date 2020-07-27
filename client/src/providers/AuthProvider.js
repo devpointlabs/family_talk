@@ -14,10 +14,6 @@ export class AuthProvider extends React.Component {
         history.push("/landingPage");
       })
     .catch( res => {
-<<<<<<< HEAD
-      
-=======
->>>>>>> 1e492cafa4b346fbfa038b36239bf9d1f54edade
       console.log(res);
       this.setState({userError: res.response.data.errors})
       

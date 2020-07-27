@@ -26,11 +26,7 @@ const PostForm = (props) => {
     const thePost = { 
       title: title, 
       description: description, 
-<<<<<<< HEAD
-      user_id: props.auth.user_id.id 
-=======
       user_id: props.auth.user.id
->>>>>>> 1e492cafa4b346fbfa038b36239bf9d1f54edade
     }
     if (props.editPost) {
       props.editPost(props.post.id, thePost)
@@ -66,11 +62,8 @@ const PostForm = (props) => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-<<<<<<< HEAD
 
       <Button> {props.editing ? 'Update' :  'Create'}</Button>
-=======
->>>>>>> 1e492cafa4b346fbfa038b36239bf9d1f54edade
         <Dropzone
             onDrop={handleDrop}
             multiple={false}

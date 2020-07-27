@@ -37,6 +37,7 @@ class Navbar extends React.Component {
       <Dropdown.Item as={Link} to='/'>Home</Dropdown.Item>
       <Dropdown.Item as ={Link} to='/landingPage'>Family Room</Dropdown.Item>
       <Dropdown.Item as={Link} to='/publicPage'>Explore</Dropdown.Item>
+      <Dropdown.Item as={Link} to='/contactUs'>Contact</Dropdown.Item>
     </Dropdown.Menu>
   </Dropdown>
   {this.rightNavItems()}
