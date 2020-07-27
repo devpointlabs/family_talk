@@ -11,3 +11,9 @@
   height: 6em;
   width: 6em;
 }
+
+.proImage {
+    height: 4em;
+    width: 4em;
+    border-radius: 50%;
+}

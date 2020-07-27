@@ -5,7 +5,10 @@ import { Link, withRouter, } from 'react-router-dom'
 import MSLogo from '../../assets/mediumsmall.jpg'
 import './Navbar.css'
 
+const defaultImage = 'https://d30y9cdsu7xlg0.cloudfront.net/png/15724-200.png';
+
 class Navbar extends React.Component {
+
 
 
    trigger = (
@@ -13,13 +16,23 @@ class Navbar extends React.Component {
     <Image src={MSLogo} className='logo'/>
   </span>
 )
+
+trigger2 = () => {
+ const { auth: { user, handleLogout, }, location, } = this.props;
+ return (
+  <span>
+  <Image src={user.image || defaultImage}  className='proImage'/>
+    </span>
+ )
+ 
+}
   
   rightNavItems = () => {
     const { auth: { user, handleLogout, }, location, } = this.props;
     
     if (user) {
       return (
-          <Dropdown text = 'User' icon = 'user' >
+          <Dropdown text = {user.name}  trigger = {this.trigger2()} icon = {null}>
         <Dropdown.Menu>
             <Dropdown.Item as ={Link} to= '/settings'>Settings</Dropdown.Item>
             <Dropdown.Item onClick = {() => handleLogout(this.props.history)}>Logout</Dropdown.Item>
