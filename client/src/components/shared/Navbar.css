@@ -1,0 +1,13 @@
+.navbar {
+  /* flexbox */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* border: solid 1px blue; */
+  width: 96%;
+}
+
+.logo {
+  height: 6em;
+  width: 6em;
+}
