@@ -1,0 +1,30 @@
+.header {
+  background-color: white;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.body {
+  background-color: white;
+  color: grey;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 14em;
+}
+
+.image-logo {
+  height: 25em;
+  width: 25em;
+}
+
+.image-featured {
+  height: auto;
+  width: 50em;
+}

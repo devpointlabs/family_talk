@@ -1,6 +1,6 @@
 import React from 'react';
 import { AuthConsumer, } from "../../providers/AuthProvider";
-import { Button, Form, Segment, Header, } from 'semantic-ui-react';
+import { Button, Form, Segment, Header, Modal, } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 
 class Login extends React.Component {
@@ -21,9 +21,10 @@ class Login extends React.Component {
     const { email, password, } = this.state;
   
     return (
-      <Segment basic>
+      <Modal.Content>
         <Header as='h1' textAlign='center'>Login</Header>
         <Form onSubmit={this.handleSubmit}>
+          <span class="close" onClick={() => this.props.toggleModal()}>&times;</span>
           <Form.Input
             label="Email"
             autoFocus
@@ -43,10 +44,10 @@ class Login extends React.Component {
             onChange={this.handleChange}
           />
           <Segment textAlign='center' basic>
-            <Button primary type='submit'>Submit</Button>
+            <Button primary type='submit' onClick={() => this.props.toggleModal()}>Submit</Button>
           </Segment>
         </Form>
-      </Segment>
+      </Modal.Content>
     )
   }
 }

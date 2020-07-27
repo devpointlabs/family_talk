@@ -1,69 +1,45 @@
-
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components'
-import image from '../images/jump.jpg'
-import { Button, Modal } from 'semantic-ui-react';
+import image from '../images/family.jpg'
+import logo from '../images/LogoFiles/ForWeb/medium.png'
+import { Image, Button, Modal } from 'semantic-ui-react';
 import Register from './user/Register';
 import Login from './user/Login';
 import { AuthConsumer } from '../providers/AuthProvider';
+import "../styles/LandingStyles.css";
 
 const LandingPage = (props) => {
-    return (
-   <ImageContent>
-    {props.auth.user ? null : 
-  <ButtonContent>
-    <Modal trigger = {<Button>Sign In</Button>}>
-      < Login />
-    </Modal>
-    <Modal trigger = {<Button>Sign Up</Button>}>
-      <Register />
-    </Modal>
-  </ButtonContent> } 
-  <div>
-  <HeaderText> Family Talk </HeaderText>
-  <BodyText>
-    Keep in touch... no matter where you are
-  </BodyText>
-  </div>
-   </ImageContent>
-    )
+  const [showModal, setShowModal] = useState(false)
+
+  const toggleModal = () => {
+    setShowModal(!showModal)
+  }
+  
+  return (
+    <>
+      <div className="header">
+        <div className="button">
+          <Modal open={showModal} trigger={<Button id="modal-btn" onClick={() => toggleModal()}>Sign In</Button>}>
+            <Modal.Content>
+              <Login toggleModal={toggleModal}/>
+              </Modal.Content>
+            </Modal>
+
+          <Modal open={showModal} trigger={<Button id="modal-btn" onClick={() => toggleModal()}>Sign Up</Button>}>
+            <Modal.Content>
+              <Register toggleModal={toggleModal}/>
+              </Modal.Content>
+          </Modal>
+        </div>
+      </div>
+        
+      <div className="body">
+        <div><Image src={logo} className="image-logo"/></div>
+        <div><Image src={image} className="image-featured"/></div>
+      </div>
+    </>
+  )
 }
-
-const ButtonContent = styled.div `
-display: flex;
-flex-flow: row wrap;
-justify-content: flex-end;
-width: 100%;
-padding-top: 1%;
-`;
-
-const ImageContent = styled.div`
- background-image: url(${image});
- height: 100% ;
- width: 100%  ;
- margin: auto;
- background-repeat: no-repeat;
- background-position: center;
- padding: 0 !important;
- background-size: 50%;
- position: absolute;
- `;
-
-const HeaderText = styled.h1`
-  color: black !important;
-  text-align: center;  
-  padding-top: 10%;
-  font-family: sans-serif;
-  font-size: 5em;
-  text-shadow: 2px 2px #dce0e0;
-  `;
-
-const BodyText = styled.p `
-color: black;
-text-align: center;
-font-family: sans-serif;
-font-size: 2em;
-`
 
 export default function ConnectedLandingPage (props) {
     return (

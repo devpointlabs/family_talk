@@ -1,7 +1,8 @@
 import React from 'react';
 import { AuthConsumer,  } from "../../providers/AuthProvider";
-import { Button, Form, Segment, Header, } from 'semantic-ui-react';
+import { Button, Form, Segment, Header, Modal} from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
+import "../../styles/Modals.css";
 
 class Register extends React.Component {
   state = { name: "", email: '', password: '', passwordConfirmation: '', first_name: '', last_name: '' };
@@ -21,14 +22,24 @@ class Register extends React.Component {
     const { name, value, } = e.target;
     this.setState({ [name]: value, });
   }
-  
+
   render() {
     const { name, email, password, passwordConfirmation, first_name, last_name } = this.state;
     
     return (
-      <Segment basic>
-        <Header as='h1' textAlign='center'>Register</Header>
-        <Form onSubmit={this.handleSubmit}>
+      <Modal.Content 
+        // id="myModal" 
+        // className="modal"
+        >
+        <Header as='h1' 
+          textAlign='center' 
+          // className="modal-header"
+          >Register
+          </Header>
+        <Form onSubmit={this.handleSubmit} 
+          // className="modal-content"
+          >
+          <span class="close" onClick={() => this.props.toggleModal()}>&times;</span>
           <Form.Input
             label="Username"
             autoFocus
@@ -81,10 +92,10 @@ class Register extends React.Component {
             onChange={this.handleChange}
           />
           <Segment textAlign='center' basic>
-            <Button primary type='submit'>Submit</Button>
+            <Button primary type='submit' onClick={() => this.props.toggleModal()}>Submit</Button>
           </Segment>
         </Form>
-      </Segment>
+      </Modal.Content>
     )
   }
 }
