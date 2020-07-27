@@ -1,0 +1,63 @@
+.settings-image{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+i{
+  size: 40px;
+  width: 24px;
+    height: 24px;
+}
+
+.fragment{
+  display: flex;
+  justify-content: center;
+}
+
+.profile-icon{
+  border-style: ridge;
+}
+
+.fragment{
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile-section{
+  /* border-style: ridge; */
+  padding: 80px;
+  background-color:#FAF0E6;
+  border-radius: 1%;
+}
+
+.image-username{
+  display: flex;
+  justify-content: space-around;
+}
+
+.displayflex{
+   display: flex;
+  justify-content: space-around;
+}
+
+.username{
+  padding: 1em;
+}
+
+.follow-form{
+   display: flex;
+  justify-content: space-around;
+}
+
+.all-info{
+  display: flex;
+  justify-content: space-around;
+}
+
+.icon-and-dropzone{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+}

@@ -5,7 +5,9 @@ import Comments from '../comments/Comments'
 import axios from "axios"
 import { AuthConsumer } from "../../providers/AuthProvider"
 import { withRouter } from "react-router-dom"
+import "./PostView.css"
 
+const defaultImage = 'https://simpleicon.com/wp-content/uploads/picture.png';
 
 const PostView = (props) => {  
   const [ editing, setEditing] = useState(false)
@@ -76,26 +78,28 @@ const unlikePost = (postId) => {
   }
 
   return(
-    <div>
-       <Card key={card.id}>
-         <Image src={card.image}/>
-         <Header> {card.title}</Header>
-         <p>{card.description}</p>
-         <h4>Likes: {postLikes ? postLikes.length : "0"}</h4>
-        {like ? <button onClick={() => unlikePost(card.id)}>Unlike</button> : <button onClick={() => likePost(card.id)}>Like</button>}
-        <h3>Comments</h3>
-        <Comments postId = {props.match.params.id} />
-        <Button onClick={props.history.goBack}>Go Back</Button>
-
-        {props.auth.user.id === card.user_id ? 
+    <div className = "container">
+      <div className="post-image-container">
+        <Image className = "post-image" src={card.image || defaultImage}/>
+      </div>
+      <div className="post-info">
+         {props.auth.user.id === card.user_id ? 
         <div>
-        <button onClick={() => setEditing(!editing)}>{editing ? "Close Edit" : "Edit"}</button>
-        <button onClick={() => deletePost(card.id)}>Delete</button> </div> : null }
+          <button onClick={() => setEditing(!editing)}>{editing ? "Close Edit" : "Edit"}</button>
+          <button onClick={() => deletePost(card.id)}>Delete</button> </div>: null }
 
-            {/* took out post={props.post} */}
-        {editing ? <PostForm toggleEdit={setEditing} post={card} editSinglePost={editSinglePost} editing={editing}  userId={props.userId}/> : null } 
-      </Card>
-      <br/>
+          {editing ? <PostForm toggleEdit={setEditing} post={card} editSinglePost={editSinglePost} editing={editing}  userId={props.userId}/> : null } 
+          
+      <h1 className="post-title"> {card.title}</h1>
+      <p className="post-description">{card.description}</p>
+      <div class = "like-container">
+        {like ? <button onClick={() => unlikePost(card.id)}>Unlike</button> : <button src onClick={() => likePost(card.id)}>Like</button>}
+        <h4>Likes: {postLikes ? postLikes.length : "0"}</h4>
+      </div>
+      <h3>Comments</h3>
+      <Comments postId = {props.match.params.id} />
+      <Button onClick={props.history.goBack}>Go Back</Button>
+    </div>
     </div>
   )
 }
