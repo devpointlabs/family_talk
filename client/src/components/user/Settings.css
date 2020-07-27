@@ -1,0 +1,90 @@
+.settings-image{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+i{
+  size: 40px;
+  width: 24px;
+    height: 24px;
+}
+
+.fragment{
+  display: flex;
+  justify-content: center;
+}
+
+.profile-icon{
+  border-style: ridge;
+}
+
+.fragment{
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile-section{
+  /* border-style: ridge; */
+  padding: 80px;
+  background-color:#FAF0E6;
+  border-radius: 1%;
+  padding-top: 20px;
+  width: 50%;
+}
+
+.image-username{
+  display: flex;
+  justify-content: space-around;
+}
+
+.displayflex{
+   display: flex;
+  justify-content: space-around;
+}
+
+.username{
+  padding: 1em;
+}
+
+.follow-form{
+   display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.all-info{
+  display: flex;
+  justify-content: space-around;
+}
+
+.icon-and-dropzone{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  
+
+}
+
+.follow-button, .update-button, .delete-button {
+  background-color: gray;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5%;
+  size: 40px;
+  width: 100px;
+  height: 35px;
+  margin-top: 8px;
+  margin-left: 10px;
+}
+
+.dropzone-only{
+   background-color:#FAF0E6;
+   margin: 10px;
+   padding: 20px;
+   height: 200px;
+}

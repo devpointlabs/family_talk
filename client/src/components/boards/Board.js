@@ -4,6 +4,8 @@ import { Button, Image } from "semantic-ui-react";
 import BoardForm from "./BoardForm";
 import axios from 'axios';
 import { AuthConsumer } from "../../providers/AuthProvider";
+import "./BoardStyles.css"
+
 
 const defaultImage = 'https://simpleicon.com/wp-content/uploads/picture.png';
 
@@ -24,15 +26,6 @@ const Board = (props) => {
     })
   },[])
 
-  // const renderFollow = () => {
-  //     follow.map((f) => { 
-  //     if (f.board_id === props.id){
-  //     setFollowing(true)
-  //     } else 
-  //     setFollowing(false)
-  //   }) 
-  // }
-
   const handleUnfollow = (id) => {
     props.unfollowBoard(id)
     setFollowing(false)
@@ -41,7 +34,7 @@ const Board = (props) => {
   return ( 
     <>
       <div>
-        <h1>{props.name}</h1>
+        <h1 className="title">{props.name}</h1>
         <p>{props.description}</p>
         <Image src={props.image || defaultImage}/>
       </div>
@@ -51,15 +44,22 @@ const Board = (props) => {
       <button onClick={() => setEditing(!editing)}>{editing ? "Close Edit" : "Edit"}</button>
       <button onClick={() => props.removeBoard(props.id)}>Delete</button> 
       </div> : null}
-      <Link to={`/board/${props.id}`}
-          key={props.id}
-          {...props}
-          removeBoard={props.removeBoard}
-          handleUnfollow={handleUnfollow}
-          following={following}>
+      <Link to={{
+        pathname:`/board/${props.id}`,
+          key: props.id,
+          boardProps:{...props},
+          removeBoard: props.deleteBoard,
+          handleUnfollow: handleUnfollow,
+          following: following,
+          editing: editing,
+          editBoard: props.editBoard,
+          toggleEdit: setEditing,
+          editSingleBoard: props.editSingleBoard
+          }}
+                    >
         <button>View</button>
         </Link>
-      {following ? <button onClick={() => handleUnfollow(props.id)}>Unfollow</button> : null}
+      {following  && props.auth.user.id !== props.user_id ? <button onClick={() => handleUnfollow(props.id)}>Unfollow</button> : null}
       {editing ? <BoardForm toggleEdit={setEditing} editBoard={props.editBoard} {...props}/> : null } 
     </>
   )

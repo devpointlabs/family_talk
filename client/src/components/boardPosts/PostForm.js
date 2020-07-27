@@ -24,12 +24,12 @@ const PostForm = (props) => {
 
   const adding = (e) => {
     e.preventDefault()
-      axios.post(`/api/boards/${props.boardId}/posts`, {
-      title: title, description: description,
-      user_id: props.auth.user.id
-    }) //whenver we do a post we have to pass in two arguments, the path and the object so it knows what we are passing through to that route
+    let data = new FormData()
+    data.append('file', file)
+      axios.post(`/api/boards/${props.boardId}/posts?title=${title}&description=${description}`, data) 
       .then(res => {
-        props.addPost(res.data) //res.data will be used in posts.js as post to add to the state
+        props.addPost(res.data)
+        props.setShowForm(!props.showForm) 
       })
     }
 
@@ -39,10 +39,11 @@ const PostForm = (props) => {
       title: title, 
       description: description, 
       user_id: props.auth.user.id,
-      board_id: props.post.board_id
+      board_id: props.post.board_id,
+      image: file,
     }
         if (props.editPost) {
-          props.editPost(props.post.id, thePost)
+          props.editPost(props.post.id, {id: props.post.id, ...thePost})
           props.toggleEdit(!props.editing)
         } if (props.updatePost) {
           props.updatePost(props.post.id, thePost)
@@ -78,6 +79,8 @@ const PostForm = (props) => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
+
+      <Button> {props.editing ? 'Update' :  'Create'}</Button>
         <Dropzone
             onDrop={handleDrop}
             multiple={false}

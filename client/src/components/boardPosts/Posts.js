@@ -8,12 +8,16 @@ import PostForm from "./PostForm"
 const Posts = (props) => {
   const [posts, setPosts] = useState([])
   const [showForm, setShowForm] = useState(false)
+  const [follows, setFollows] = useState([])
+  const [followBoard, setFollowBoard] = useState(false)
 
 
   useEffect(() => {
     axios.get(`/api/boards/${props.boardId}/posts`)
       .then(res => {
         setPosts(res.data)
+        getFollows() 
+        followed()
       })
   }, [])
   
@@ -30,10 +34,19 @@ const Posts = (props) => {
     ))
   }
 
+  const getFollows = () => {
+    axios.get(`/api/user/user_boards`)
+    .then((res) => {
+      setFollows(res.data);
+    })
+  }
+
   const addPost = (post) => setPosts([post, ...posts])
 
   const editPost = (id, post) => {
-    axios.put(`/api/boards/${props.boardId}/posts/${id}`, post)
+    let data = new FormData()
+    data.append('file', post.image)
+    axios.put(`/api/users/${post.user_id}/posts/${post.id}?title=${post.title}&description=${post.description}&board_id=${post.board_id}`, data)
       .then(res => {
         const updatePost = posts.map(p => {
           if (p.id === id)
@@ -51,20 +64,36 @@ const Posts = (props) => {
     })
   }
 
+const followed = () => {
+  follows.map((f) => {
+    if(f.board_id === props.boardId) {
+      setFollowBoard(true)
+    } else {
+      setFollowBoard(false)
+    }
+  })
+}
+  if (props.following || props.auth.user.id === props.userId) {
   return (
     <>
       <h2>Posts</h2>
-      {showForm && <PostForm addPost={addPost} boardId={props.boardId} userId={props.auth.user} />} 
+      {showForm && <PostForm addPost={addPost} setShowForm={setShowForm} showForm={showForm} boardId={props.boardId} userId={props.auth.user}  />} 
        <button onClick={() => setShowForm(!showForm)}>
         {showForm ? "Close Form" : "Add Post"}
       </button>
       <br/>
       <br/>
-
       {renderPosts()}
     </>
-  )
+  )} else {
+    return(
+    <>
+    <h2>Posts</h2>
+    {renderPosts()}
+    </>
+    )}
 }
+
 
 const ConnectedPosts = (props) => (
   <AuthConsumer>
