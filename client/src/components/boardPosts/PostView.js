@@ -58,10 +58,11 @@ const unlikePost = (postId) => {
       console.log(res.data)
     })
 }
-  
-  
+
   const editSinglePost = (id, post) => {
-    axios.put(`/api/boards/${post.board_id}/posts/${id}`, post)
+    let data = new FormData()
+    data.append('file', post.image)
+    axios.put(`/api/users/${post.user_id}/posts/${id}?title=${post.title}&description=${post.description}&board_id=${post.board_id}`, data)
       .then((res) => {
       setCard(res.data)
     })

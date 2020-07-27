@@ -16,7 +16,7 @@ const PublicBoard = (props) => {
           {...props}>
         <button>View</button>
         </Link>
-        {/* <button onClick={() => props.unfollowBoard(props.id)}>Unfollow</button> */}
+        
 
     </>
   )
