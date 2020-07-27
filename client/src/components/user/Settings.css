@@ -15,7 +15,6 @@
   color: gray;
   padding: 1.5rem;
   text-align: center;
-  
 }
 
 .background{
@@ -23,17 +22,18 @@
   padding-top: .5rem;
 }
 
+
+
 .fragment{
   display: flex;
   justify-content: center;
 }
 
-.profile-icon{
+.profile-icon, .profile-icon2{
   border-radius: 2%;
   background-color: whitesmoke;
   border:  0.05rem solid lightgrey;
   padding: 1rem;
-
 }
 
 .fragment{
@@ -66,7 +66,7 @@
 }
 
 .follow-form{
-   display: flex;
+  display: flex;
   justify-content: space-around;
   align-items: center;
 }
@@ -103,7 +103,7 @@
    background-color:white;
    margin: 2rem;
    padding: 2rem;
-   height: 7rem;
+   height: 15rem;
   border-radius: 2%;
 
 }

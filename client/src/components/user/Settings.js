@@ -121,7 +121,7 @@ class Settings extends React.Component {
                 </i> My Profile <br />how your acount looks like
               </div>  
 
-              <div className="profile-icon"> <i class="bell icon"><br/>
+              <div className="profile-icon2" style={{ color: 'black' }}> <i class="user icon"><br/>
                 </i> Notifications <br />email notification and all around
               </div>  
             </div>
@@ -165,13 +165,15 @@ class Settings extends React.Component {
                   onChange={this.handleChange}
                   />  
             </div>
+
             <Form.Input
                 label="First Name"
                 name="first_name"
                 value={first_name}
                 required
                 onChange={this.handleChange}
-              />
+            />
+            
               <Form.Input
                 label="Last Name"
                 name="last_name"
