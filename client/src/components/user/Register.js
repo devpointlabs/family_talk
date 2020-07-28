@@ -92,7 +92,7 @@ class Register extends React.Component {
             onChange={this.handleChange}
           />
           <Segment textAlign='center' basic>
-            <Button primary type='submit' onClick={() => this.props.toggleRegister()}>Submit</Button>
+            <Button primary type='submit' >Submit</Button>
           </Segment>
         </Form>
       </Modal.Content>

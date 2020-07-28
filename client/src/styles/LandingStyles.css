@@ -1,11 +1,11 @@
 .header-landing {
-  font-family: FugazOne, sans-serif;
+  font-family: "FugazOne", sans-serif;
   background-color: white;
   display: flex;
   justify-content: flex-end;
 }
 
-.body {
+.body-landing {
   font-family: FugazOne, sans-serif;
   background-color: white;
   color: grey;

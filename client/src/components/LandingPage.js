@@ -8,7 +8,7 @@ import Login from './user/Login';
 import { AuthConsumer } from '../providers/AuthProvider';
 import "../styles/LandingStyles.css";
 
-const LandingPage = () => {
+const LandingPage = (props) => {
   const [showRegister, setShowRegister] = useState(false)
   const [showLogin, setShowLogin] = useState(false)
 
@@ -22,6 +22,7 @@ const LandingPage = () => {
 
   return (
     <>
+    {props.auth.user? null :
       <div className="header-landing">
         <div className="button">
           <Modal open={showLogin} trigger={<Button id="modal-btn" onClick={() => toggleLogin()}>Sign In</Button>}>
@@ -36,9 +37,9 @@ const LandingPage = () => {
               </Modal.Content>
           </Modal>
         </div>
-      </div>
+      </div> }
         
-      <div className="body">
+      <div className="body-landing">
         <div><Image src={logo} className="image-logo"/></div>
         <div className="intro">
           <h3>keep in touch...</h3>

@@ -44,7 +44,7 @@ class Login extends React.Component {
             onChange={this.handleChange}
           />
           <Segment textAlign='center' basic>
-            <Button primary type='submit' onClick={() => this.props.toggleLogin()}>Submit</Button>
+            <Button primary type='submit' >Submit</Button>
           </Segment>
         </Form>
       </Modal.Content>

@@ -1,4 +1,11 @@
 .Header {
-  font-family: FugazOne;
+  font-family: "FugazOne";
   color:red;
+}
+
+.ExploreView {
+    display: flex;
+    align-items: center;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
 }

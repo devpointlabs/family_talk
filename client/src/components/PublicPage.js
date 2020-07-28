@@ -81,7 +81,7 @@ const PublicPage = () => {
   }
 
   return (
-    <div>
+    <>
       <h1 className="Header">Explore</h1>
       <div className="AddStuff">
     <Dropdown icon="pencil" >
@@ -91,8 +91,10 @@ const PublicPage = () => {
             </Dropdown.Menu>
             </Dropdown> 
     </div>
+    <div className="ExploreView">
       {renderPublicBoards()}
-    </div>
+      </div>
+    </>
   )
 }
 
