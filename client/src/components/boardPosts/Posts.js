@@ -92,7 +92,7 @@ const followed = () => {
         {renderPosts()}
       </div>
     </div>
-  )
+  )}
     else {
     return(
     <div className="card-grid">
