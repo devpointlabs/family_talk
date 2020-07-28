@@ -9,8 +9,6 @@ import editIcon from '../../images/edit.png'
 import trashIcon from '../../images/trash.png'
 
 
-
-
 const BoardView = (props) => {
   const [board, setBoard] = useState({})
   const [editing, setEdit] = useState(false)
@@ -52,6 +50,7 @@ const BoardView = (props) => {
         <br/>
         <p className="board-description">Your board code is: {board.code}</p>
         <p className="board-description">Invite your family and friends!</p>
+        <button onClick={props.history.goBack}>Go Back</button>
         {showForm && <BoardForm />}
         <div>
           {showForm ? 
@@ -62,20 +61,18 @@ const BoardView = (props) => {
         </div>
       </div>
    <Posts boardId={props.match.params.id}/>
-
  </div>
   )
-
-
-  // ask harlan why line 65 needs to be different from line 52
 } else {
   return(
-    <div>
-   <h1>{board.name}</h1>
-   <p>{board.description}</p>
+    <div className="main-container">
+    <div className="board-container">
+   <h1 className="board-title">{board.name}</h1>
+   <p className="board-description">{board.description}</p>
     {props.location.following ? <button onClick={() => props.location.handleUnfollow(board.id)}>Unfollow</button> : null}
     <button onClick={props.history.goBack}>Go Back</button>
     <Posts boardId={props.match.params.id} userId={board.user_id} following={props.location.following}/>
+    </div>
   </div>
   )
 }

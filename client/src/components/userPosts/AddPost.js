@@ -55,7 +55,7 @@ const AddPost = (props) => {
 
   return (
     <div>
-       <Modal trigger={<button onClick={toggle}>Add Post</button>} basic size='small'>
+       <Modal trigger={<button onClick={toggle}>Add Post</button>}>
          <Modal.Content>
         <Form onSubmit={handleSubmit}>
           <Form.Input
