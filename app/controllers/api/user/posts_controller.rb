@@ -32,12 +32,10 @@ class Api::User::PostsController < ApplicationController
 
   def update
     post = @user.posts.find(params[:id])
-    post.name = params[:name] ? params[:name] : post.name
+    post.title = params[:name] ? params[:name] : post.title
     post.description = params[:description] ? params[:description] : post.description
     post.board_id = params[:board_id ] ? params[:board_id ] : post.board_id 
-
     file = params[:file]
-     
     if file != "undefined" && file != "" 
        begin
         ext = File.extname(file.tempfile)
@@ -48,7 +46,7 @@ class Api::User::PostsController < ApplicationController
            return
          end
      end
-
+    
     if post.save
       render json: post
     else
@@ -70,6 +68,6 @@ class Api::User::PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :description, :board_id, :user_id, :image)
+    params.require(:post).permit(:title, :description, :board_id, :user_id, :image, :id)
   end
 end

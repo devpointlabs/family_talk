@@ -9,6 +9,7 @@ Rails.application.routes.draw do
      get "user/boards", to: "boards#index_created"
      get "user/posts", to: "posts#index_created"
      get "user/followedBoards", to: "boards#followed"
+     get "user/user_boards", to: "boards#user_boards"
      get "user/:user_id/user_boards", to: 'user_boards#get_user_boards'
     resources :posts, only: [:index]
    

@@ -3,8 +3,9 @@ import axios from "axios"
 import BoardForm from "../boards/BoardForm"
 import Board from "../boards/Board"
 import { AuthConsumer } from "../../providers/AuthProvider"
+import "../boards/BoardStyles.css"
 
-const CreatedBoards = () => {
+const CreatedBoards = (props) => {
   const [boards, setBoards] = useState([])
   const [followedBoards, setFollowedBoards] = useState([])
   const [showForm, setShowForm] = useState(false)
@@ -25,9 +26,8 @@ const CreatedBoards = () => {
     axios.get(`/api/user/followedBoards`)
     .then((res) => {
       setFollowedBoards(res.data)
-    })
+        })
   }
-
 
   const addBoard = (board) => {
     setBoards([board, ...boards])
@@ -54,6 +54,7 @@ const CreatedBoards = () => {
     ))
   }
 
+ 
   const renderFollowedBoards = () => {
     return followedBoards.map(board => (
       <>
@@ -77,34 +78,42 @@ const CreatedBoards = () => {
     })
   }
 
-  const editBoard = (id, board) => { //we pass the id from our state, add board from form
+  const editBoard = (id, board) => { 
     let data = new FormData()
-    data.append('file', board.file)
+    data.append('file', board.image)
     axios.put(`/api/boards/${id}?name=${board.name}&description=${board.description}&public=${board.public}`, data)
       .then(res => {
         const updateBoard = boards.map(board => {
-          if (board.id === id) //if the board.id matches the id that we clicked on then.. 
-            return res.data //return the data that was updated
-          return board //else just return the board as is
+          if (board.id === id) 
+            return res.data
+          return board 
         })
-        setBoards(updateBoard) //we then push the updated board to our state
+        setBoards(updateBoard) 
       })
   }
 
   return (
     <>
-      {showForm && <BoardForm addBoard={addBoard} toggleForm={setShowForm} />}
+    {/* <div className="AddBoard">
+      {showForm && <BoardForm addBoard={addBoard} editBoard={editBoard} toggleForm={setShowForm} />}
       <br/>
       <button onClick={() => setShowForm(!showForm)}>
         {showForm ? "Close Form" : "Add Board"}
       </button>
-      <br/>
-
-
+      </div> */}
+     
       {renderBoards()}
       {renderFollowedBoards()}
+   
     </>
   )
 }
+const ConnectedCreatedBoards = (props) => (
+  <AuthConsumer>
+    { auth => 
+      <CreatedBoards { ...props } auth={auth} />
+    }
+  </AuthConsumer>
+)
 
-export default CreatedBoards; 
+export default ConnectedCreatedBoards; 

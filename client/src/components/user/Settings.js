@@ -120,33 +120,33 @@ class Settings extends React.Component {
           <div className="icon-and-dropzone">
             <div>
               <i class="user outline icon"></i>
-              <p className="profile-icon" >My Profile <br />how your acount looks like</p>  
+              <div className="profile-icon" style={{color: 'black'}} >My Profile <br />how your acount looks like</div>  
             </div>
 
-            <div>
-            <h3>Upload Profile Image</h3>
-            <Dropzone
-              onDrop={this.onDrop}
-              multiple={false}
-            >
-              {({ getRootProps, getInputProps, isDragActive }) => {
-                return (
-                  <div
-                    {...getRootProps()}
-                    style={styles.dropzone}
-                  >
-                    <input {...getInputProps()} />
-                    {
-                      isDragActive ?
-                        <p>Drop files here...</p> :
-                        <p><i class="cloud upload icon"></i> <br/>Click here to Upload</p>
-                    }
-                  </div>
-                )
-              }}
-              </Dropzone>
+            <div className='dropzone-only'>
+              <h3 style={{color: 'gray', textAlign:'center'}}>Upload Profile Image</h3>
+              <Dropzone
+                onDrop={this.onDrop}
+                multiple={false}
+              >
+                {({ getRootProps, getInputProps, isDragActive }) => {
+                  return (
+                    <div
+                      {...getRootProps()}
+                      style={styles.dropzone}
+                    >
+                      <input {...getInputProps()} />
+                      {
+                        isDragActive ?
+                          <p>Drop files here...</p> :
+                          <p class="cloud upload icon">Click here to Upload</p>
+                      }
+                    </div>
+                  )
+                }}
+                </Dropzone>
               </div>
-            </div>
+          </div>
 
           <div className='profile-section'>
           <h2>My Family Talk Profile</h2>
@@ -192,11 +192,11 @@ class Settings extends React.Component {
                 value={followCode}
                 onChange={(e) => this.setState({followCode: e.target.value, boardId: this.setBoard(e.target.value)})}
               />
-              <Button >Follow</Button>
+              <button className='follow-button'>Follow</button>
             </Form>
 
-            <Button>Update</Button>
-              <Button onClick = {() => this.props.auth.destroyUser(this.props.auth.user.id, this.props.history)}>Delete</Button>
+            <button className='update-button'>Update</button>
+              <button className='delete-button' onClick = {() => this.props.auth.destroyUser(this.props.auth.user.id, this.props.history)}>Delete</button>
 
           </div>
           
@@ -212,7 +212,8 @@ class Settings extends React.Component {
         <Divider hidden />
         <Grid>
           <Grid.Row>
-            { editing ? this.editView() : this.settingsView()}
+            {/* { editing ? this.editView() : this.settingsView()} */}
+            {this.editView()}
             <Grid.Column>
               <Button onClick={this.toggleEdit}>{editing ? 'Cancel' : 'Edit'}</Button>
             </Grid.Column>
@@ -235,13 +236,13 @@ export default ConnectedSettings;
 
 const styles = {
   dropzone: {
-    height: "150px",
-    width: "150px",
-    border: "1px dashed black",
+    height: "100px",
+    width: "250px",
+    border: "1px dashed red",
     borderRadius: "5px",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    padding: "10px",
+    padding: "20px",
   },
 }
