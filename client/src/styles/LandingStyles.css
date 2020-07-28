@@ -1,10 +1,12 @@
 .header {
+  font-family: FugazOne, sans-serif;
   background-color: white;
   display: flex;
   justify-content: flex-end;
 }
 
 .body {
+  font-family: FugazOne, sans-serif;
   background-color: white;
   color: grey;
   display: flex;
