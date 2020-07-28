@@ -6,6 +6,10 @@ import axios from "axios"
 import { AuthConsumer } from "../../providers/AuthProvider"
 import { withRouter } from "react-router-dom"
 import "./PostView.css"
+import editIcon from '../../images/edit.png'
+import trashIcon from '../../images/trash.png'
+import likeIcon from '../../images/like.png'
+
 
 const defaultImage = 'https://simpleicon.com/wp-content/uploads/picture.png';
 
@@ -85,15 +89,17 @@ const unlikePost = (postId) => {
       <div className="post-info">
          {props.auth.user.id === card.user_id ? 
         <div>
-          <button onClick={() => setEditing(!editing)}>{editing ? "Close Edit" : "Edit"}</button>
-          <button onClick={() => deletePost(card.id)}>Delete</button> </div>: null }
+          <img className="small-icon" src={editIcon} onClick={() => setEditing(!editing)}/>
+          <img className="small-icon" src={trashIcon} onClick={() => deletePost(card.id)}/> </div>: null }
 
           {editing ? <PostForm toggleEdit={setEditing} post={card} editSinglePost={editSinglePost} editing={editing}  userId={props.userId}/> : null } 
           
       <h1 className="post-title"> {card.title}</h1>
       <p className="post-description">{card.description}</p>
-      <div class = "like-container">
-        {like ? <button onClick={() => unlikePost(card.id)}>Unlike</button> : <button src onClick={() => likePost(card.id)}>Like</button>}
+      <div className = "like-container">
+        {like ? <button className = "like-button" onClick={() => 
+          unlikePost(card.id)}>Unlike</button> : 
+          <button className="like-button" onClick={() => likePost(card.id)}><img className="small-icon" src={likeIcon}/>Like</button>}
         <h4>Likes: {postLikes ? postLikes.length : "0"}</h4>
       </div>
       <h3>Comments</h3>

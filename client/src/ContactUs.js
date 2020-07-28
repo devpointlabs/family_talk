@@ -1,10 +1,12 @@
 import React from 'react'
+
 import './ContactUs.css'
 import Javier from './images/Javier.jpg'
 import shawn from './images/shawn.png'
 import lindsay from './images/lindsay.png'
 import joey from './images/joey.png'
 import kyle from './images/kyle.png'
+
 
 const ContactUs = () => {
 
@@ -63,9 +65,12 @@ const ContactUs = () => {
         </div>  
       </div>
 
+
       </div>
     )
            
 }
+
+
 
 export default ContactUs;
