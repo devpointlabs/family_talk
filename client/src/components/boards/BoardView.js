@@ -7,6 +7,7 @@ import { withRouter } from "react-router-dom";
 import "../boardPosts/Posts.css"
 import editIcon from '../../images/edit.png'
 import trashIcon from '../../images/trash.png'
+import addIcon from '../../images/plus.png'
 
 
 const BoardView = (props) => {

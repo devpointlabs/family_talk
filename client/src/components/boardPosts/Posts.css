@@ -12,19 +12,23 @@
   justify-content: space-evenly;
   align-items: center;
   width:80em;
+  
 }
 
 .card {
-  height: 35em;
-  width: 18em;
+  height: 28em;
+  width: 25em;
   flex-basis: 3em;
   margin: 1em;
+  border: 2px #dbf9ff solid;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: 4%;
 }
 
 .card-image {
-  height: 34em;
-  width: 17em;
-  object-fit: cover;
+  height: 28em;
+  width: 25em;
+  object-fit: contain;
 }
 
 .card-text {
@@ -32,7 +36,7 @@
     font-size: 1em;
     text-align: right;
     position: relative;
-    top: -8em;
+    top: -6.5em;
     right: 1.5em;
     width: 100%;
    

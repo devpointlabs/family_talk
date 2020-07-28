@@ -6,8 +6,6 @@ import PostForm from "./PostForm"
 import "./Posts.css"
 import addIcon from '../../images/plus.png'
 
-const defaultimage = "https://simpleicon.com/wp-content/uploads/picture.png"
-
 const Posts = (props) => {
   const [posts, setPosts] = useState([])
   const [showForm, setShowForm] = useState(false)
@@ -76,7 +74,7 @@ const followed = () => {
     }
   })
 }
-  if (props.following || props.auth.user.id === props.userId) {
+  // if ((props.following) || (props.auth.user.id === props.userId)) {
   return (
     <div>
       {showForm && <PostForm addPost={addPost} boardId={props.boardId} userId={props.auth.user} />} 
@@ -92,13 +90,14 @@ const followed = () => {
         {renderPosts()}
       </div>
     </div>
-  )}
-    else {
-    return(
-    <div className="card-grid">
-    {renderPosts()}
-    </div>
-    )}
+  )
+  //  }
+  //   else {
+  //   return(
+  //   <div className="card-grid">
+  //   {renderPosts()}
+  //   </div>
+  //   )}
 
 }
 
