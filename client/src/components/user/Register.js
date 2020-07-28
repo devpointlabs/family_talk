@@ -39,7 +39,7 @@ class Register extends React.Component {
         <Form onSubmit={this.handleSubmit} 
           // className="modal-content"
           >
-          <span class="close" onClick={() => this.props.toggleModal()}>&times;</span>
+          <span class="close" onClick={() => this.props.toggleRegister()}>&times;</span>
           <Form.Input
             label="Username"
             autoFocus
@@ -92,7 +92,7 @@ class Register extends React.Component {
             onChange={this.handleChange}
           />
           <Segment textAlign='center' basic>
-            <Button primary type='submit' onClick={() => this.props.toggleModal()}>Submit</Button>
+            <Button primary type='submit' onClick={() => this.props.toggleRegister()}>Submit</Button>
           </Segment>
         </Form>
       </Modal.Content>

@@ -24,7 +24,7 @@ class Login extends React.Component {
       <Modal.Content>
         <Header as='h1' textAlign='center'>Login</Header>
         <Form onSubmit={this.handleSubmit}>
-          <span class="close" onClick={() => this.props.toggleModal()}>&times;</span>
+          <span class="close" onClick={() => this.props.toggleLogin()}>&times;</span>
           <Form.Input
             label="Email"
             autoFocus
@@ -44,7 +44,7 @@ class Login extends React.Component {
             onChange={this.handleChange}
           />
           <Segment textAlign='center' basic>
-            <Button primary type='submit' onClick={() => this.props.toggleModal()}>Submit</Button>
+            <Button primary type='submit' onClick={() => this.props.toggleLogin()}>Submit</Button>
           </Segment>
         </Form>
       </Modal.Content>

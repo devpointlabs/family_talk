@@ -9,25 +9,30 @@ import { AuthConsumer } from '../providers/AuthProvider';
 import "../styles/LandingStyles.css";
 
 const LandingPage = () => {
-  const [showModal, setShowModal] = useState(false)
+  const [showRegister, setShowRegister] = useState(false)
+  const [showLogin, setShowLogin] = useState(false)
 
-  const toggleModal = () => {
-    setShowModal(!showModal)
+  const toggleRegister = () => {
+    setShowRegister(!showRegister)
   }
   
+  const toggleLogin = () => {
+    setShowLogin(!showLogin)
+  }
+
   return (
     <>
       <div className="header">
         <div className="button">
-          <Modal open={showModal} trigger={<Button id="modal-btn" onClick={() => toggleModal()}>Sign In</Button>}>
+          <Modal open={showLogin} trigger={<Button id="modal-btn" onClick={() => toggleLogin()}>Sign In</Button>}>
             <Modal.Content>
-              <Login toggleModal={toggleModal}/>
+              <Login toggleLogin={toggleLogin}/>
               </Modal.Content>
             </Modal>
 
-          <Modal open={showModal} trigger={<Button id="modal-btn" onClick={() => toggleModal()}>Sign Up</Button>}>
+          <Modal open={showRegister} trigger={<Button id="modal-btn" onClick={() => toggleRegister()}>Sign Up</Button>}>
             <Modal.Content>
-              <Register toggleModal={toggleModal}/>
+              <Register toggleRegister={toggleRegister}/>
               </Modal.Content>
           </Modal>
         </div>
