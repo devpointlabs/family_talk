@@ -1,9 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-
 const ContactUs = () => {
-
 
     return (
         <div style={styles.flex}>
@@ -14,7 +12,7 @@ const ContactUs = () => {
             <h3>Javier Zarate</h3>
             <p>JavierZarate@something.com</p>
             <h3>Lindsay Boyden</h3>
-            <p>LindsayBoyden@something.com</p>
+            <p>lindsayboyden@yahoo.com</p>
             <h3>Joey DeLaCruz</h3>
             <p>Joey DeLaCruz@something.com</p>
             <h3>Kyle Dunshee</h3>

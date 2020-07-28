@@ -40,6 +40,10 @@ const LandingPage = () => {
         
       <div className="body">
         <div><Image src={logo} className="image-logo"/></div>
+        <div className="intro">
+          <h3>keep in touch...</h3>
+          <h3>no matter where you are</h3>
+        </div>
         <div><Image src={image} className="image-featured"/></div>
       </div>
     </>
