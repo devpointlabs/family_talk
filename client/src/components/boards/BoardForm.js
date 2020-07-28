@@ -3,6 +3,7 @@ import { Form, Button, Radio } from "semantic-ui-react"
 import Dropzone from 'react-dropzone';
 import axios from "axios"
 import { AuthConsumer } from "../../providers/AuthProvider";
+import { withRouter } from "react-router-dom";
 
 const BoardForm = (props) => {
   const [name, setName] = useState('')
@@ -45,6 +46,16 @@ const BoardForm = (props) => {
  
   const handleSubmit = (e) => {
     e.preventDefault()
+    if(props.Create) {
+      board.code = randomCode()
+       let data = new FormData()
+       data.append('file', file)
+       axios.post(`/api/boards?name=${board.name}&description=${board.description}&public=${board.public}&code=${board.code}`, data)
+      .then((res) => {
+        createUserBoard(res.data);
+        props.history.push(`/board/${res.data.id}`);
+    })
+  }
     if (props.editBoard) {
       props.editBoard(props.id, board)
       props.toggleEdit()
@@ -52,23 +63,24 @@ const BoardForm = (props) => {
     if (props.editSingleBoard) {
       props.editSingleBoard(props.id, board)
       props.toggleEdit()  
-    } else {  
-       board.code = randomCode()
-       let data = new FormData()
-       data.append('file', file)
-       axios.post(`/api/boards?name=${board.name}&description=${board.description}&public=${board.public}&code=${board.code}`, data)
-      .then((res) => {
-        props.addBoard(res.data)
-        createUserBoard(res.data);
-        props.toggleForm();
-      })
-      .catch((e) => {
-        console.log(e)
-      })
-      setName('')
-      setDes('')
-      setPub(false)
-    }
+    } 
+    // else {  
+    //    board.code = randomCode()
+    //    let data = new FormData()
+    //    data.append('file', file)
+    //    axios.post(`/api/boards?name=${board.name}&description=${board.description}&public=${board.public}&code=${board.code}`, data)
+    //   .then((res) => {
+    //     props.addBoard(res.data)
+    //     createUserBoard(res.data);
+    //     props.toggleForm();
+    //   })
+    //   .catch((e) => {
+    //     console.log(e)
+    //   })
+    //   setName('')
+    //   setDes('')
+    //   setPub(false)
+    // }
   }
 
   return (
@@ -140,7 +152,7 @@ const styles = {
 
 
 
-export default function ConnectedBoardForm (props) {
+function ConnectedBoardForm (props) {
     return (
       <AuthConsumer>
         { auth => 
@@ -149,5 +161,7 @@ export default function ConnectedBoardForm (props) {
       </AuthConsumer>
     )
 }
+
+export default withRouter(ConnectedBoardForm)
 
 

@@ -3,6 +3,7 @@ import {AuthConsumer} from "../../providers/AuthProvider"
 import axios from "axios"
 import Post from "../boardPosts/Post"
 import PostForm from "../boardPosts/PostForm"
+import "./CreatedPost.css"
 
 
 const CreatedPosts = (props) => {
@@ -53,14 +54,12 @@ const CreatedPosts = (props) => {
 
   return (
     <>
-      <h2>Posts</h2>
       {/* {showForm && <PostForm addPost={addPost} boardId={props.boardId} userId={props.auth.user} />} 
        <button onClick={() => setShowForm(!showForm)}>
         {showForm ? "Close Form" : "Add Post"}
       </button>
       <br/>
       <br/> */}
-
       {renderPosts()}
     </>
   )

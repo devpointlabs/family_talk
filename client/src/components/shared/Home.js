@@ -5,14 +5,18 @@ import CreatedBoards from '../user/CreatedBoards';
 import CreatedPosts from '../user/CreatedPosts';
 import './FamilyRoom.css'
 import { AuthConsumer } from '../../providers/AuthProvider';
+import AddBoard from '../user/AddBoard';
 
 const Home = (props) => {
  const [view, setView] = useState('Board')
      
   return (
      <>
-    <h1 className="Header">{props.auth.user.email}'s Family Room</h1>
-    <div className="AddPost"><AddPost /></div>
+    <h1 className="Header">{props.auth.user.name}'s Family Room</h1>
+    <div className="AddStuff">
+    <AddBoard />
+    <AddPost />
+    </div>
     <div className="Buttons">
       <Button onClick = {() => setView('Board') }>Boards</Button> 
      <Button onClick = {() => setView('Post') }>Posts</Button>

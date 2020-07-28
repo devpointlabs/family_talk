@@ -51,11 +51,20 @@ const Post = (props) => {
       })
 }
   return(
-    <div>
-       <Card key={props.post.id}>
-         <Image src={props.post.image}/>
-         <Header> {props.post.title}</Header>
-        <description>{props.post.description}</description>
+    <div className="post">
+
+      <Link to={{
+          pathname: `/board/${props.post.board_id}/post/${props.post.id}`, showProps: { ...props },
+          findLike: {findLike},
+          likePost:  {likePost},
+          unlikePost:  {unlikePost},
+          renderLikes:  {renderLikes},
+      }}>
+        <Image src={props.post.image}/>
+      </Link>
+       <div key={props.post.id}>
+         <h2> {props.post.title}</h2>
+        <p className="description">{props.post.description}</p>
         {props.auth.user.id === props.post.user_id ? 
         <div>
         <button onClick={() => setEditing(!editing)}>{editing ? "Close Edit" : "Edit"}</button>
@@ -65,23 +74,12 @@ const Post = (props) => {
         <h4>Likes: {postLikes ? postLikes.length : "0"}</h4>
         {like ? <button onClick={() => unlikePost(props.post.id)}>Unlike</button> : <button onClick={() => likePost(props.post.id)}>Like</button>}
 
-        <Link to={{
-          pathname: `/board/${props.post.board_id}/post/${props.post.id}`, showProps: { ...props },
-          findLike: {findLike},
-          likePost:  {likePost},
-          unlikePost:  {unlikePost},
-          renderLikes:  {renderLikes},
-        }}
-        
-         >
-        <button>View</button>
-        </Link>
 
         {editing ? <PostForm updatePost={props.updatePost}toggleEdit={setEditing} editPost={props.editPost} post={props.post} 
         userId={props.userId} editing = {editing}/> : null } 
         
 
-      </Card>
+      </div>
 
       <br/>
     </div>
