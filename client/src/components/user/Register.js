@@ -32,7 +32,7 @@ class Register extends React.Component {
         // className="modal"
         >
         <Header as='h1' 
-          textAlign='center' 
+          textAlign='center'
           // className="modal-header"
           >Register
           </Header>
