@@ -6,7 +6,7 @@ import { AuthConsumer } from "../../providers/AuthProvider"
 const CommentsForm = (props) => {
   const [des, setDes] = useState('')
 
-  const comment = { description: des, user_id: props.auth.user.id }
+  const comment = { description: des, user_id: props.auth.user.id, user_name: props.auth.user.name}
 
   useEffect(() => {
     if (props.commentId) {
@@ -24,6 +24,7 @@ const handleSubmit = (e) => {
       axios.post(`/api/posts/${props.postId}/comments`, comment)
       .then((res) => {
         props.addComment(res.data)
+        console.log(comment)
       })
       .catch((e) => {
         console.log(e)

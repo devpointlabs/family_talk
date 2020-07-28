@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react"
-import { Image, Card, Header } from "semantic-ui-react"
-import PostForm from "./PostForm"
 import {Link} from 'react-router-dom'
 import axios from "axios"
 import { AuthConsumer } from "../../providers/AuthProvider"
+import "./Posts.css"
 
+const defaultImage = 'https://simpleicon.com/wp-content/uploads/picture.png';
 
 const Post = (props) => {
   const [editing, setEditing] = useState(false)
@@ -51,15 +51,24 @@ const Post = (props) => {
       })
 }
   return(
-    <div className="post">
-
+    <div>
       <Link to={{
           pathname: `/board/${props.post.board_id}/post/${props.post.id}`, showProps: { ...props },
           findLike: {findLike},
           likePost:  {likePost},
           unlikePost:  {unlikePost},
           renderLikes:  {renderLikes},
-      }}>
+        }}
+         >
+        <div className="card">
+         <img className = "card-image" src={props.post.image ? props.post.image : defaultImage}/>
+          <div className="card-text">
+            <p> {props.post.title}</p>
+            <p>Likes: {postLikes ? postLikes.length : "0"}</p>
+          </div>
+        </div>
+      </Link>
+{*/ }}>
         <Image src={props.post.image}/>
       </Link>
        <div key={props.post.id}>
@@ -83,6 +92,7 @@ const Post = (props) => {
 
       <br/>
     </div>
+*/}
   )
 }
 
