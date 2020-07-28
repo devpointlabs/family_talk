@@ -39,16 +39,17 @@ trigger2 = () => {
             </Dropdown.Menu>
             </Dropdown>    
       )
-    } else {
-      return (
-        <Dropdown text = 'Login' icon = 'login'>
-          <Dropdown.Menu>
-          <Dropdown.Item as = {Link} to ='/login'>Login</Dropdown.Item>
-          <Dropdown.Item as = {Link} to = '/register'>Register</Dropdown.Item>
-          </Dropdown.Menu>
-          </Dropdown>
-     )
-    }
+    } 
+    // else {
+    //   return (
+    //     <Dropdown text = 'Login' icon = 'login'>
+    //       <Dropdown.Menu>
+    //       <Dropdown.Item as = {Link} to ='/login'>Login</Dropdown.Item>
+    //       <Dropdown.Item as = {Link} to = '/register'>Register</Dropdown.Item>
+    //       </Dropdown.Menu>
+    //       </Dropdown>
+    //  )
+    // }
    }
 
   render() {

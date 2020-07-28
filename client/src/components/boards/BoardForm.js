@@ -4,6 +4,7 @@ import Dropzone from 'react-dropzone';
 import axios from "axios"
 import { AuthConsumer } from "../../providers/AuthProvider";
 import { withRouter } from "react-router-dom";
+import "./BoardStyles.css"
 
 const BoardForm = (props) => {
   const [name, setName] = useState('')
@@ -85,7 +86,7 @@ const BoardForm = (props) => {
 
   return (
     <Form onSubmit={handleSubmit}>
-        <Form.Input
+        <Form.Input 
           label="Name"
           name="name"
           placeholder="Name"
