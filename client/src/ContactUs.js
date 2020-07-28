@@ -22,8 +22,8 @@ const ContactUs = () => {
           <h3>Shawn Smith</h3>
           <i className='occupation'>Software Developer</i>
             <p>srsmith11@live.com</p>
-            <a href="https://www.linkedin.com/in/javier-zarate-b01a04112/" target="_blank"><i class="linkedin icon" size='large'></i></a>
-          <a style={{color:"black"}} href="https://github.com/srsmith0" target="_blank"><i class="github icon"></i></a>
+            <a href="https://www.linkedin.com/in/shawnsmith11/" target="_blank"><i class="linkedin icon" size='large'></i></a>
+            <a style={{color:"black"}} href="https://github.com/srsmith0" target="_blank"><i class="github icon"></i></a>
         </div>
 
         <div>
@@ -31,7 +31,7 @@ const ContactUs = () => {
           <h3>Javier Zarate</h3>
           <i className='occupation'>Software Developer</i>
           <p>zarate.javier.jz@gmail.com</p>
-          <a href="https://www.linkedin.com/in/shawnsmith11/" target="_blank"><i class="linkedin icon"></i></a>
+          <a href="https://www.linkedin.com/in/javier-zarate-b01a04112/" target="_blank"><i class="linkedin icon"></i></a>
           <a style={{color:"black"}} href="https://github.com/zaratejavier" target="_blank"><i class="github icon"></i></a>
         </div>
 
