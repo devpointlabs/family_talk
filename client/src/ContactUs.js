@@ -21,7 +21,7 @@ const ContactUs = () => {
           <h3>Shawn Smith</h3>
           <i className='occupation'>Software Developer</i>
             <p>srsmith11@live.com</p>
-            <a href="https://www.linkedin.com/in/javier-zarate-b01a04112/" target="_blank"><i class="linkedin icon"></i></a>
+            <a href="https://www.linkedin.com/in/javier-zarate-b01a04112/" target="_blank"><i class="linkedin icon" size='large'></i></a>
           <a style={{color:"black"}} href="https://github.com/srsmith0" target="_blank"><i class="github icon"></i></a>
         </div>
 
@@ -39,7 +39,7 @@ const ContactUs = () => {
           <img className="lindsay" src={lindsay} alt="Lindsay" />
           <h3>Lindsay Boyden</h3>
           <i className='occupation'>Software Developer</i>  
-            <p>LindsayBoyden@something.com</p>
+            <p>lindsayboyden@yahoo.com</p>
             <a href="https://www.linkedin.com/in/lindsay-boyden-9b523a10a/" target="_blank"><i class="linkedin icon"></i></a>
           <a style={{color:"black"}} href="https://github.com/lcboyden" target="_blank"><i class="github icon"></i></a>
         </div>
