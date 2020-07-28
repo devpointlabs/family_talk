@@ -14,6 +14,7 @@ import trashIcon from '../../images/trash.png'
 const BoardView = (props) => {
   const [board, setBoard] = useState({})
   const [editing, setEdit] = useState(false)
+  const [showForm, setShowForm] = useState(false)
 
   useEffect(() => {
     axios.get(`/api/boards/${props.match.params.id}`)

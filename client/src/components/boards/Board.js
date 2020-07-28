@@ -58,8 +58,8 @@ const Board = (props) => {
             <Image src={props.image || defaultImage}/>    
             </div> 
         </Link>
-        <div className="title">
-        <h2 className="title">{props.name}</h2>
+        <div className="boardTitle">
+        <h2>{props.name}</h2>
         <p>{props.description}</p>
         <p className="cards">{posts.length} Cards</p>
         </div>

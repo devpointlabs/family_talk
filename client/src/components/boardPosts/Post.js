@@ -50,6 +50,7 @@ const Post = (props) => {
         setPostLikes(res.data)
       })
 }
+
   return(
     <div>
       <Link to={{
@@ -68,33 +69,9 @@ const Post = (props) => {
           </div>
         </div>
       </Link>
-{*/ }}>
-        <Image src={props.post.image}/>
-      </Link>
-       <div key={props.post.id}>
-         <h2> {props.post.title}</h2>
-        <p className="description">{props.post.description}</p>
-        {props.auth.user.id === props.post.user_id ? 
-        <div>
-        <button onClick={() => setEditing(!editing)}>{editing ? "Close Edit" : "Edit"}</button>
-        <button onClick={() => props.removePost(props.post.id, props.post.board_id)}>Delete</button> </div> : null}
-        
-        
-        <h4>Likes: {postLikes ? postLikes.length : "0"}</h4>
-        {like ? <button onClick={() => unlikePost(props.post.id)}>Unlike</button> : <button onClick={() => likePost(props.post.id)}>Like</button>}
-
-
-        {editing ? <PostForm updatePost={props.updatePost}toggleEdit={setEditing} editPost={props.editPost} post={props.post} 
-        userId={props.userId} editing = {editing}/> : null } 
-        
-
       </div>
+  )}
 
-      <br/>
-    </div>
-*/}
-  )
-}
 
 const ConnectedPost = (props) => (
   <AuthConsumer>
@@ -104,3 +81,28 @@ const ConnectedPost = (props) => (
   </AuthConsumer>
 )
 export default ConnectedPost;
+
+
+    //     <Image src={props.post.image}/>
+    //   </Link>
+    //    <div key={props.post.id}>
+    //      <h2> {props.post.title}</h2>
+    //     <p className="description">{props.post.description}</p>
+    //     {props.auth.user.id === props.post.user_id ? 
+    //     <div>
+    //     <button onClick={() => setEditing(!editing)}>{editing ? "Close Edit" : "Edit"}</button>
+    //     <button onClick={() => props.removePost(props.post.id, props.post.board_id)}>Delete</button> </div> : null}
+        
+        
+    //     <h4>Likes: {postLikes ? postLikes.length : "0"}</h4>
+    //     {like ? <button onClick={() => unlikePost(props.post.id)}>Unlike</button> : <button onClick={() => likePost(props.post.id)}>Like</button>}
+
+
+    //     {editing ? <PostForm updatePost={props.updatePost}toggleEdit={setEditing} editPost={props.editPost} post={props.post} 
+    //     userId={props.userId} editing = {editing}/> : null } 
+        
+
+    //   </div>
+
+    //   <br/>
+    // </div> 
