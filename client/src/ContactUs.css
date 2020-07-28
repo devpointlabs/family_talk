@@ -1,0 +1,28 @@
+.parent{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+}
+
+.header{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-bottom: 1rem;
+}
+
+.javier, .shawn{
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  padding: .1rem;
+  border:  .1rem solid lightgrey;
+
+}
+
+.linkedin{
+
+  font-size: 40px;
+  width: 60px !important;
+}
