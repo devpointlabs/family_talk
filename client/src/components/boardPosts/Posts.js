@@ -3,7 +3,10 @@ import {AuthConsumer} from "../../providers/AuthProvider"
 import axios from "axios"
 import Post from "./Post"
 import PostForm from "./PostForm"
+import "./Posts.css"
+import addIcon from '../../images/plus.png'
 
+const defaultimage = "https://simpleicon.com/wp-content/uploads/picture.png"
 
 const Posts = (props) => {
   const [posts, setPosts] = useState([])
@@ -13,7 +16,7 @@ const Posts = (props) => {
 
 
   useEffect(() => {
-    axios.get(`/api/boards/${props.boardId}/posts`)
+    axios.get(`/api/boards/${props.boardId}/posts`) 
       .then(res => {
         setPosts(res.data)
         getFollows() 
@@ -75,23 +78,28 @@ const followed = () => {
 }
   if (props.following || props.auth.user.id === props.userId) {
   return (
-    <>
-      <h2>Posts</h2>
-      {showForm && <PostForm addPost={addPost} setShowForm={setShowForm} showForm={showForm} boardId={props.boardId} userId={props.auth.user}  />} 
-       <button onClick={() => setShowForm(!showForm)}>
-        {showForm ? "Close Form" : "Add Post"}
-      </button>
+    <div>
+      {showForm && <PostForm addPost={addPost} boardId={props.boardId} userId={props.auth.user} />} 
+      <div className="add-container">
+        {showForm ? 
+            <button onClick={() => setShowForm(!showForm)}>"Close Form"</button> : 
+            <img src={addIcon} className="small-icon" onClick={() => setShowForm(!showForm)}/>
+        }
+      </div>
       <br/>
       <br/>
-      {renderPosts()}
-    </>
-  )} else {
+      <div className="card-grid">
+        {renderPosts()}
+      </div>
+    </div>
+  )}
+    else {
     return(
-    <>
-    <h2>Posts</h2>
+    <div className="card-grid">
     {renderPosts()}
-    </>
+    </div>
     )}
+
 }
 
 
