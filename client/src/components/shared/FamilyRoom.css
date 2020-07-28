@@ -1,11 +1,13 @@
 .Header {
   text-align: center;
-  color: red;
+  color:red;
+  font-family: "FugazOne"
 }
 
 .Buttons {
   text-align: center;
   margin-bottom: 5em;
+  
 }
 
 .AddStuff {
@@ -19,5 +21,6 @@
   align-items: center;
   flex-flow: row wrap;
   justify-content: space-evenly;
+
 
 }

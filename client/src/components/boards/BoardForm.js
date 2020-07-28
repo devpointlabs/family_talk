@@ -21,7 +21,7 @@ const BoardForm = (props) => {
   }
   
   useEffect(() => {
-    if (props.id) {
+    if (props.name) {
       setName(props.name)
       setDes(props.description)
       setPub(props.public ? props.public : false)

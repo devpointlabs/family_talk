@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import BoardForm from '../boards/BoardForm';
-import { Modal } from 'semantic-ui-react';
+import { Modal, Button } from 'semantic-ui-react';
 
 const AddBoard = (props) => {
   const [showForm, setShowForm] = useState(false)
@@ -8,7 +8,7 @@ const AddBoard = (props) => {
 
   return (
     <>
-    <Modal trigger={<button>Add Board</button>}>
+    <Modal trigger={<Button color="grey">Add Board</Button>}>
   <BoardForm Create={true} toggleForm={setShowForm} />
   </Modal>
     </>

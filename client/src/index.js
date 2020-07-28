@@ -7,6 +7,7 @@ import { AuthProvider, } from "./providers/AuthProvider";
 import 'semantic-ui-css/semantic.min.css';
 import { initMiddleware, } from 'devise-axios';
 import { BoardProvider, } from './providers/BoardProvider';
+import './App.css'
 
 initMiddleware();
 

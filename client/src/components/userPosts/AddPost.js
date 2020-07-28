@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Redirect, withRouter } from 'react-router-dom';
 import { BoardConsumer } from '../../providers/BoardProvider';
 import Dropzone from 'react-dropzone';
-import { Modal, Form } from 'semantic-ui-react';
+import { Modal, Form, Button } from 'semantic-ui-react';
 
 
 const AddPost = (props) => {
@@ -55,7 +55,7 @@ const AddPost = (props) => {
 
   return (
     <div>
-       <Modal trigger={<button onClick={toggle}>Add Post</button>}>
+       <Modal trigger={<Button color="grey" onClick={toggle}>Add Post</Button>}>
          <Modal.Content>
         <Form onSubmit={handleSubmit}>
           <Form.Input
