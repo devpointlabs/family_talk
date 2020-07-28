@@ -22,7 +22,7 @@ const LandingPage = () => {
 
   return (
     <>
-      <div className="header">
+      <div className="header-landing">
         <div className="button">
           <Modal open={showLogin} trigger={<Button id="modal-btn" onClick={() => toggleLogin()}>Sign In</Button>}>
             <Modal.Content>
