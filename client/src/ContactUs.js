@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+
 
 
 const ContactUs = () => {
@@ -34,7 +34,8 @@ const styles = {
       alignItems: "center",
       backgroundColor: 'white',
       fontSize: '15px',
-      border: "2px solid gray",
+      fontColor: '#747680',
+      border: "2px solid #E35E5D",
       backgroundColor: 'white',
     
     },
