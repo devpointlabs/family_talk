@@ -51,7 +51,7 @@ function Comments(props){
     return(
         <div>
             {renderComments()}
-            <CommentsForm addComment = {addComment} postId = {props.postId} userId = {props.userId}  />
+            <CommentsForm addComment = {addComment} postId = {props.postId} userId = {props.userId}/>
         </div>
 
 
@@ -59,23 +59,6 @@ function Comments(props){
   )
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

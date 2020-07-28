@@ -4,6 +4,11 @@ import Posts from "../boardPosts/Posts"
 import BoardForm from "./BoardForm"
 import { AuthConsumer, } from "../../providers/AuthProvider";
 import { withRouter } from "react-router-dom";
+import "../boardPosts/Posts.css"
+import editIcon from '../../images/edit.png'
+import trashIcon from '../../images/trash.png'
+
+
 
 
 const BoardView = (props) => {
@@ -30,17 +35,22 @@ const BoardView = (props) => {
 
  if ((board.user_id === props.auth.user.id)) {
   return(
-    <div>
-   <h1>{board.name}</h1>
-   <p>{board.description}</p>
-   <p>Your board code is: {board.code}
-   <br />
-   Invite your family and friends!</p>
-   {showForm && <BoardForm />}
-   <button onClick={() => setShowForm(!showForm)}>
-     {showForm ? "Close Form" : "Edit"}
-   </button>
-   <button onClick={() => removeBoard(board.id)}>Delete</button>
+    <div className="main-container">
+      <div className="board-container">
+        <h1 className="board-title">{board.name}</h1>
+        <p className="board-description">{board.description}</p>
+        <br/>
+        <p className="board-description">Your board code is: {board.code}</p>
+        <p className="board-description">Invite your family and friends!</p>
+        {showForm && <BoardForm />}
+        <div>
+          {showForm ? 
+              <button onClick={() => setShowForm(!showForm)}>"Close Form"</button> : 
+              <img src={editIcon} className="small-icon" onClick={() => setShowForm(!showForm)}/>
+          }
+          <img src={trashIcon} className="small-icon" onClick={() => removeBoard(board.id)}/>
+        </div>
+      </div>
    <Posts boardId={props.match.params.id}/>
  </div>
   )
