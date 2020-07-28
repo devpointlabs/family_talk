@@ -153,7 +153,7 @@ class Settings extends React.Component {
           </div>
 
           <div className='profile-section'>
-            <div className='title'>My Family Talk Profile</div>
+            <div className='family-title'>My Family Talk Profile</div>
               
             <div className="image-username">
               <img className="settings-image" src={user.image || defaultImage} />
