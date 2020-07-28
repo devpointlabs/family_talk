@@ -17,6 +17,7 @@
   display: flex;
   flex-flow: row nowrap;
   width: 14em;
+  margin-right: 3em;
 }
 
 .image-logo {

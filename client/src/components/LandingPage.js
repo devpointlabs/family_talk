@@ -8,7 +8,7 @@ import Login from './user/Login';
 import { AuthConsumer } from '../providers/AuthProvider';
 import "../styles/LandingStyles.css";
 
-const LandingPage = (props) => {
+const LandingPage = () => {
   const [showModal, setShowModal] = useState(false)
 
   const toggleModal = () => {
