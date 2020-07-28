@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react"
 import axios from 'axios'
 import PublicBoard from './boards/PublicBoard'
 import Board from './boards/Board'
+import { Button, Dropdown } from "semantic-ui-react"
+import AddBoard from "./user/AddBoard"
+import AddPost from "./userPosts/AddPost"
 
 const PublicPage = () => {
   const [pubBoards, setPubBoards] = useState([])
@@ -64,7 +67,7 @@ const PublicPage = () => {
     return (
       pubBoards.map(board => (
         <>
-          <h1>Explore Boards</h1>
+       
         <PublicBoard 
           key = {board.id}
           name = {board.name}
@@ -79,8 +82,16 @@ const PublicPage = () => {
 
   return (
     <div>
-      <h1>Explore Boards</h1>
-    {renderPublicBoards()}
+      <h1 className="Header">Explore</h1>
+      <div className="AddStuff">
+    <Dropdown icon="pencil" >
+        <Dropdown.Menu>
+            <Dropdown.Item><AddBoard /></Dropdown.Item>
+            <Dropdown.Item><AddPost /></Dropdown.Item>
+            </Dropdown.Menu>
+            </Dropdown> 
+    </div>
+      {renderPublicBoards()}
     </div>
   )
 }

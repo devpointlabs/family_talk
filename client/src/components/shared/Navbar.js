@@ -9,8 +9,6 @@ const defaultImage = 'https://d30y9cdsu7xlg0.cloudfront.net/png/15724-200.png';
 
 class Navbar extends React.Component {
 
-
-
    trigger = (
   <span>
     <Image src={MSLogo} className='logo'/>
@@ -26,7 +24,7 @@ trigger2 = () => {
  )
  
 }
-  
+
   rightNavItems = () => {
     const { auth: { user, handleLogout, }, location, } = this.props;
     
@@ -40,6 +38,7 @@ trigger2 = () => {
             </Dropdown>    
       )
     } 
+
     // else {
     //   return (
     //     <Dropdown text = 'Login' icon = 'login'>
