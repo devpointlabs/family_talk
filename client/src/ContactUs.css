@@ -31,4 +31,9 @@
 .linkedin{
   font-size: 40px;
   width: 60px !important;
+  font-size: 20px;
+}
+
+.occupation{
+  color: gray;
 }
