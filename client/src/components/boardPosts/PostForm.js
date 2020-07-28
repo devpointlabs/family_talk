@@ -29,7 +29,6 @@ const PostForm = (props) => {
       axios.post(`/api/boards/${props.boardId}/posts?title=${title}&description=${description}`, data) 
       .then(res => {
         props.addPost(res.data)
-        props.setShowForm(!props.showForm) 
       })
     }
 

@@ -9,9 +9,9 @@ import "./PostView.css"
 import editIcon from '../../images/edit.png'
 import trashIcon from '../../images/trash.png'
 import likeIcon from '../../images/like.png'
+import familyTalkIcon from '../boards/mediumsmall.png'
 
 
-const defaultImage = 'https://simpleicon.com/wp-content/uploads/picture.png';
 
 const PostView = (props) => {  
   const [ editing, setEditing] = useState(false)
@@ -84,7 +84,7 @@ const unlikePost = (postId) => {
   return(
     <div className = "container">
       <div className="post-image-container">
-        <Image className = "post-image" src={card.image || defaultImage}/>
+        <Image className = "post-image" src={card.image || familyTalkIcon}/>
       </div>
       <div className="post-info">
          {props.auth.user.id === card.user_id ? 
@@ -97,14 +97,21 @@ const unlikePost = (postId) => {
       <h1 className="post-title"> {card.title}</h1>
       <p className="post-description">{card.description}</p>
       <div className = "like-container">
+        <div className="comment-container">
+        <h4>Likes: {postLikes ? postLikes.length : "0"}</h4>
         {like ? <button className = "like-button" onClick={() => 
           unlikePost(card.id)}>Unlike</button> : 
           <button className="like-button" onClick={() => likePost(card.id)}><img className="small-icon" src={likeIcon}/>Like</button>}
-        <h4>Likes: {postLikes ? postLikes.length : "0"}</h4>
+        
       </div>
-      <h3>Comments</h3>
-      <Comments postId = {props.match.params.id} />
+      <div className="comment-container">
+        <h3>Comments</h3>
+        <Comments postId = {props.match.params.id} />
+      </div>
+      </div>
+      <br/>
       <Button onClick={props.history.goBack}>Go Back</Button>
+      
     </div>
     </div>
   )

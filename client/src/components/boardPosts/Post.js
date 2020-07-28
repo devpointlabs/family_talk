@@ -3,8 +3,8 @@ import {Link} from 'react-router-dom'
 import axios from "axios"
 import { AuthConsumer } from "../../providers/AuthProvider"
 import "./Posts.css"
+import familyTalkIcon from '../boards/mediumsmall.png'
 
-const defaultImage = 'https://simpleicon.com/wp-content/uploads/picture.png';
 
 const Post = (props) => {
   const [editing, setEditing] = useState(false)
@@ -62,7 +62,7 @@ const Post = (props) => {
         }}
          >
         <div className="card">
-         <img className = "card-image" src={props.post.image ? props.post.image : defaultImage}/>
+         <img className = "card-image" src={props.post.image ? props.post.image : familyTalkIcon}/>
           <div className="card-text">
             <p> {props.post.title}</p>
             <p>Likes: {postLikes ? postLikes.length : "0"}</p>
