@@ -49,7 +49,7 @@ const ContactUs = () => {
           <h3>Joey DeLaCruz</h3>
           <i className='occupation'>Software Developer</i>  
             <p>smiles.jtd@gmail.com</p>
-            <a href="https://www.google.com/search?sxsrf=ALeKk01Y_ebi-jk_LT22H8mRgr_pCbKs_Q%3A1595909803174&ei=q6YfX6qMCsOvtAajqoyAAg&q=joey+delacruz&oq=joey+delacruz&gs_lcp=CgZwc3ktYWIQAzIHCCMQsAIQJ1CXEVjeE2CPFWgAcAB4AIABU4gB6AGSAQEzmAEAoAEBqgEHZ3dzLXdpesABAQ&sclient=psy-ab&ved=0ahUKEwjqjaWni-_qAhXDF80KHSMVAyAQ4dUDCAw&uact=5" target="_blank"><i class="linkedin icon"></i></a>
+            <a href="https://www.linkedin.com/in/joey-delacruz-2686491a4/" target="_blank"><i class="linkedin icon"></i></a>
           <a style={{color:"black"}} href="https://github.com/TurtleMaster-Joey" target="_blank"><i class="github icon"></i></a>
         </div>
         
