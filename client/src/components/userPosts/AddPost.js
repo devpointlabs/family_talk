@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Redirect, withRouter } from 'react-router-dom';
 import { BoardConsumer } from '../../providers/BoardProvider';
 import Dropzone from 'react-dropzone';
+import { Modal, Form } from 'semantic-ui-react';
 
 
 const AddPost = (props) => {
@@ -54,17 +55,17 @@ const AddPost = (props) => {
 
   return (
     <div>
-      <button onClick={toggle}>Add Post</button>
-      {toggleForm ? (
-        <form onSubmit={handleSubmit}>
-          <input
+       <Modal trigger={<button onClick={toggle}>Add Post</button>} basic size='small'>
+         <Modal.Content>
+        <Form onSubmit={handleSubmit}>
+          <Form.Input
             name="title"
             label="Title"
             placeholder="Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-          <input 
+          <Form.Input
             name="description" 
             label="Description"
             placeholder="Description"
@@ -88,6 +89,7 @@ const AddPost = (props) => {
                       <p>Drop files here...</p> :
                       <p>Try dropping some files here, or click to select files to upload.</p>
                   }
+                  
                 </div>
               )
             }}
@@ -101,8 +103,10 @@ const AddPost = (props) => {
             {theBoards()}
           </select>
           <button type="submit" >submit</button>
-        </form>
-      ) : null}
+        </Form>
+       
+      </Modal.Content>
+      </Modal>
     </div>
   );
 }

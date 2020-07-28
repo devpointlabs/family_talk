@@ -3,8 +3,9 @@ import axios from "axios"
 import BoardForm from "../boards/BoardForm"
 import Board from "../boards/Board"
 import { AuthConsumer } from "../../providers/AuthProvider"
+import "../boards/BoardStyles.css"
 
-const CreatedBoards = () => {
+const CreatedBoards = (props) => {
   const [boards, setBoards] = useState([])
   const [followedBoards, setFollowedBoards] = useState([])
   const [showForm, setShowForm] = useState(false)
@@ -25,9 +26,8 @@ const CreatedBoards = () => {
     axios.get(`/api/user/followedBoards`)
     .then((res) => {
       setFollowedBoards(res.data)
-    })
+        })
   }
-
 
   const addBoard = (board) => {
     setBoards([board, ...boards])
@@ -54,6 +54,7 @@ const CreatedBoards = () => {
     ))
   }
 
+ 
   const renderFollowedBoards = () => {
     return followedBoards.map(board => (
       <>
@@ -93,16 +94,26 @@ const CreatedBoards = () => {
 
   return (
     <>
-      {showForm && <BoardForm addBoard={addBoard} toggleForm={setShowForm} />}
+    {/* <div className="AddBoard">
+      {showForm && <BoardForm addBoard={addBoard} editBoard={editBoard} toggleForm={setShowForm} />}
       <br/>
       <button onClick={() => setShowForm(!showForm)}>
         {showForm ? "Close Form" : "Add Board"}
       </button>
-      <br/>
+      </div> */}
+     
       {renderBoards()}
       {renderFollowedBoards()}
+   
     </>
   )
 }
+const ConnectedCreatedBoards = (props) => (
+  <AuthConsumer>
+    { auth => 
+      <CreatedBoards { ...props } auth={auth} />
+    }
+  </AuthConsumer>
+)
 
-export default CreatedBoards; 
+export default ConnectedCreatedBoards; 
