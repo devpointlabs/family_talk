@@ -4,7 +4,6 @@
   flex-wrap: wrap;
 
 }
-
 .header{
   display: flex;
   justify-content: center;
@@ -12,7 +11,15 @@
   padding-bottom: 1rem;
 }
 
-.javier, .shawn{
+.below-header{
+  display: flex;
+  justify-content: center;
+  padding-bottom: 6rem;
+  font-style: italic;
+  color: gray
+}
+
+.javier, .shawn, .lindsay, .joey, .kyle{
   width: 7rem;
   height: 7rem;
   border-radius: 50%;
@@ -22,7 +29,6 @@
 }
 
 .linkedin{
-
   font-size: 40px;
   width: 60px !important;
 }
