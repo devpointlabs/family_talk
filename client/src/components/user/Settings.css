@@ -1,3 +1,4 @@
+
 .settings-image{
   width: 6rem;
   height: 6rem;
@@ -22,8 +23,6 @@
   padding-top: .5rem;
 }
 
-
-
 .fragment{
   display: flex;
   justify-content: center;
@@ -33,7 +32,15 @@
   border-radius: 2%;
   background-color: whitesmoke;
   border:  0.05rem solid lightgrey;
-  padding: 1rem;
+  padding-right: 5rem;
+  padding-bottom: .5rem;
+  padding-top: .5rem;
+  padding-left: .5rem;
+  font-family: 'Roboto', sans-serif;
+  
+
+  /* padding: .5rem; */
+
 }
 
 .fragment{
@@ -45,10 +52,10 @@
   padding: 5rem;
   background-color:whitesmoke;
   border-radius: 1%;
-  padding-top: 2rem;
+  padding-top: 1rem;
   border:  0.05rem solid lightgrey; 
   width: 50%;
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
 }
 
 .image-username{
@@ -105,5 +112,24 @@
    padding: 2rem;
    height: 15rem;
   border-radius: 2%;
+}
+
+.bell{
+  /* color: rgb(242, 202, 202); */
+  color:#F8D7D7;
+}
+
+.pp{
+  color: rgb(143, 142, 142);
+}
+
+/* .delete-button{
+  background-color: #F8D7D7;
+} */
+
+.delete-button{
+  background-color: white;
+  color: gray;
+  border:  0.05rem solid #F8D7D7; 
 
 }

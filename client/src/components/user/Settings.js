@@ -5,6 +5,7 @@ import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import './Settings.css'
 
+
 const defaultImage = 'https://d30y9cdsu7xlg0.cloudfront.net/png/15724-200.png';
 
 class Settings extends React.Component {
@@ -118,11 +119,11 @@ class Settings extends React.Component {
           <div className="icon-and-dropzone">
             <div className='profile-notification'>
               <div className="profile-icon" style={{ color: 'black' }}> <i class="user icon"><br/>
-                </i> My Profile <br />how your acount looks like
+                </i> My Profile  <p className='pp'>how your acount looks like</p>
               </div>  
 
-              <div className="profile-icon2" style={{ color: 'black' }}> <i class="user icon"><br/>
-                </i> Notifications <br />email notification and all around
+              <div className="profile-icon2" style={{ color: 'black' }}> <i class="bell icon"><br/>
+                </i> Notifications <p className='pp'>email notification and all around</p>
               </div>  
             </div>
 
@@ -200,8 +201,8 @@ class Settings extends React.Component {
                 <button className='follow-button'>Follow</button>
               </Form>
 
-              <button className='update-button'>Update</button>
               <button className='delete-button' onClick = {() => this.props.auth.destroyUser(this.props.auth.user.id, this.props.history)}>Delete</button>
+              <button className='update-button'>Update</button>
             </div>
         </div>
       </Form>
@@ -243,7 +244,7 @@ const styles = {
   dropzone: {
     height: "100px",
     width: "250px",
-    border: "1px dashed red",
+    border: "1px dashed #E35E5D",
     borderRadius: "5px",
     display: "flex",
     justifyContent: "center",
@@ -251,3 +252,4 @@ const styles = {
     padding: "20px",
   },
 }
+
