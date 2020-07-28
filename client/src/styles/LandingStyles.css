@@ -1,16 +1,30 @@
 .header {
+  font-family: FugazOne, sans-serif;
   background-color: white;
   display: flex;
   justify-content: flex-end;
 }
 
 .body {
+  font-family: FugazOne, sans-serif;
   background-color: white;
   color: grey;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.intro 
+
+h3 {  
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .button {
@@ -23,9 +37,11 @@
 .image-logo {
   height: 25em;
   width: 25em;
+  padding-bottom: 0;
 }
 
 .image-featured {
   height: auto;
   width: 50em;
+  padding-top: 2em;
 }

@@ -7,7 +7,6 @@ import lindsay from './images/lindsay.png'
 import joey from './images/joey.png'
 import kyle from './images/kyle.png'
 
-
 const ContactUs = () => {
 
     return (
