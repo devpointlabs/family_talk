@@ -9,7 +9,9 @@ const AddBoard = (props) => {
   return (
     <>
     <Modal trigger={<Button color="grey">Add Board</Button>}>
-  <BoardForm Create={true} toggleForm={setShowForm} />
+      <Modal.Content>
+  <BoardForm create={true} toggleForm={setShowForm} />
+  </Modal.Content>
   </Modal>
     </>
   )

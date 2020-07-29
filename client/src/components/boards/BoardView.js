@@ -52,7 +52,7 @@ const BoardView = (props) => {
         <p className="board-description">Your board code is: {board.code}</p>
         <p className="board-description">Invite your family and friends!</p>
         <button onClick={props.history.goBack}>Go Back</button>
-        {showForm && <BoardForm editSingleBoard={editSingleBoard} {...board.props} />}
+        {showForm && <BoardForm editSingleBoard={editSingleBoard} toggleEdit={setEdit} {...board} />}
         <div>
           {showForm ? 
               <button onClick={() => setShowForm(!showForm)}>"Close Form"</button> : 

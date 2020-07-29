@@ -21,7 +21,7 @@ const BoardForm = (props) => {
   }
   
   useEffect(() => {
-    if (props.name) {
+    if (!props.create) {
       setName(props.name)
       setDes(props.description)
       setPub(props.public ? props.public : false)
@@ -47,7 +47,7 @@ const BoardForm = (props) => {
  
   const handleSubmit = (e) => {
     e.preventDefault()
-    if(props.Create) {
+    if(props.create) {
       board.code = randomCode()
        let data = new FormData()
        data.append('file', file)

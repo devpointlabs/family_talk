@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Button, Dropdown, } from 'semantic-ui-react';
+import { Button, Dropdown, Modal, } from 'semantic-ui-react';
 import AddPost from '../userPosts/AddPost'
 import CreatedBoards from '../user/CreatedBoards';
 import CreatedPosts from '../user/CreatedPosts';
@@ -17,8 +17,14 @@ const Home = (props) => {
     <div className="AddStuff">
     <Dropdown icon="pencil" >
         <Dropdown.Menu>
-            <Dropdown.Item ><AddBoard /></Dropdown.Item>
-            <Dropdown.Item ><AddPost /></Dropdown.Item>
+        <Modal size="mini" centered={true} trigger={<Button  color="grey">Add Board or Post</Button>}>
+          <Modal.Content>
+          <AddBoard />
+        <br />
+        <br />
+           <AddPost />
+            </Modal.Content>
+          </Modal>
             </Dropdown.Menu>
             </Dropdown> 
     </div>
